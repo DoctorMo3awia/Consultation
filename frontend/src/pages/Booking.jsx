@@ -18,28 +18,20 @@ const Booking = () => {
   };
 
   const openGoogleForm = () => {
-    // Placeholder - replace with actual Google Form URL
-    window.open('https://forms.google.com/YOUR_FORM_ID', '_blank');
+    window.open('https://forms.gle/DyPhUxd2GGmgttGTA', '_blank');
     setFormSubmitted(true);
   };
 
   const redFlagSymptoms = [
-    'ألم في الصدر أو ضيق تنفس شديد',
-    'إغماء أو فقدان وعي',
-    'نزيف غير طبيعي أو شديد',
-    'ألم حاد مفاجئ في البطن',
-    'تغيرات مفاجئة في الرؤية أو النطق',
-    'حمى شديدة مستمرة (أعلى من 39°C)',
+    'أعراض خطيرة أو طارئة تتطلب رعاية طبية فورية',
+    'حالات صحية حادة أو مفاجئة',
   ];
 
   const formFields = [
     { category: 'معلومات أساسية', fields: ['الاسم الكامل', 'العمر', 'المدينة', 'رقم الواتساب'] },
-    { category: 'الأهداف والمشاكل', fields: ['الهدف الأساسي (طاقة، تركيز، نوم، وزن، تحاليل)', 'أهم 3 مشاكل تعاني منها حالياً'] },
-    { category: 'النوم والطاقة', fields: ['عدد ساعات النوم', 'هل تعاني من الشخير؟', 'مستوى الطاقة (1-10)'] },
-    { category: 'الكافيين والتغذية', fields: ['كمية الكافيين اليومية', 'وقت آخر كافيين', 'عدد مرات الأكل في المطاعم أسبوعياً', 'أكبر تحدي غذائي (عشاء متأخر، سفر، مجالس)'] },
-    { category: 'النشاط البدني', fields: ['عدد مرات التمرين أسبوعياً', 'تقدير عدد الخطوات اليومية'] },
-    { category: 'التاريخ الطبي', fields: ['أمراض مزمنة أو أدوية حالية', 'مكملات غذائية تتناولها', 'رفع التحاليل (اختياري)'] },
-    { category: 'المواعيد المفضلة', fields: ['اختر 2-3 أوقات مناسبة للجلسة'] },
+    { category: 'الأهداف والتحديات الصحية', fields: ['الهدف الأساسي من الاستشارة', 'أهم التحديات الصحية التي تواجهها'] },
+    { category: 'معلومات صحية عامة', fields: ['نمط النوم والطاقة', 'العادات الغذائية', 'النشاط البدني', 'التاريخ الطبي'] },
+    { category: 'اختيار الموعد', fields: ['اختر الوقت المناسب لك'] },
   ];
 
   return (
@@ -215,7 +207,7 @@ const Booking = () => {
                       1
                     </div>
                     <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      بعد إرسال النموذج، ستستلم رسالة تحتوي على تفاصيل التحويل البنكي
+                      بعد إرسال النموذج، ستستلم رابط الدفع عبر PayPal
                     </p>
                   </div>
 
@@ -234,26 +226,7 @@ const Booking = () => {
                       2
                     </div>
                     <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      قم بتحويل $119 USD إلى الحساب المذكور
-                    </p>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <div style={{ 
-                      minWidth: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: 'var(--accent-orange-200)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 600,
-                      fontFamily: 'SF Mono, monospace'
-                    }}>
-                      3
-                    </div>
-                    <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      أرسل إثبات التحويل (صورة/لقطة شاشة) عبر واتساب
+                      قم بالدفع عبر PayPal ($119 USD)
                     </p>
                   </div>
 
@@ -269,10 +242,10 @@ const Booking = () => {
                       fontWeight: 600,
                       fontFamily: 'SF Mono, monospace'
                     }}>
-                      4
+                      3
                     </div>
                     <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      بعد التأكيد، ستستلم رابط Google Meet خلال 24 ساعة قبل موعد الجلسة
+                      بعد إتمام الدفع، ستستلم تأكيد الموعد ورابط Google Meet خلال 24 ساعة قبل الجلسة
                     </p>
                   </div>
                 </div>
@@ -312,7 +285,7 @@ const Booking = () => {
               </h2>
               
               <p className="body-large" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.8 }}>
-                بعد إكمال النموذج، ستستلم رسالة تحتوي على تفاصيل الدفع خلال دقائق.
+                بعد إكمال النموذج، ستستلم رابط الدفع عبر PayPal. بعد إتمام الدفع، سيتم تأكيد موعدك.
               </p>
 
               <div style={{ 
@@ -326,10 +299,10 @@ const Booking = () => {
                 </h3>
                 <div style={{ textAlign: 'right' }}>
                   <p className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.7 }}>
-                    ✓ تحقق من بريدك الإلكتروني لتفاصيل التحويل البنكي
+                    ✓ تحقق من بريدك الإلكتروني لرابط الدفع عبر PayPal
                   </p>
                   <p className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.7 }}>
-                    ✓ قم بالتحويل وأرسل الإثبات عبر واتساب
+                    ✓ قم بإتمام الدفع عبر PayPal
                   </p>
                   <p className="body-medium" style={{ lineHeight: 1.7 }}>
                     ✓ انتظر تأكيد الموعد ورابط Google Meet
