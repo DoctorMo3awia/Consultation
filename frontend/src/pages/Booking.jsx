@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { MessageCircle, CheckCircle2, ExternalLink } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 const Booking = () => {
   const navigate = useNavigate();
-  const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
     document.documentElement.dir = 'rtl';
@@ -18,15 +17,10 @@ const Booking = () => {
 
   const openPayPal = () => {
     window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
-    // Don't auto-show form - user needs to confirm payment via WhatsApp first
   };
 
   const confirmPaymentViaWhatsApp = () => {
     window.open('https://wa.me/971555519451?text=تم%20الدفع%20عبر%20PayPal%20%F0%9F%92%B3%0A%0Aأريد%20رابط%20نموذج%20الحجز%20من%20فضلك', '_blank');
-  };
-
-  const openGoogleForm = () => {
-    window.open('https://forms.gle/DyPhUxd2GGmgttGTA', '_blank');
   };
 
   return (
@@ -279,99 +273,6 @@ const Booking = () => {
                   تواصل عبر واتساب
                 </Button>
               </div>
-            </>
-          ) : (
-            /* After Payment - Google Form */
-            <div style={{ 
-              background: 'var(--bg-card)',
-              padding: '4rem 2rem',
-              borderRadius: '1.5rem',
-              textAlign: 'center',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)'
-            }}>
-              <div style={{ 
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                background: 'var(--accent-green-200)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 2rem'
-              }}>
-                <CheckCircle2 size={40} color="#16A34A" />
-              </div>
-
-              <div style={{ 
-                display: 'inline-block',
-                background: 'var(--accent-blue-200)',
-                padding: '0.5rem 1.5rem',
-                borderRadius: '2rem',
-                marginBottom: '1.5rem'
-              }}>
-                <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
-                  الخطوة 2 من 2
-                </span>
-              </div>
-
-              <h2 className="heading-1" style={{ marginBottom: '1rem' }}>
-                جاهز للبدء؟
-              </h2>
-              
-              <p className="body-large" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.8 }}>
-                الآن املأ النموذج لاختيار موعدك المناسب. يستغرق 5-7 دقائق فقط
-              </p>
-
-              <div style={{ 
-                background: 'var(--accent-orange-200)',
-                padding: '2rem',
-                borderRadius: '1rem',
-                marginBottom: '2rem',
-                textAlign: 'right'
-              }}>
-                <h3 className="heading-3" style={{ marginBottom: '1rem', textAlign: 'center' }}>
-                  ماذا سيتم سؤالك:
-                </h3>
-                <ul style={{ paddingRight: '1.5rem', textAlign: 'right' }}>
-                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
-                    معلوماتك الأساسية (الاسم، العمر، المدينة)
-                  </li>
-                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
-                    أهدافك الصحية والتحديات التي تواجهها
-                  </li>
-                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
-                    معلومات عن نمط حياتك (النوم، التغذية، النشاط)
-                  </li>
-                  <li className="body-medium" style={{ lineHeight: 1.6 }}>
-                    اختيار الوقت المناسب لك
-                  </li>
-                </ul>
-              </div>
-
-              <Button 
-                onClick={openGoogleForm} 
-                className="btn-primary" 
-                style={{ 
-                  width: '100%',
-                  maxWidth: '400px',
-                  padding: '1.25rem 2rem',
-                  display: 'inline-flex',
-                  gap: '0.75rem',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1rem',
-                  margin: '0 auto'
-                }}
-              >
-                افتح نموذج الحجز
-                <ExternalLink size={20} />
-              </Button>
-
-              <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '1.5rem' }}>
-                بعد تعبئة النموذج، ستستلم تأكيد الموعد عبر البريد الإلكتروني
-              </p>
-            </div>
-          )}
 
         </div>
       </section>
