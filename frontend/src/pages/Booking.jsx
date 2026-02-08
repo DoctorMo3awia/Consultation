@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { MessageCircle, CheckCircle2, AlertTriangle, ExternalLink } from 'lucide-react';
-import { Checkbox } from '../components/ui/checkbox';
+import { MessageCircle, CheckCircle2, ExternalLink } from 'lucide-react';
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const Booking = () => {
 
   const openPayPal = () => {
     window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
-    // Show the form after payment
     setTimeout(() => {
       setPaymentCompleted(true);
     }, 2000);
@@ -28,18 +26,6 @@ const Booking = () => {
   const openGoogleForm = () => {
     window.open('https://forms.gle/DyPhUxd2GGmgttGTA', '_blank');
   };
-
-  const redFlagSymptoms = [
-    'أعراض خطيرة أو طارئة تتطلب رعاية طبية فورية',
-    'حالات صحية حادة أو مفاجئة',
-  ];
-
-  const formFields = [
-    { category: 'معلومات أساسية', fields: ['الاسم الكامل', 'العمر', 'المدينة', 'رقم الواتساب'] },
-    { category: 'الأهداف والتحديات الصحية', fields: ['الهدف الأساسي من الاستشارة', 'أهم التحديات الصحية التي تواجهها'] },
-    { category: 'معلومات صحية عامة', fields: ['نمط النوم والطاقة', 'العادات الغذائية', 'النشاط البدني', 'التاريخ الطبي'] },
-    { category: 'اختيار الموعد', fields: ['اختر الوقت المناسب لك'] },
-  ];
 
   return (
     <div className="booking-page" style={{ background: 'var(--bg-page)', paddingTop: '80px' }}>
@@ -62,7 +48,7 @@ const Booking = () => {
       <section style={{ padding: '3rem 1.2rem 5rem', minHeight: 'calc(100vh - 80px)' }}>
         <div className="container" style={{ maxWidth: '900px' }}>
           
-          {!formSubmitted ? (
+          {!paymentCompleted ? (
             <>
               {/* Header */}
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -74,199 +60,126 @@ const Booking = () => {
                   marginBottom: '1.5rem'
                 }}>
                   <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
-                    الخطوة الأخيرة
+                    الخطوة 1 من 2
                   </span>
                 </div>
                 
                 <h1 className="heading-hero" style={{ marginBottom: '1rem' }}>
-                  احجز جلسة التقييم الخاصة بك
+                  استثمر في صحتك وأدائك
                 </h1>
                 
                 <p className="body-large" style={{ color: 'var(--text-secondary)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  املأ النموذج أدناه لنفهم حالتك الصحية ونمط حياتك بشكل أفضل
+                  ادفع الآن واحصل على جلسة تقييم كاملة مع دكتور معاوية
                 </p>
               </div>
 
-              {/* Red Flag Warning */}
-              <div style={{ 
-                background: 'var(--accent-pink-200)',
-                padding: '2rem',
-                borderRadius: '1rem',
-                marginBottom: '3rem',
-                border: '2px solid rgba(220, 38, 38, 0.2)'
-              }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <AlertTriangle size={24} color="#DC2626" style={{ minWidth: '24px', marginTop: '0.25rem' }} />
-                  <div>
-                    <h3 className="heading-3" style={{ color: '#DC2626', marginBottom: '0.75rem' }}>
-                      تنبيه مهم - الأعراض الخطيرة
-                    </h3>
-                    <p className="body-medium" style={{ lineHeight: 1.7, marginBottom: '1rem' }}>
-                      إذا كنت تعاني من أي من الأعراض التالية، يجب عليك مراجعة طبيب فوراً أو الذهاب لأقرب مستشفى:
-                    </p>
-                    <ul style={{ paddingRight: '1.5rem', marginBottom: '1rem' }}>
-                      {redFlagSymptoms.map((symptom, idx) => (
-                        <li key={idx} className="body-medium" style={{ marginBottom: '0.5rem', lineHeight: 1.6 }}>
-                          {symptom}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="body-medium" style={{ lineHeight: 1.7, fontWeight: 500 }}>
-                      هذه الاستشارة مخصصة للتحسين الصحي والوقاية، وليست بديلاً عن الرعاية الطبية الطارئة.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Form Preview */}
+              {/* Payment Section */}
               <div style={{ 
                 background: 'var(--bg-card)',
                 padding: '3rem 2rem',
                 borderRadius: '1.5rem',
                 boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-                marginBottom: '3rem'
-              }}>
-                <h2 className="heading-2" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-                  ماذا سيتم سؤالك في النموذج؟
-                </h2>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                  {formFields.map((section, idx) => (
-                    <div key={idx} style={{ 
-                      padding: '1.5rem',
-                      background: 'var(--bg-section)',
-                      borderRadius: '1rem'
-                    }}>
-                      <h3 className="heading-3" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                        {section.category}
-                      </h3>
-                      <ul style={{ paddingRight: '1.5rem' }}>
-                        {section.fields.map((field, fieldIdx) => (
-                          <li key={fieldIdx} className="body-medium" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>
-                            {field}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA to Open Form */}
-              <div style={{ 
-                background: 'var(--accent-blue-200)',
-                padding: '3rem 2rem',
-                borderRadius: '1.5rem',
+                marginBottom: '3rem',
                 textAlign: 'center'
               }}>
-                <h2 className="heading-2" style={{ marginBottom: '1rem' }}>
-                  جاهز للبدء؟
-                </h2>
-                <p className="body-large" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  النموذج يستغرق 5-7 دقائق فقط للتعبئة
-                </p>
-                
-                <Button 
-                  onClick={openGoogleForm} 
-                  className="btn-primary" 
-                  style={{ 
-                    minWidth: '280px',
-                    padding: '1rem 2rem',
-                    display: 'inline-flex',
-                    gap: '0.5rem',
-                    alignItems: 'center'
-                  }}
-                >
-                  افتح نموذج الحجز
-                  <ExternalLink size={18} />
-                </Button>
+                <div style={{ 
+                  display: 'flex',
+                  alignItems: 'baseline', 
+                  gap: '0.5rem',
+                  marginBottom: '2rem',
+                  justifyContent: 'center'
+                }}>
+                  <span style={{ fontSize: '3rem', fontWeight: 600 }}>$119</span>
+                  <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
+                </div>
 
-                <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '1.5rem' }}>
-                  بعد تعبئة النموذج، سنرسل لك تفاصيل الدفع عبر البريد الإلكتروني
+                <div style={{ 
+                  background: 'var(--accent-blue-200)',
+                  padding: '2rem',
+                  borderRadius: '1rem',
+                  marginBottom: '2rem',
+                  textAlign: 'right'
+                }}>
+                  <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                    ماذا تحصل:
+                  </h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {[
+                      'جلسة 60 دقيقة مع طبيب باطنية مقيم',
+                      'مراجعة شاملة لحالتك الصحية',
+                      'خطة 30 يوم طبية مخصصة لك',
+                      'ملف PDF كامل خلال 24 ساعة',
+                      '7 أيام دعم عبر واتساب',
+                    ].map((item, idx) => (
+                      <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                        <div style={{ 
+                          minWidth: '20px',
+                          height: '20px',
+                          borderRadius: '50%',
+                          background: 'var(--text-primary)',
+                          color: 'white',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '0.7rem',
+                          fontWeight: 600
+                        }}>
+                          ✓
+                        </div>
+                        <p className="body-medium" style={{ flex: 1 }}>
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+                  <Button 
+                    onClick={openPayPal} 
+                    className="btn-primary" 
+                    style={{ 
+                      width: '100%',
+                      maxWidth: '400px',
+                      padding: '1.25rem 2rem',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    ادفع الآن — $119
+                  </Button>
+                  
+                  <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
+                    دفع آمن عبر PayPal • بعد الدفع، املأ نموذج الحجز
+                  </p>
+                </div>
+              </div>
+
+              {/* Why PayPal */}
+              <div style={{ 
+                padding: '2rem',
+                background: 'var(--bg-section)',
+                borderRadius: '1rem',
+                textAlign: 'center',
+                marginBottom: '2rem'
+              }}>
+                <p className="body-medium" style={{ lineHeight: 1.7 }}>
+                  بعد إتمام الدفع عبر PayPal، ستنتقل مباشرة لتعبئة نموذج الحجز لاختيار موعدك المناسب
                 </p>
               </div>
 
-              {/* Payment Instructions */}
-              <div style={{ 
-                marginTop: '3rem',
-                padding: '2rem',
-                background: 'var(--bg-card)',
-                borderRadius: '1rem',
-                border: '1px solid var(--border-light)'
-              }}>
-                <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-                  كيف يتم الدفع والتأكيد؟
-                </h3>
-                
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <div style={{ 
-                      minWidth: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: 'var(--accent-purple-200)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 600,
-                      fontFamily: 'SF Mono, monospace'
-                    }}>
-                      1
-                    </div>
-                    <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      بعد إرسال النموذج، ستستلم رابط الدفع عبر PayPal
-                    </p>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <div style={{ 
-                      minWidth: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: 'var(--accent-blue-200)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 600,
-                      fontFamily: 'SF Mono, monospace'
-                    }}>
-                      2
-                    </div>
-                    <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      قم بالدفع عبر PayPal ($119 USD)
-                    </p>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <div style={{ 
-                      minWidth: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: 'var(--accent-green-200)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 600,
-                      fontFamily: 'SF Mono, monospace'
-                    }}>
-                      3
-                    </div>
-                    <p className="body-medium" style={{ lineHeight: 1.7, paddingTop: '0.25rem' }}>
-                      بعد إتمام الدفع، ستستلم تأكيد الموعد ورابط Google Meet خلال 24 ساعة قبل الجلسة
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border-light)', textAlign: 'center' }}>
-                  <Button onClick={openWhatsApp} className="btn-secondary" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <MessageCircle size={18} />
-                    تواصل عبر واتساب
-                  </Button>
-                </div>
+              {/* Contact */}
+              <div style={{ textAlign: 'center' }}>
+                <p className="body-medium" style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
+                  لديك أسئلة قبل الدفع؟
+                </p>
+                <Button onClick={openWhatsApp} className="btn-secondary" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', margin: '0 auto' }}>
+                  <MessageCircle size={18} />
+                  تواصل عبر واتساب
+                </Button>
               </div>
             </>
           ) : (
-            /* Thank You Message */
+            /* After Payment - Google Form */
             <div style={{ 
               background: 'var(--bg-card)',
               padding: '4rem 2rem',
@@ -287,45 +200,74 @@ const Booking = () => {
                 <CheckCircle2 size={40} color="#16A34A" />
               </div>
 
+              <div style={{ 
+                display: 'inline-block',
+                background: 'var(--accent-blue-200)',
+                padding: '0.5rem 1.5rem',
+                borderRadius: '2rem',
+                marginBottom: '1.5rem'
+              }}>
+                <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
+                  الخطوة 2 من 2
+                </span>
+              </div>
+
               <h2 className="heading-1" style={{ marginBottom: '1rem' }}>
-                شكراً لك!
+                جاهز للبدء؟
               </h2>
               
               <p className="body-large" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.8 }}>
-                بعد إكمال النموذج، ستستلم رابط الدفع عبر PayPal. بعد إتمام الدفع، سيتم تأكيد موعدك.
+                الآن املأ النموذج لاختيار موعدك المناسب. يستغرق 5-7 دقائق فقط
               </p>
 
               <div style={{ 
-                background: 'var(--accent-blue-200)',
+                background: 'var(--accent-orange-200)',
                 padding: '2rem',
                 borderRadius: '1rem',
-                marginBottom: '2rem'
+                marginBottom: '2rem',
+                textAlign: 'right'
               }}>
-                <h3 className="heading-3" style={{ marginBottom: '1rem' }}>
-                  الخطوات التالية:
+                <h3 className="heading-3" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                  ماذا سيتم سؤالك:
                 </h3>
-                <div style={{ textAlign: 'right' }}>
-                  <p className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.7 }}>
-                    ✓ تحقق من بريدك الإلكتروني لرابط الدفع عبر PayPal
-                  </p>
-                  <p className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.7 }}>
-                    ✓ قم بإتمام الدفع عبر PayPal
-                  </p>
-                  <p className="body-medium" style={{ lineHeight: 1.7 }}>
-                    ✓ انتظر تأكيد الموعد ورابط Google Meet
-                  </p>
-                </div>
+                <ul style={{ paddingRight: '1.5rem', textAlign: 'right' }}>
+                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
+                    معلوماتك الأساسية (الاسم، العمر، المدينة)
+                  </li>
+                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
+                    أهدافك الصحية والتحديات التي تواجهها
+                  </li>
+                  <li className="body-medium" style={{ marginBottom: '0.75rem', lineHeight: 1.6 }}>
+                    معلومات عن نمط حياتك (النوم، التغذية، النشاط)
+                  </li>
+                  <li className="body-medium" style={{ lineHeight: 1.6 }}>
+                    اختيار الوقت المناسب لك
+                  </li>
+                </ul>
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Button onClick={openWhatsApp} className="btn-primary" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
-                  <MessageCircle size={18} />
-                  تواصل واتساب
-                </Button>
-                <Button onClick={() => navigate('/')} className="btn-secondary" style={{ minWidth: '200px' }}>
-                  العودة للرئيسية
-                </Button>
-              </div>
+              <Button 
+                onClick={openGoogleForm} 
+                className="btn-primary" 
+                style={{ 
+                  width: '100%',
+                  maxWidth: '400px',
+                  padding: '1.25rem 2rem',
+                  display: 'inline-flex',
+                  gap: '0.75rem',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1rem',
+                  margin: '0 auto'
+                }}
+              >
+                افتح نموذج الحجز
+                <ExternalLink size={20} />
+              </Button>
+
+              <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '1.5rem' }}>
+                بعد تعبئة النموذج، ستستلم تأكيد الموعد عبر البريد الإلكتروني
+              </p>
             </div>
           )}
 
