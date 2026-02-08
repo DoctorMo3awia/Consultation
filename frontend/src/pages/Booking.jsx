@@ -139,7 +139,7 @@ const Booking = () => {
               </Button>
               
               <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                دفع آمن عبر PayPal • ستستلم رابط النموذج بعد التأكد من الدفع
+                دفع آمن عبر PayPal • ستستلم رابط Calendly لاختيار موعدك بعد الدفع
               </p>
             </div>
           </div>
@@ -149,15 +149,93 @@ const Booking = () => {
             padding: '2rem',
             background: 'var(--accent-orange-200)',
             borderRadius: '1rem',
-            textAlign: 'center',
             marginBottom: '2rem'
           }}>
-            <h3 className="heading-3" style={{ marginBottom: '1rem' }}>
+            <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
               كيف يعمل:
             </h3>
-            <p className="body-medium" style={{ lineHeight: 1.7 }}>
-              ادفع عبر PayPal ثم املأ نموذج الحجز. بعد التأكد من الدفع، ستستلم تأكيد الموعد ورابط Google Meet خلال 24 ساعة.
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'right' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ 
+                  minWidth: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  fontFamily: 'SF Mono, monospace'
+                }}>
+                  1
+                </div>
+                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                  اضغط "ادفع الآن" وأكمل الدفع عبر PayPal ($119)
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ 
+                  minWidth: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  fontFamily: 'SF Mono, monospace'
+                }}>
+                  2
+                </div>
+                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                  بعد إتمام الدفع، ستستلم رابط Calendly عبر البريد الإلكتروني لاختيار موعدك المناسب
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ 
+                  minWidth: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  fontFamily: 'SF Mono, monospace'
+                }}>
+                  3
+                </div>
+                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                  اختر الوقت المناسب من الأوقات المتاحة على Calendly
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ 
+                  minWidth: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  fontFamily: 'SF Mono, monospace'
+                }}>
+                  4
+                </div>
+                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                  ستستلم رابط Google Meet قبل 24 ساعة من موعد الجلسة
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Contact */}
