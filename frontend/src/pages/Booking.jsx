@@ -50,30 +50,30 @@ const Booking = () => {
       <section style={{ padding: '3rem 1.2rem 5rem', minHeight: 'calc(100vh - 80px)' }}>
         <div className="container" style={{ maxWidth: '900px' }}>
           
-          {!paymentCompleted ? (
-            <>
-              {/* Header */}
-              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  background: 'var(--accent-green-200)',
-                  padding: '0.5rem 1.5rem',
-                  borderRadius: '2rem',
-                  marginBottom: '1.5rem'
-                }}>
-                  <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
-                    الخطوة 1 من 2
-                  </span>
-                </div>
-                
-                <h1 className="heading-hero" style={{ marginBottom: '1rem' }}>
-                  استثمر في صحتك وأدائك
-                </h1>
-                
-                <p className="body-large" style={{ color: 'var(--text-secondary)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  ادفع الآن واحصل على جلسة تقييم كاملة مع دكتور معاوية
-                </p>
+          {/* Payment Page */}
+          <div>
+            {/* Header */}
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <div style={{ 
+                display: 'inline-block',
+                background: 'var(--accent-green-200)',
+                padding: '0.5rem 1.5rem',
+                borderRadius: '2rem',
+                marginBottom: '1.5rem'
+              }}>
+                <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
+                  الدفع والحجز
+                </span>
               </div>
+              
+              <h1 className="heading-hero" style={{ marginBottom: '1rem' }}>
+                استثمر في صحتك وأدائك
+              </h1>
+              
+              <p className="body-large" style={{ color: 'var(--text-secondary)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+                ادفع الآن واحصل على جلسة تقييم كاملة مع دكتور معاوية
+              </p>
+            </div>
 
               {/* Payment Section */}
               <div style={{ 
