@@ -22,7 +22,7 @@ const Offer = () => {
   const deliverables = [
     {
       icon: Video,
-      title: 'جلسة 60 دقيقة عبر Google Meet',
+      title: 'جلسة 45 دقيقة عبر Google Meet',
       description: 'استشارة شاملة مع طبيب باطنية مقيم باللغة العربية، نناقش أعراضك، نمط حياتك، وأهدافك الصحية',
     },
     {
@@ -56,12 +56,12 @@ const Offer = () => {
     {
       step: '2',
       title: 'اختر موعدك',
-      description: 'ستستلم رابط Calendly عبر البريد لاختيار الوقت المناسب لك من الأوقات المتاحة',
+      description: 'ستستلم رابطاً عبر الإيميل لحجز موعد جلسة التقييم من الأوقات المتاحة',
     },
     {
       step: '3',
       title: 'الجلسة والخطة',
-      description: '60 دقيقة عبر Google Meet + تستلم خطتك الكاملة خلال 24 ساعة + 7 أيام دعم',
+      description: '45 دقيقة عبر Google Meet + تستلم خطتك الكاملة خلال 24 ساعة + 7 أيام دعم',
     },
   ];
 
@@ -107,7 +107,7 @@ const Offer = () => {
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'var(--text-secondary)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            جلسة 60 دقيقة يقودها طبيب + خطة 30 يوم طبية + 7 أيام دعم واتساب
+            جلسة 45 دقيقة يقودها طبيب + خطة 30 يوم طبية + 7 أيام دعم واتساب
           </p>
 
           <div style={{ 

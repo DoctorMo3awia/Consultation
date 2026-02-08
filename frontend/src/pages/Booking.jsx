@@ -95,7 +95,7 @@ const Booking = () => {
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {[
-                  'جلسة 60 دقيقة مع طبيب باطنية مقيم',
+                  'جلسة 45 دقيقة مع طبيب باطنية مقيم',
                   'مراجعة شاملة لحالتك الصحية',
                   'خطة 30 يوم طبية مخصصة لك',
                   'ملف PDF كامل خلال 24 ساعة',
@@ -139,7 +139,7 @@ const Booking = () => {
               </Button>
               
               <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                دفع آمن عبر PayPal • ستستلم رابط Calendly لاختيار موعدك بعد الدفع
+                دفع آمن عبر PayPal • ستستلم رابط لحجز موعد التقييم عبر الإيميل
               </p>
             </div>
           </div>
@@ -192,7 +192,7 @@ const Booking = () => {
                   2
                 </div>
                 <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  بعد إتمام الدفع، ستستلم رابط Calendly عبر البريد الإلكتروني لاختيار موعدك المناسب
+                  بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز موعد جلسة التقييم من الأوقات المتاحة
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
@@ -212,7 +212,7 @@ const Booking = () => {
                   3
                 </div>
                 <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  اختر الوقت المناسب من الأوقات المتاحة على Calendly
+                  اختر الوقت المناسب لجلسة التقييم من الأوقات المتاحة
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
