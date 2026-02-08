@@ -159,13 +159,113 @@ const Booking = () => {
               {/* Why PayPal */}
               <div style={{ 
                 padding: '2rem',
-                background: 'var(--bg-section)',
+                background: 'var(--accent-orange-200)',
                 borderRadius: '1rem',
                 textAlign: 'center',
                 marginBottom: '2rem'
               }}>
-                <p className="body-medium" style={{ lineHeight: 1.7 }}>
-                  بعد إتمام الدفع عبر PayPal، ستنتقل مباشرة لتعبئة نموذج الحجز لاختيار موعدك المناسب
+                <h3 className="heading-3" style={{ marginBottom: '1rem' }}>
+                  خطوات الحجز:
+                </h3>
+                <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                    <div style={{ 
+                      minWidth: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: 'var(--text-primary)',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      fontFamily: 'SF Mono, monospace'
+                    }}>
+                      1
+                    </div>
+                    <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                      اضغط "ادفع الآن" وأكمل الدفع عبر PayPal
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                    <div style={{ 
+                      minWidth: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: 'var(--text-primary)',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      fontFamily: 'SF Mono, monospace'
+                    }}>
+                      2
+                    </div>
+                    <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                      بعد الدفع، اضغط "أرسل إثبات الدفع" وأرسل لقطة شاشة للدفع عبر واتساب
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                    <div style={{ 
+                      minWidth: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: 'var(--text-primary)',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      fontFamily: 'SF Mono, monospace'
+                    }}>
+                      3
+                    </div>
+                    <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
+                      سنرسل لك رابط نموذج الحجز فوراً عبر واتساب
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Buttons */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', marginBottom: '2rem' }}>
+                <Button 
+                  onClick={openPayPal} 
+                  className="btn-primary" 
+                  style={{ 
+                    width: '100%',
+                    maxWidth: '400px',
+                    padding: '1.25rem 2rem',
+                    fontSize: '1rem'
+                  }}
+                >
+                  ادفع الآن — $119
+                </Button>
+
+                <Button 
+                  onClick={confirmPaymentViaWhatsApp} 
+                  className="btn-secondary" 
+                  style={{ 
+                    width: '100%',
+                    maxWidth: '400px',
+                    padding: '1.25rem 2rem',
+                    fontSize: '1rem',
+                    display: 'flex',
+                    gap: '0.5rem',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <MessageCircle size={20} />
+                  أرسل إثبات الدفع
+                </Button>
+                
+                <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
+                  دفع آمن عبر PayPal • سنرسل رابط النموذج بعد التأكيد
                 </p>
               </div>
 
