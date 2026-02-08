@@ -356,7 +356,7 @@ const Offer = () => {
               marginBottom: '2rem'
             }}>
               <p className="body-medium" style={{ lineHeight: 1.7 }}>
-                <strong>ملاحظة مهمة:</strong> الدفع عبر PayPal قبل تعبئة نموذج الحجز. بعد الدفع، املأ النموذج لتأكيد موعدك.
+                <strong>ملاحظة مهمة:</strong> بعد الدفع عبر PayPal، ستستلم رابط Calendly لاختيار موعدك المناسب من الأوقات المتاحة.
               </p>
             </div>
 
