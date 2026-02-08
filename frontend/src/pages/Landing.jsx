@@ -22,7 +22,7 @@ const Landing = () => {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/971XXXXXXXXX?text=تقييم', '_blank');
+    window.open('https://wa.me/971555519451?text=تقييم', '_blank');
   };
 
   const features = [

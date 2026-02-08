@@ -12,7 +12,7 @@ const Ramadan = () => {
   }, []);
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/971XXXXXXXXX?text=رمضان', '_blank');
+    window.open('https://wa.me/971555519451?text=رمضان', '_blank');
   };
 
   const goToBooking = () => {
