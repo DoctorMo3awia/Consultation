@@ -139,7 +139,7 @@ const Booking = () => {
               </Button>
               
               <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                دفع آمن عبر PayPal • ستستلم رابط لحجز موعد التقييم عبر الإيميل
+                دفع آمن عبر PayPal • ستستلم رابط لحجز الموعد واستمارة التقييم عبر الإيميل
               </p>
             </div>
           </div>
@@ -192,7 +192,7 @@ const Booking = () => {
                   2
                 </div>
                 <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز موعد جلسة التقييم من الأوقات المتاحة
+                  بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز الموعد واستمارة التقييم
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
@@ -212,7 +212,7 @@ const Booking = () => {
                   3
                 </div>
                 <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  اختر الوقت المناسب لجلسة التقييم من الأوقات المتاحة
+                  اختر الوقت المناسب واملأ استمارة التقييم
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
