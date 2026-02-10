@@ -66,7 +66,7 @@ const Offer = () => {
   ];
 
   const differentiators = [
-    'يقودها طبيب باطنية مقيم - ليست استشارة مدرب عام',
+    'تحت اشراف طبيب باطنية مقيم - ليست استشارة مدرب عام',
     'مصممة خصيصاً لنمط حياة الخليج (السفر، المطاعم، المجالس، العشاء المتأخر)',
     'بروتوكول الحد الأدنى الفعال - لا وقت مهدر، فقط ما يعمل',
     'بناءً على التقييم، يتم تحديد الفحوصات اللازمة لحالتك',
@@ -107,7 +107,7 @@ const Offer = () => {
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            جلسة 45 دقيقة يقودها طبيب + خطة 30 يوم طبية + 7 أيام دعم واتساب
+            جلسة 45 دقيقة تحت اشراف طبيب + خطة 30 يوم طبية + 7 أيام دعم واتساب
           </p>
 
           <div style={{ 
@@ -134,7 +134,7 @@ const Offer = () => {
             </Button>
             <Button onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '220px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
               <MessageCircle size={18} />
-              اكتب "تقييم"
+              واتساب
             </Button>
           </div>
 

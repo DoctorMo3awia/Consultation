@@ -125,7 +125,7 @@ const Ramadan = () => {
             </Button>
             <Button onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '220px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
               <MessageCircle size={18} />
-              اكتب "رمضان"
+              واتساب
             </Button>
           </div>
 
@@ -286,7 +286,7 @@ const Ramadan = () => {
               </Button>
               <Button onClick={openWhatsApp} className="btn-secondary" style={{ minWidth: '220px', padding: '1rem 2rem', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                 <MessageCircle size={18} />
-                اكتب "رمضان"
+                واتساب
               </Button>
             </div>
             <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '1.5rem' }}>

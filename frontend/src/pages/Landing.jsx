@@ -106,7 +106,7 @@ const Landing = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Shield size={14} />
-            <span>يقودها طبيب باطنية مقيم · محدودة ل 6 مقاعد أسبوعياً</span>
+            <span>تحت اشراف طبيب باطنية مقيم · محدودة ل 6 مقاعد أسبوعياً</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', color: 'white' }}>
@@ -139,7 +139,7 @@ const Landing = () => {
           </div>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-            جلسة تقييم صحة وأداء يقودها طبيب للرجال المشغولين في الإمارات والخليج
+            جلسة تقييم صحة وأداء تحت اشراف طبيب للرجال المشغولين في الإمارات والخليج
           </p>
 
           <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
@@ -300,7 +300,7 @@ const Landing = () => {
             </Button>
             <Button data-testid="cta-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
               <MessageCircle size={18} />
-              اكتب "تقييم"
+              واتساب
             </Button>
           </div>
         </div>
