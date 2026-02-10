@@ -233,29 +233,29 @@
 .voice-card {
   background: var(--bg-card);
   border-radius: 0.75rem;
-  padding: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(30, 64, 175, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .voice-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   border-color: rgba(30, 64, 175, 0.2);
 }
 
-.voice-card.accent-purple { background: var(--accent-purple-200); }
+.voice-card.accent-purple { background: #f8f6ff; border-color: #e2ddf5; }
 .voice-card.accent-blue { 
-  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
-  border-color: rgba(30, 64, 175, 0.15);
+  background: #f0f5ff;
+  border-color: rgba(30, 64, 175, 0.12);
 }
-.voice-card.accent-orange { background: var(--accent-orange-200); }
-.voice-card.accent-pink { background: var(--accent-pink-200); }
-.voice-card.accent-green { background: var(--accent-green-200); }
+.voice-card.accent-orange { background: #fffbf5; border-color: #f3e8d8; }
+.voice-card.accent-pink { background: #fef5f8; border-color: #f5dce3; }
+.voice-card.accent-green { background: #f5fbf6; border-color: #d5e8d8; }
 
 /* Header Navigation */
 .header-nav {
@@ -264,16 +264,16 @@
   left: 0;
   right: 0;
   z-index: 999;
-  height: 80px;
-  background: var(--bg-overlay);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  height: 72px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1.2rem;
   transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(30, 64, 175, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Hero Section */
@@ -286,6 +286,7 @@
   text-align: center;
   padding: 5rem 1.2rem 3rem;
   position: relative;
+  color: white;
 }
 
 .hero-content {
@@ -299,18 +300,16 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(219, 234, 254, 0.6);
-  border: 1px solid rgba(30, 64, 175, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 2rem;
-  padding: 0.25rem 0.75rem;
-  margin-bottom: 1.2rem;
-  font-family: 'SF Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+  padding: 0.35rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: var(--blue-elegant-dark);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Grid Layouts */
