@@ -355,7 +355,7 @@
   }
   
   .voice-card {
-    padding: 1rem;
+    padding: 1.2rem;
   }
   
   .header-nav {
@@ -367,6 +367,17 @@
     gap: 1.2rem;
     padding: 1rem;
   }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+}
+
+/* Nav Actions Layout */
+.nav-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
 /* Animations */
@@ -375,8 +386,8 @@
 }
 
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
 }
 
 .hover-scale {
@@ -389,4 +400,34 @@
 
 .hover-scale:active {
   transform: scale(0.98);
+}
+
+/* Section Divider */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--blue-elegant);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+}
+
+/* Gold accent for premium feel */
+.gold-accent {
+  color: var(--accent-gold);
+}
+
+/* Footer */
+.footer-executive {
+  padding: 3rem 1.2rem;
+  background: var(--navy-deep);
+  color: white;
+  text-align: center;
+}
+
+.footer-executive .body-small {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-executive .caption {
+  color: rgba(255, 255, 255, 0.4);
 }
