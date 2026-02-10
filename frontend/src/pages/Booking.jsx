@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, CheckCircle2, Shield } from 'lucide-react';
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -19,16 +19,31 @@ const Booking = () => {
     window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
   };
 
+  const benefits = [
+    'جلسة 45 دقيقة مع طبيب باطنية مقيم',
+    'مراجعة شاملة لحالتك الصحية',
+    'خطة 30 يوم طبية مخصصة لك',
+    'ملف PDF كامل خلال 24 ساعة',
+    '7 أيام دعم عبر واتساب',
+  ];
+
+  const steps = [
+    { num: '1', text: 'اضغط "ادفع الآن" وأكمل الدفع عبر PayPal ($119)' },
+    { num: '2', text: 'بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز الموعد واستمارة التقييم' },
+    { num: '3', text: 'اختر الوقت المناسب واملأ استمارة التقييم' },
+    { num: '4', text: 'ستستلم رابط Google Meet قبل 24 ساعة من موعد الجلسة' },
+  ];
+
   return (
-    <div className="booking-page" style={{ background: 'var(--bg-page)', paddingTop: '80px' }}>
+    <div data-testid="booking-page" style={{ background: 'var(--bg-page)', paddingTop: '72px' }}>
       {/* Header */}
       <header className="header-nav">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
-          <div className="logo" style={{ fontFamily: 'SF Mono, monospace', fontSize: '1.125rem', fontWeight: 600, color: 'var(--text-primary)', cursor: 'pointer' }} onClick={() => navigate('/')}>
+          <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', cursor: 'pointer', letterSpacing: '0.01em' }} onClick={() => navigate('/')}>
             دكتور معاوية
           </div>
           <div className="nav-actions">
-            <Button onClick={openWhatsApp} className="btn-secondary" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <Button data-testid="booking-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', padding: '0.5rem 1rem' }}>
               <MessageCircle size={16} />
               واتساب
             </Button>
@@ -37,24 +52,24 @@ const Booking = () => {
       </header>
 
       {/* Main Content */}
-      <section style={{ padding: '3rem 1.2rem 5rem', minHeight: 'calc(100vh - 80px)' }}>
+      <section style={{ padding: '3rem 1.2rem 5rem', minHeight: 'calc(100vh - 72px)' }}>
         <div className="container" style={{ maxWidth: '900px' }}>
           
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div style={{ 
               display: 'inline-block',
-              background: 'var(--accent-green-200)',
-              padding: '0.5rem 1.5rem',
-              borderRadius: '2rem',
+              background: 'var(--accent-blue-200)',
+              padding: '0.4rem 1.2rem',
+              borderRadius: '0.4rem',
               marginBottom: '1.5rem'
             }}>
-              <span className="mono-text" style={{ color: 'var(--text-primary)' }}>
+              <span style={{ color: 'var(--blue-elegant)', fontSize: '0.85rem', fontWeight: 600 }}>
                 الدفع والحجز
               </span>
             </div>
             
-            <h1 className="heading-hero" style={{ marginBottom: '1rem' }}>
+            <h1 className="heading-hero" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
               استثمر في صحتك وأدائك
             </h1>
             
@@ -67,10 +82,11 @@ const Booking = () => {
           <div style={{ 
             background: 'var(--bg-card)',
             padding: '3rem 2rem',
-            borderRadius: '1.5rem',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-            marginBottom: '3rem',
-            textAlign: 'center'
+            borderRadius: '1rem',
+            boxShadow: '0 4px 24px rgba(15, 23, 42, 0.06)',
+            marginBottom: '2rem',
+            textAlign: 'center',
+            border: '1px solid #e2e8f0'
           }}>
             <div style={{ 
               display: 'flex',
@@ -79,43 +95,25 @@ const Booking = () => {
               marginBottom: '2rem',
               justifyContent: 'center'
             }}>
-              <span style={{ fontSize: '3rem', fontWeight: 600 }}>$119</span>
+              <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>$119</span>
               <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
             </div>
 
             <div style={{ 
-              background: 'var(--accent-blue-200)',
+              background: 'var(--bg-section)',
               padding: '2rem',
-              borderRadius: '1rem',
+              borderRadius: '0.75rem',
               marginBottom: '2rem',
-              textAlign: 'right'
+              textAlign: 'right',
+              border: '1px solid #e2e8f0'
             }}>
-              <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+              <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center', color: 'var(--blue-elegant)' }}>
                 ماذا تحصل:
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {[
-                  'جلسة 45 دقيقة مع طبيب باطنية مقيم',
-                  'مراجعة شاملة لحالتك الصحية',
-                  'خطة 30 يوم طبية مخصصة لك',
-                  'ملف PDF كامل خلال 24 ساعة',
-                  '7 أيام دعم عبر واتساب',
-                ].map((item, idx) => (
+                {benefits.map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                    <div style={{ 
-                      minWidth: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      background: 'var(--text-primary)',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '0.7rem',
-                      fontWeight: 600
-                    }}>
-                      ✓
-                    </div>
+                    <CheckCircle2 size={20} color="var(--blue-elegant)" style={{ minWidth: '20px' }} />
                     <p className="body-medium" style={{ flex: 1 }}>
                       {item}
                     </p>
@@ -126,6 +124,7 @@ const Booking = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
               <Button 
+                data-testid="pay-now-btn"
                 onClick={openPayPal} 
                 className="btn-primary" 
                 style={{ 
@@ -139,7 +138,8 @@ const Booking = () => {
               </Button>
               
               <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                دفع آمن عبر PayPal • ستستلم رابط لحجز الموعد واستمارة التقييم عبر الإيميل
+                <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
+                دفع آمن عبر PayPal · ستستلم رابط لحجز الموعد واستمارة التقييم عبر الإيميل
               </p>
             </div>
           </div>
@@ -147,94 +147,37 @@ const Booking = () => {
           {/* Instructions */}
           <div style={{ 
             padding: '2rem',
-            background: 'var(--accent-orange-200)',
-            borderRadius: '1rem',
-            marginBottom: '2rem'
+            background: 'var(--accent-blue-200)',
+            borderRadius: '0.75rem',
+            marginBottom: '2rem',
+            border: '1px solid rgba(30, 64, 175, 0.1)'
           }}>
-            <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+            <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center', color: 'var(--blue-elegant)' }}>
               كيف يعمل:
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'right' }}>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div style={{ 
-                  minWidth: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  background: 'var(--text-primary)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  fontFamily: 'SF Mono, monospace'
-                }}>
-                  1
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', textAlign: 'right' }}>
+              {steps.map((step, idx) => (
+                <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <div style={{ 
+                    minWidth: '32px',
+                    height: '32px',
+                    borderRadius: '0.4rem',
+                    background: 'var(--blue-shine)',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    boxShadow: '0 2px 8px rgba(30, 64, 175, 0.25)'
+                  }}>
+                    {step.num}
+                  </div>
+                  <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.2rem' }}>
+                    {step.text}
+                  </p>
                 </div>
-                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  اضغط "ادفع الآن" وأكمل الدفع عبر PayPal ($119)
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div style={{ 
-                  minWidth: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  background: 'var(--text-primary)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  fontFamily: 'SF Mono, monospace'
-                }}>
-                  2
-                </div>
-                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز الموعد واستمارة التقييم
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div style={{ 
-                  minWidth: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  background: 'var(--text-primary)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  fontFamily: 'SF Mono, monospace'
-                }}>
-                  3
-                </div>
-                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  اختر الوقت المناسب واملأ استمارة التقييم
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div style={{ 
-                  minWidth: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  background: 'var(--text-primary)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  fontFamily: 'SF Mono, monospace'
-                }}>
-                  4
-                </div>
-                <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.125rem' }}>
-                  ستستلم رابط Google Meet قبل 24 ساعة من موعد الجلسة
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -243,7 +186,7 @@ const Booking = () => {
             <p className="body-medium" style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
               لديك أسئلة قبل الدفع؟
             </p>
-            <Button onClick={openWhatsApp} className="btn-secondary" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', margin: '0 auto' }}>
+            <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-secondary" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', margin: '0 auto' }}>
               <MessageCircle size={18} />
               تواصل عبر واتساب
             </Button>
@@ -253,12 +196,12 @@ const Booking = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{ padding: '2rem 1.2rem', background: 'var(--text-primary)', color: 'white', textAlign: 'center' }}>
+      <footer className="footer-executive">
         <div className="container">
-          <p className="body-small" style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>
+          <p className="body-small" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '1rem' }}>
             هذه خدمة تعليم صحي وتوجيه، وليست بديلاً عن التشخيص أو العلاج الطبي المباشر.
           </p>
-          <p className="caption" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <p className="caption" style={{ color: 'rgba(255,255,255,0.4)' }}>
             © 2025 دكتور معاوية. جميع الحقوق محفوظة.
           </p>
         </div>
