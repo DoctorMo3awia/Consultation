@@ -144,7 +144,7 @@ const Landing = () => {
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
             {features.map((feature, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <feature.icon size={20} color="#4D4D4D" />
+                <feature.icon size={20} color="#1e40af" strokeWidth={2.5} />
                 <span className="body-medium">{feature.text}</span>
               </div>
             ))}
@@ -191,18 +191,19 @@ const Landing = () => {
 
           <div className="ai-grid">
             {targetAudience.map((item, idx) => (
-              <div key={idx} className="voice-card" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <div key={idx} className="voice-card" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', background: 'linear-gradient(135deg, #ffffff 0%, #dbeafe 100%)', border: '1px solid rgba(30, 64, 175, 0.1)' }}>
                 <div style={{ 
                   minWidth: '40px', 
                   height: '40px', 
                   borderRadius: '50%', 
-                  background: 'var(--accent-grey-200)', 
+                  background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
                   fontFamily: 'SF Mono, monospace',
                   fontWeight: 600,
-                  color: 'var(--text-primary)'
+                  color: 'white',
+                  boxShadow: '0 4px 12px rgba(30, 64, 175, 0.25)'
                 }}>
                   {idx + 1}
                 </div>
