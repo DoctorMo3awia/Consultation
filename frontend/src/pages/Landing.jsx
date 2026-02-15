@@ -114,25 +114,25 @@ const Landing = () => {
           </h1>
 
           {/* Doctor Image */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1.2rem', marginBottom: '1.5rem' }}>
             <img 
               src="https://customer-assets.emergentagent.com/job_gulf-exec-wellness/artifacts/6c16u5hp_Untitled.png"
               alt="دكتور معاوية"
               data-testid="doctor-image"
               style={{ 
-                width: '72px', 
-                height: '72px', 
+                width: '120px', 
+                height: '120px', 
                 borderRadius: '50%',
                 objectFit: 'cover',
-                border: '3px solid rgba(255,255,255,0.3)',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                border: '4px solid rgba(255,255,255,0.25)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.35)'
               }}
             />
             <div style={{ textAlign: 'right' }}>
-              <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: 'white', fontSize: '1rem' }}>
+              <p style={{ fontWeight: 700, marginBottom: '0.3rem', color: 'white', fontSize: '1.15rem' }}>
                 د. معاوية
               </p>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.875rem' }}>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
                 طبيب باطنية مقيم
               </p>
             </div>
