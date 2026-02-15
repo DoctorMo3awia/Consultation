@@ -50,8 +50,8 @@ const Offer = () => {
   const howItWorks = [
     {
       step: '1',
-      title: 'ادفع عبر PayPal',
-      description: 'اضغط "احجز الآن" وأكمل الدفع عبر PayPal ($119)',
+      title: 'ادفع الآن',
+      description: 'اضغط "احجز الآن" وأكمل الدفع ($119)',
     },
     {
       step: '2',
@@ -360,7 +360,7 @@ const Offer = () => {
               border: '1px solid rgba(30, 64, 175, 0.1)'
             }}>
               <p className="body-medium" style={{ lineHeight: 1.8, color: 'var(--text-secondary)' }}>
-                <strong style={{ color: 'var(--blue-elegant)' }}>ملاحظة مهمة:</strong> بعد الدفع عبر PayPal، ستستلم رابطاً عبر الإيميل لحجز الموعد واستمارة التقييم.
+                <strong style={{ color: 'var(--blue-elegant)' }}>ملاحظة مهمة:</strong> بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز الموعد واستمارة التقييم.
               </p>
             </div>
 
