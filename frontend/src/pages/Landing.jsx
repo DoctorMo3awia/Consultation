@@ -45,16 +45,19 @@ const Landing = () => {
       name: 'عبدالرحمن',
       role: 'الإمارات',
       text: 'الحمد الله أنا وصلت لأفضل مستوى لياقة وصحة من ايام المدرسة بفضل اللّٰه ثم مختبر العقل الي كان مو بس نظام غذائي وتمرين بس, غير أسلوب حياتي كامل للأفضل الحمدالله مشكورين يادكتور ومستمرين ان شاءالله',
+      result: '✅ النتيجة: أفضل مستوى لياقة في حياته خلال 8 أسابيع',
     },
     {
       name: 'ماجد',
       role: 'الإمارات',
       text: 'بخصوص فحوصات الدم والضغط الحمدلله صارت طبيعية والكلسترول حتى نزل اكثر من ما الدكاترة توقعوا وصارت الفحوصات كلها ممتازة و استغنيت عن فكرة اني ابدا باي حبوب ضغط وكلسترول شكرا لك يادكتور',
+      result: '✅ النتيجة: ضغط الدم والكلسترول عادا للطبيعي بدون حبوب',
     },
     {
       name: 'عمر',
       role: 'السعودية',
       text: 'شكرا يادكتور معاوية يااخي، بكرة ان شاء الله اخر يوم تنشيف. الفضل ليك ياكوتش اجتهدت معانا ووصلنا للشكل الخرافي دا. اكتر شي تعلمته انه مهما كانت ظروفك صعبة بتقدر تحقق اهدافك تعلمت منك الكثير يادكتورماقصرت',
+      result: '✅ النتيجة: تغير شكل الجسم بالكامل رغم جدول العمل الضاغط',
     },
   ];
 
@@ -78,6 +81,10 @@ const Landing = () => {
     {
       question: 'متى أستلم الخطة؟',
       answer: 'خلال 24 ساعة من انتهاء الجلسة، تستلم ملف PDF كامل يحتوي على خطتك المخصصة. ثم لديك 7 أيام دعم عبر واتساب (نافذتين للرد يومياً).',
+    },
+    {
+      question: 'ما هو ضمان استرداد الأموال؟',
+      answer: 'إذا لم تستفد من الجلسة — نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
     },
   ];
 
@@ -248,6 +255,18 @@ const Landing = () => {
                 <p className="body-medium" style={{ lineHeight: 1.8, flex: 1, color: 'var(--text-secondary)' }}>
                   "{testimonial.text}"
                 </p>
+                {/* Result Box */}
+                <div style={{ 
+                  background: '#f0fdf4', 
+                  border: '1px solid #86efac', 
+                  borderRadius: '0.5rem', 
+                  padding: '0.6rem 1rem', 
+                  fontSize: '0.9rem', 
+                  fontWeight: 600, 
+                  color: '#166534' 
+                }}>
+                  {testimonial.result}
+                </div>
                 <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e2e8f0' }}>
                   <div className="body-medium" style={{ fontWeight: 600, marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
                     {testimonial.name}
@@ -291,6 +310,26 @@ const Landing = () => {
           <h2 className="heading-hero" style={{ marginBottom: '1rem', color: 'white' }}>
             جاهز لاستعادة طاقتك وتركيزك؟
           </h2>
+
+          {/* Price Comparison Box */}
+          <div style={{ 
+            background: 'rgba(255,255,255,0.1)', 
+            border: '1px solid rgba(255,255,255,0.2)', 
+            borderRadius: '1rem', 
+            padding: '1.2rem 2rem', 
+            marginBottom: '1.5rem', 
+            maxWidth: '480px', 
+            marginLeft: 'auto', 
+            marginRight: 'auto' 
+          }}>
+            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '0.5rem', textDecoration: 'line-through' }}>
+              زيارة طبيب خاص في الإمارات: 500–800 درهم — بدون خطة، بدون متابعة
+            </p>
+            <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem' }}>
+              هنا بـ 119$ فقط: جلسة 45 دقيقة + خطة طبية كاملة + 7 أيام دعم ✓
+            </p>
+          </div>
+
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)' }}>
             فقط 6 مقاعد متاحة أسبوعياً · $119 USD
           </p>
@@ -302,6 +341,14 @@ const Landing = () => {
               <MessageCircle size={18} />
               واتساب
             </Button>
+          </div>
+
+          {/* Guarantee */}
+          <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            <Shield size={16} color="rgba(255,255,255,0.8)" />
+            <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem' }}>
+              ضمان استرداد كامل — إذا لم تستفد من الجلسة، نرد لك كامل المبلغ بلا أسئلة
+            </span>
           </div>
         </div>
       </section>
