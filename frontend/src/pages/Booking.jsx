@@ -142,7 +142,7 @@ const Booking = () => {
             تعبان، مرهق، وما تعرف ليش؟
             <br />
             <span style={{ color: 'rgba(255,255,255,0.7)' }}>
-              خلّنا نحل المشكلة من جذرها.
+             خلّنا نحل المشكلة من جذورها.
             </span>
           </h1>
 
@@ -174,7 +174,7 @@ const Booking = () => {
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <div className="section-divider" />
               <h2 className="heading-1" style={{ marginBottom: '0.5rem' }}>
-                هذا اللي تحصل عليه:
+                هذا ما ستحصل عليه:
               </h2>
             </div>
 
