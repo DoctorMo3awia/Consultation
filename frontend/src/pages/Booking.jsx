@@ -1,15 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { MessageCircle, CheckCircle2, Shield } from 'lucide-react';
+import { MessageCircle, CheckCircle2, Shield, Clock, Star, AlertCircle } from 'lucide-react';
 
 const Booking = () => {
   const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 47, seconds: 33 });
 
   useEffect(() => {
     document.documentElement.dir = 'rtl';
     document.documentElement.lang = 'ar';
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        seconds--;
+        if (seconds < 0) { seconds = 59; minutes--; }
+        if (minutes < 0) { minutes = 59; hours--; }
+        if (hours < 0) { hours = 0; minutes = 0; seconds = 0; clearInterval(timer); }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
+
+  const pad = (n) => String(n).padStart(2, '0');
 
   const openWhatsApp = () => {
     window.open('https://wa.me/971555519451?text=تقييم', '_blank');
@@ -19,19 +35,53 @@ const Booking = () => {
     window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
   };
 
-  const benefits = [
-    'جلسة 45 دقيقة مع طبيب باطنية مقيم',
-    'مراجعة شاملة لحالتك الصحية',
-    'خطة طبية مخصصة لك',
-    'ملف PDF كامل خلال 24 ساعة',
-    '7 أيام دعم عبر واتساب',
+  const valueStack = [
+    {
+      title: 'جلسة تقييم شاملة — 45 دقيقة',
+      desc: 'مع طبيب باطنية مقيم وجهاً لوجه عبر Google Meet',
+      oldPrice: '$200',
+    },
+    {
+      title: 'مراجعة كاملة لتحاليلك وملفك الطبي',
+      desc: 'نحلل كل شي قبل الجلسة عشان ما نضيع دقيقة',
+      oldPrice: '$150',
+    },
+    {
+      title: 'خطة طبية مخصصة — ملف PDF كامل',
+      desc: 'تستلمه خلال 24 ساعة بعد الجلسة',
+      oldPrice: '$100',
+    },
+    {
+      title: '7 أيام دعم مستمر عبر واتساب',
+      desc: 'نافذتين للرد يومياً — أي سؤال نجاوبك',
+      oldPrice: '$75',
+    },
   ];
 
   const steps = [
-    { num: '1', text: 'اضغط "ادفع الآن" وأكمل الدفع ($119)' },
-    { num: '2', text: 'بعد إتمام الدفع، ستستلم رابطاً عبر البريد الإلكتروني لحجز الموعد واستمارة التقييم' },
-    { num: '3', text: 'اختر الوقت المناسب واملأ استمارة التقييم' },
-    { num: '4', text: 'ستستلم رابط Google Meet قبل 24 ساعة من موعد الجلسة' },
+    { num: '1', title: 'ادفع الآن', desc: 'اضغط الزر وأكمل الدفع — يأخذ دقيقة واحدة' },
+    { num: '2', title: 'استلم رابط الحجز', desc: 'فوراً على إيميلك — رابط لاختيار الموعد + استمارة التقييم' },
+    { num: '3', title: 'املأ الاستمارة واحجز', desc: 'اختر الوقت المناسب لك واملأ استمارة بسيطة عن حالتك' },
+    { num: '4', title: 'ابدأ الجلسة', desc: 'تستلم رابط Google Meet قبل 24 ساعة — وندخل في الموضوع مباشرة' },
+  ];
+
+  const faqs = [
+    {
+      q: 'أنا عندي دكتور، ليش أحتاج جلسة ثانية؟',
+      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق. هنا تحصل على 45 دقيقة تحليل شامل + خطة مكتوبة تقدر تاخذها لأي دكتور.',
+    },
+    {
+      q: '$119 غالي...',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ جلسة واحدة شاملة بخطة واضحة توفر عليك آلاف الدراهم ومئات الساعات. وإذا ما عجبتك، فلوسك ترجع.',
+    },
+    {
+      q: 'هل الجلسة أونلاين فقط؟',
+      a: 'نعم، عبر Google Meet. هذا يسمح لنا نخدم عملاء من أي مكان في العالم بنفس الجودة.',
+    },
+    {
+      q: 'ما هو ضمان استرداد الأموال؟',
+      a: 'إذا لم تستفد من الجلسة — نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
+    },
   ];
 
   return (
@@ -43,6 +93,29 @@ const Booking = () => {
             دكتور معاوية
           </div>
           <div className="nav-actions">
+            {/* Countdown in header */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.4rem',
+              background: 'rgba(239, 68, 68, 0.15)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              borderRadius: '2rem',
+              padding: '0.3rem 0.8rem',
+              fontSize: '0.8rem',
+              color: '#fca5a5'
+            }}>
+              <span style={{ 
+                width: '6px', height: '6px', 
+                background: '#ef4444', 
+                borderRadius: '50%', 
+                display: 'inline-block',
+                animation: 'pulse 1.5s infinite'
+              }} />
+              <span style={{ fontFamily: 'monospace', fontWeight: 600 }}>
+                {pad(timeLeft.hours)}:{pad(timeLeft.minutes)}:{pad(timeLeft.seconds)}
+              </span>
+            </div>
             <Button data-testid="booking-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', padding: '0.5rem 1rem' }}>
               <MessageCircle size={16} />
               واتساب
@@ -51,145 +124,352 @@ const Booking = () => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <section style={{ padding: '3rem 1.2rem 5rem', minHeight: 'calc(100vh - 72px)' }}>
-        <div className="container" style={{ maxWidth: '900px' }}>
-          
-          {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ 
+      {/* ===== HERO: PAIN HEADLINE ===== */}
+      <section className="hero-section" style={{ minHeight: '50vh', paddingTop: '4rem', paddingBottom: '3rem' }}>
+        <div className="hero-content">
+          <div className="hero-announcement" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)' }}>
+            <span style={{ 
+              width: '6px', height: '6px', 
+              background: '#ef4444', 
+              borderRadius: '50%', 
               display: 'inline-block',
-              background: 'var(--accent-blue-200)',
-              padding: '0.4rem 1.2rem',
-              borderRadius: '0.4rem',
-              marginBottom: '1.5rem'
-            }}>
-              <span style={{ color: 'var(--blue-elegant)', fontSize: '0.85rem', fontWeight: 600 }}>
-                الدفع والحجز
-              </span>
-            </div>
-            
-            <h1 className="heading-hero" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
-              استثمر في صحتك وأدائك
-            </h1>
-            
-            <p className="body-large" style={{ color: 'var(--text-secondary)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-              ادفع الآن واحصل على جلسة تقييم كاملة مع دكتور معاوية
-            </p>
+              animation: 'pulse 1.5s infinite'
+            }} />
+            <span>باقي 3 مواعيد فقط هذا الأسبوع</span>
           </div>
 
-          {/* Payment Section */}
-          <div style={{ 
-            background: 'var(--bg-card)',
-            padding: '3rem 2rem',
-            borderRadius: '1rem',
-            boxShadow: '0 4px 24px rgba(15, 23, 42, 0.06)',
-            marginBottom: '2rem',
-            textAlign: 'center',
-            border: '1px solid #e2e8f0'
-          }}>
-            <div style={{ 
-              display: 'flex',
-              alignItems: 'baseline', 
-              gap: '0.5rem',
-              marginBottom: '2rem',
-              justifyContent: 'center'
-            }}>
-              <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>$119</span>
-              <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
+          <h1 className="heading-hero" style={{ marginBottom: '1.5rem', color: 'white', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
+            تعبان، مرهق، وما تعرف ليش؟
+            <br />
+            <span style={{ color: 'rgba(255,255,255,0.7)' }}>
+              خلّنا نحل المشكلة من جذرها.
+            </span>
+          </h1>
+
+          <p className="body-large" style={{ color: 'rgba(255,255,255,0.75)', maxWidth: '580px', marginLeft: 'auto', marginRight: 'auto', marginBottom: '1.5rem', lineHeight: 1.8 }}>
+            أغلب الناس يقضون <strong style={{ color: 'white' }}>سنوات</strong> يدورون بين دكتور ودكتور، تحليل وتحليل، بدون أي خطة واضحة.
+            النتيجة؟ فلوس ضايعة. وقت ضايع. وصحتك تزداد سوءاً.
+          </p>
+
+          <p className="body-large" style={{ color: 'white', fontWeight: 600, marginBottom: '2rem' }}>
+            جلسة واحدة مع دكتور معاوية = خطة واضحة تنقلك من الضياع إلى السيطرة على صحتك.
+          </p>
+
+          <Button data-testid="hero-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '280px', padding: '1rem 2rem', fontSize: '1rem' }}>
+            ادفع الآن — $119 فقط
+          </Button>
+
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginTop: '1rem' }}>
+            <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
+            ضمان استرداد كامل · دفع آمن عبر PayPal
+          </p>
+        </div>
+      </section>
+
+      <section style={{ padding: '3rem 1.2rem 5rem' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+
+          {/* ===== VALUE STACK ===== */}
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <div className="section-divider" />
+              <h2 className="heading-1" style={{ marginBottom: '0.5rem' }}>
+                هذا اللي تحصل عليه:
+              </h2>
             </div>
 
-            <div style={{ 
-              background: 'var(--bg-section)',
-              padding: '2rem',
-              borderRadius: '0.75rem',
-              marginBottom: '2rem',
-              textAlign: 'right',
-              border: '1px solid #e2e8f0'
-            }}>
-              <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center', color: 'var(--blue-elegant)' }}>
-                على ماذا ستحصل:
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {benefits.map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                    <CheckCircle2 size={20} color="var(--blue-elegant)" style={{ minWidth: '20px' }} />
-                    <p className="body-medium" style={{ flex: 1 }}>
-                      {item}
-                    </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {valueStack.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="voice-card"
+                  style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center',
+                    borderRight: '3px solid var(--blue-elegant)',
+                    cursor: 'default'
+                  }}
+                >
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flex: 1 }}>
+                    <CheckCircle2 size={22} color="var(--blue-elegant)" style={{ minWidth: '22px' }} />
+                    <div>
+                      <p className="body-medium" style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
+                        {item.title}
+                      </p>
+                      <p className="body-small" style={{ color: 'var(--text-muted)' }}>
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                  <span style={{ 
+                    textDecoration: 'line-through', 
+                    color: 'var(--text-muted)', 
+                    fontSize: '0.95rem',
+                    minWidth: '50px',
+                    textAlign: 'left'
+                  }}>
+                    {item.oldPrice}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-              <Button 
-                data-testid="pay-now-btn"
-                onClick={openPayPal} 
-                className="btn-primary" 
-                style={{ 
-                  width: '100%',
-                  maxWidth: '400px',
-                  padding: '1.25rem 2rem',
-                  fontSize: '1rem'
-                }}
-              >
-                ادفع الآن — $119
-              </Button>
-              
-              <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-                دفع آمن · ستستلم رابط لحجز الموعد واستمارة التقييم عبر الإيميل
+            {/* Total vs Price */}
+            <div style={{ 
+              background: 'var(--accent-blue-200)',
+              border: '1px solid rgba(30, 64, 175, 0.15)',
+              borderRadius: '0.75rem',
+              padding: '1.5rem 2rem',
+              textAlign: 'center',
+              marginTop: '1.5rem'
+            }}>
+              <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+                القيمة الإجمالية: <span style={{ textDecoration: 'line-through' }}>$525</span>
+              </p>
+              <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
+                أنت تدفع اليوم فقط:
+              </p>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', justifyContent: 'center' }}>
+                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--blue-elegant)' }}>$119</span>
+                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
+              </div>
+              <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+                توفير 77% من القيمة الحقيقية
               </p>
             </div>
           </div>
 
-          {/* Instructions */}
+          {/* ===== PRICE COMPARISON ===== */}
           <div style={{ 
-            padding: '2rem',
-            background: 'var(--accent-blue-200)',
+            background: 'var(--bg-card)',
+            border: '1px solid #e2e8f0',
             borderRadius: '0.75rem',
-            marginBottom: '2rem',
-            border: '1px solid rgba(30, 64, 175, 0.1)'
+            padding: '1.5rem 2rem',
+            marginBottom: '2.5rem',
+            textAlign: 'center'
           }}>
-            <h3 className="heading-3" style={{ marginBottom: '1.5rem', textAlign: 'center', color: 'var(--blue-elegant)' }}>
-              كيف يعمل:
+            <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', textDecoration: 'line-through' }}>
+              زيارة طبيب خاص في الإمارات: 500–800 درهم — بدون خطة، بدون متابعة
+            </p>
+            <p className="body-medium" style={{ color: 'var(--blue-elegant)', fontWeight: 700 }}>
+              هنا بـ 119$ فقط: جلسة 45 دقيقة + خطة طبية كاملة + 7 أيام دعم ✓
+            </p>
+          </div>
+
+          {/* ===== GUARANTEE ===== */}
+          <div style={{ 
+            background: '#f0fdf4',
+            border: '1px solid #86efac',
+            borderRadius: '0.75rem',
+            padding: '2rem',
+            textAlign: 'center',
+            marginBottom: '2.5rem'
+          }}>
+            <Shield size={32} color="#166534" style={{ marginBottom: '0.75rem' }} />
+            <h3 className="heading-3" style={{ color: '#166534', marginBottom: '0.75rem' }}>
+              ضمان 100% — بدون مخاطرة
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', textAlign: 'right' }}>
-              {steps.map((step, idx) => (
-                <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+            <p className="body-medium" style={{ color: '#334155', lineHeight: 1.8, maxWidth: '520px', margin: '0 auto' }}>
+              إذا ما حسّيت إن الجلسة أعطتك قيمة حقيقية وخطة واضحة لصحتك، 
+              <strong style={{ color: '#166534' }}> نرجع لك فلوسك كاملة. بدون أسئلة.</strong>
+              <br />
+              المخاطرة كلها علينا. أنت ما تخسر شي.
+            </p>
+          </div>
+
+          {/* ===== URGENCY + CTA ===== */}
+          <div style={{ 
+            background: 'var(--bg-card)',
+            padding: '2.5rem 2rem',
+            borderRadius: '1rem',
+            boxShadow: '0 4px 24px rgba(15, 23, 42, 0.06)',
+            marginBottom: '2.5rem',
+            textAlign: 'center',
+            border: '1px solid #e2e8f0'
+          }}>
+            <div style={{ 
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: 'rgba(239, 68, 68, 0.08)',
+              border: '1px solid rgba(239, 68, 68, 0.15)',
+              borderRadius: '2rem',
+              padding: '0.4rem 1rem',
+              marginBottom: '1.25rem'
+            }}>
+              <span style={{ 
+                width: '6px', height: '6px', 
+                background: '#ef4444', 
+                borderRadius: '50%', 
+                display: 'inline-block',
+                animation: 'pulse 1.5s infinite'
+              }} />
+              <span className="body-small" style={{ color: '#dc2626', fontWeight: 600 }}>
+                السعر يرجع لـ $199 بعد:
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginBottom: '2rem' }}>
+              {[
+                { val: pad(timeLeft.hours), label: 'ساعة' },
+                { val: pad(timeLeft.minutes), label: 'دقيقة' },
+                { val: pad(timeLeft.seconds), label: 'ثانية' },
+              ].map((t, idx) => (
+                <div key={idx} style={{ textAlign: 'center' }}>
                   <div style={{ 
-                    minWidth: '32px',
-                    height: '32px',
-                    borderRadius: '0.4rem',
+                    background: 'var(--accent-blue-200)',
+                    border: '1px solid rgba(30, 64, 175, 0.15)',
+                    borderRadius: '0.5rem',
+                    padding: '0.6rem 1rem',
+                    fontSize: '1.5rem',
+                    fontWeight: 700,
+                    color: 'var(--blue-elegant)',
+                    minWidth: '56px',
+                    fontFamily: 'monospace'
+                  }}>
+                    {t.val}
+                  </div>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.3rem', display: 'block' }}>
+                    {t.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <Button 
+              data-testid="pay-now-btn"
+              onClick={openPayPal} 
+              className="btn-primary" 
+              style={{ 
+                width: '100%',
+                maxWidth: '400px',
+                padding: '1.25rem 2rem',
+                fontSize: '1.05rem',
+                boxShadow: '0 6px 20px rgba(30, 64, 175, 0.35)'
+              }}
+            >
+              ادفع الآن — $119 فقط
+            </Button>
+
+            <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem' }}>
+              <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
+              دفع آمن عبر PayPal · تستلم رابط الحجز فوراً
+            </p>
+          </div>
+
+          {/* ===== HOW IT WORKS ===== */}
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <div className="section-divider" />
+              <h2 className="heading-1">
+                كيف تبدأ (4 خطوات بسيطة):
+              </h2>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {steps.map((step, idx) => (
+                <div 
+                  key={idx} 
+                  style={{ 
+                    display: 'flex', 
+                    gap: '1.5rem', 
+                    alignItems: 'flex-start',
+                    padding: '1.5rem',
+                    background: 'var(--bg-card)',
+                    borderRadius: '0.75rem',
+                    border: '1px solid #e2e8f0'
+                  }}
+                >
+                  <div style={{ 
+                    minWidth: '44px',
+                    height: '44px',
+                    borderRadius: '0.5rem',
                     background: 'var(--blue-shine)',
                     color: 'white',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '0.9rem',
+                    fontSize: '1.1rem',
                     fontWeight: 700,
-                    boxShadow: '0 2px 8px rgba(30, 64, 175, 0.25)'
+                    boxShadow: '0 4px 12px rgba(30, 64, 175, 0.25)'
                   }}>
                     {step.num}
                   </div>
-                  <p className="body-medium" style={{ flex: 1, lineHeight: 1.7, paddingTop: '0.2rem' }}>
-                    {step.text}
+                  <div style={{ flex: 1, paddingTop: '0.2rem' }}>
+                    <p className="body-medium" style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                      {step.title}
+                    </p>
+                    <p className="body-small" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ===== FAQ / OBJECTION HANDLING ===== */}
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <div className="section-divider" />
+              <h2 className="heading-1">
+                أسئلة شائعة
+              </h2>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {faqs.map((faq, idx) => (
+                <div 
+                  key={idx} 
+                  className="voice-card"
+                  style={{ cursor: 'default' }}
+                >
+                  <p className="body-medium" style={{ fontWeight: 600, color: 'var(--blue-elegant)', marginBottom: '0.5rem' }}>
+                    {faq.q}
+                  </p>
+                  <p className="body-medium" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                    {faq.a}
                   </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Contact */}
-          <div style={{ textAlign: 'center' }}>
-            <p className="body-medium" style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-              لديك أسئلة قبل الدفع؟
-            </p>
-            <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-secondary" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', margin: '0 auto' }}>
-              <MessageCircle size={18} />
-              تواصل عبر واتساب
-            </Button>
+          {/* ===== FINAL CTA ===== */}
+          <div className="hero-section" style={{ 
+            minHeight: 'auto', 
+            borderRadius: '1rem', 
+            padding: '3rem 2rem',
+            marginBottom: '2rem'
+          }}>
+            <div className="hero-content">
+              <h2 className="heading-hero" style={{ color: 'white', marginBottom: '1rem', fontSize: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                صحتك ما تستنى.
+              </h2>
+              <p className="body-large" style={{ color: 'rgba(255,255,255,0.75)', marginBottom: '2rem', lineHeight: 1.7 }}>
+                كل يوم تأجّل = يوم ضايع من حياتك بأداء أقل مما تستحق.
+                <br />
+                احجز الآن. خذ خطوة وحدة. ودعنا نهتم بالباقي.
+              </p>
+
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Button data-testid="final-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '240px', padding: '1rem 2rem' }}>
+                  ابدأ الآن — $119
+                </Button>
+                <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
+                  <MessageCircle size={18} />
+                  عندك سؤال؟ كلمنا واتساب
+                </Button>
+              </div>
+
+              <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                <Shield size={16} color="rgba(255,255,255,0.8)" />
+                <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem' }}>
+                  ضمان استرداد كامل — إذا لم تستفد من الجلسة، نرد لك كامل المبلغ بلا أسئلة
+                </span>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -206,8 +486,17 @@ const Booking = () => {
           </p>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.4; transform: scale(1.4); }
+        }
+      `}</style>
     </div>
   );
 };
+
+export default Booking;
 
 export default Booking;
