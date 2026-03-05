@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { MessageCircle, CheckCircle2, Shield, Clock, Star, AlertCircle } from 'lucide-react';
+import { MessageCircle, CheckCircle2, Shield, Clock } from 'lucide-react';
 
 const Booking = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 47, seconds: 33 });
 
   useEffect(() => {
     document.documentElement.dir = 'rtl';
     document.documentElement.lang = 'ar';
-
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        let { hours, minutes, seconds } = prev;
-        seconds--;
-        if (seconds < 0) { seconds = 59; minutes--; }
-        if (minutes < 0) { minutes = 59; hours--; }
-        if (hours < 0) { hours = 0; minutes = 0; seconds = 0; clearInterval(timer); }
-        return { hours, minutes, seconds };
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
   }, []);
-
-  const pad = (n) => String(n).padStart(2, '0');
 
   const openWhatsApp = () => {
     window.open('https://wa.me/971555519451?text=تقييم', '_blank');
@@ -93,28 +77,20 @@ const Booking = () => {
             دكتور معاوية
           </div>
           <div className="nav-actions">
-            {/* Countdown in header */}
+            {/* Real scarcity badge */}
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.4rem',
-              background: 'rgba(239, 68, 68, 0.15)',
-              border: '1px solid rgba(239, 68, 68, 0.3)',
+              background: 'rgba(245, 158, 11, 0.15)',
+              border: '1px solid rgba(245, 158, 11, 0.3)',
               borderRadius: '2rem',
               padding: '0.3rem 0.8rem',
               fontSize: '0.8rem',
-              color: '#fca5a5'
+              color: '#fbbf24'
             }}>
-              <span style={{ 
-                width: '6px', height: '6px', 
-                background: '#ef4444', 
-                borderRadius: '50%', 
-                display: 'inline-block',
-                animation: 'pulse 1.5s infinite'
-              }} />
-              <span style={{ fontFamily: 'monospace', fontWeight: 600 }}>
-                {pad(timeLeft.hours)}:{pad(timeLeft.minutes)}:{pad(timeLeft.seconds)}
-              </span>
+              <Clock size={12} />
+              <span style={{ fontWeight: 600 }}>6 مقاعد أسبوعياً فقط</span>
             </div>
             <Button data-testid="booking-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', padding: '0.5rem 1rem' }}>
               <MessageCircle size={16} />
@@ -127,22 +103,16 @@ const Booking = () => {
       {/* ===== HERO: PAIN HEADLINE ===== */}
       <section className="hero-section" style={{ minHeight: '50vh', paddingTop: '4rem', paddingBottom: '3rem' }}>
         <div className="hero-content">
-          <div className="hero-announcement" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)' }}>
-            <span style={{ 
-              width: '6px', height: '6px', 
-              background: '#ef4444', 
-              borderRadius: '50%', 
-              display: 'inline-block',
-              animation: 'pulse 1.5s infinite'
-            }} />
-            <span>باقي 3 مواعيد فقط هذا الأسبوع</span>
+          <div className="hero-announcement">
+            <Clock size={14} />
+            <span>محدودة ل 6 مقاعد أسبوعياً · تحت اشراف طبيب باطنية مقيم</span>
           </div>
 
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', color: 'white', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
             تعبان، مرهق، وما تعرف ليش؟
             <br />
             <span style={{ color: 'rgba(255,255,255,0.7)' }}>
-             خلّنا نحل المشكلة من جذورها.
+              خلّنا نحل المشكلة من جذورها.
             </span>
           </h1>
 
@@ -278,7 +248,7 @@ const Booking = () => {
             </p>
           </div>
 
-          {/* ===== URGENCY + CTA ===== */}
+          {/* ===== SCARCITY + CTA ===== */}
           <div style={{ 
             background: 'var(--bg-card)',
             padding: '2.5rem 2rem',
@@ -291,51 +261,22 @@ const Booking = () => {
             <div style={{ 
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              background: 'rgba(239, 68, 68, 0.08)',
-              border: '1px solid rgba(239, 68, 68, 0.15)',
+              gap: '0.5rem',
+              background: 'var(--accent-blue-200)',
+              border: '1px solid rgba(30, 64, 175, 0.15)',
               borderRadius: '2rem',
-              padding: '0.4rem 1rem',
-              marginBottom: '1.25rem'
+              padding: '0.5rem 1.2rem',
+              marginBottom: '1.5rem'
             }}>
-              <span style={{ 
-                width: '6px', height: '6px', 
-                background: '#ef4444', 
-                borderRadius: '50%', 
-                display: 'inline-block',
-                animation: 'pulse 1.5s infinite'
-              }} />
-              <span className="body-small" style={{ color: '#dc2626', fontWeight: 600 }}>
-                السعر يرجع لـ $199 بعد:
+              <Clock size={14} color="var(--blue-elegant)" />
+              <span className="body-small" style={{ color: 'var(--blue-elegant)', fontWeight: 600 }}>
+                محدودة ل 6 مقاعد أسبوعياً فقط
               </span>
             </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginBottom: '2rem' }}>
-              {[
-                { val: pad(timeLeft.hours), label: 'ساعة' },
-                { val: pad(timeLeft.minutes), label: 'دقيقة' },
-                { val: pad(timeLeft.seconds), label: 'ثانية' },
-              ].map((t, idx) => (
-                <div key={idx} style={{ textAlign: 'center' }}>
-                  <div style={{ 
-                    background: 'var(--accent-blue-200)',
-                    border: '1px solid rgba(30, 64, 175, 0.15)',
-                    borderRadius: '0.5rem',
-                    padding: '0.6rem 1rem',
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    color: 'var(--blue-elegant)',
-                    minWidth: '56px',
-                    fontFamily: 'monospace'
-                  }}>
-                    {t.val}
-                  </div>
-                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.3rem', display: 'block' }}>
-                    {t.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '460px', marginLeft: 'auto', marginRight: 'auto' }}>
+              بسبب جدول العمل في المستشفى، دكتور معاوية يقدر يستقبل 6 عملاء فقط كل أسبوع. احجز مكانك قبل ما تمتلئ المواعيد.
+            </p>
 
             <Button 
               data-testid="pay-now-btn"
@@ -487,12 +428,7 @@ const Booking = () => {
         </div>
       </footer>
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(1.4); }
-        }
-      `}</style>
+      <style>{``}</style>
     </div>
   );
 };
