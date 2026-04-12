@@ -23,7 +23,7 @@ const Offer = () => {
     {
       icon: Video,
       title: 'تقييم شامل وبناء خطة مخصصة لك',
-      description: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم — نفهم حالتك ونبني خطة طبية متكاملة مصممة خصيصاً لك',
+      description: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم، نفهم حالتك ونبني خطة طبية متكاملة مصممة خصيصاً لك',
     },
     {
       icon: FileText,
@@ -33,7 +33,7 @@ const Offer = () => {
     {
       icon: TrendingUp,
       title: 'خطة طبية مخصصة لك متكاملة',
-      description: 'استراتيجية الاستشفاء + دليل للتغذية العلاجية + قواعد للتغذية في المطاعم + خطة تمارين مخصصة لك بأقل جرعة فعالة + بروتوكول تحسين المزاج والتركيز',
+      description: 'استراتيجية الاستشفاء، دليل للتغذية العلاجية، قواعد للتغذية في المطاعم، خطة تمارين مخصصة لك بأقل جرعة فعالة، بروتوكول تحسين المزاج والتركيز',
     },
     {
       icon: Clock,
@@ -61,7 +61,7 @@ const Offer = () => {
     {
       step: '3',
       title: 'ابدأ البرنامج',
-      description: 'تقييم شامل + خطة مخصصة + متابعة تقدمك وتعديل الخطة لمدة 3 أشهر كاملة',
+      description: 'تقييم شامل، خطة مخصصة، متابعة تقدمك وتعديل الخطة لمدة 3 أشهر كاملة',
     },
   ];
 
@@ -99,7 +99,7 @@ const Offer = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Calendar size={14} />
-            <span>الأماكن محدودة — الدكتور يشتغل معك بشكل مباشر</span>
+            <span>الأماكن محدودة، الدكتور يشتغل معك بشكل مباشر</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1rem', color: 'white' }}>
@@ -107,7 +107,7 @@ const Offer = () => {
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            3 أشهر متابعة شخصية تحت اشراف طبيب — خطة مخصصة + مراقبة تقدمك + تعديل مستمر
+            3 أشهر متابعة شخصية تحت اشراف طبيب، خطة مخصصة، مراقبة تقدمك، تعديل مستمر
           </p>
 
           <div style={{ 
@@ -140,7 +140,7 @@ const Offer = () => {
 
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem' }}>
             <Clock size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-            الأماكن محدودة — سجّل الآن
+            الأماكن محدودة، سجّل الآن
           </p>
         </div>
       </section>
@@ -197,7 +197,7 @@ const Offer = () => {
               ماذا تحصل بالضبط؟
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-              خطة مخصصة + دكتور معاوية يتابع تقدمك بنفسه لمدة 3 أشهر
+              خطة مخصصة، دكتور معاوية يتابع تقدمك بنفسه لمدة 3 أشهر
             </p>
           </div>
 
@@ -348,7 +348,7 @@ const Offer = () => {
                 <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
               </div>
               <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-                استثمار في صحتك وأدائك — 3 أشهر متابعة شخصية
+                استثمار في صحتك وأدائك، 3 أشهر متابعة شخصية
               </p>
             </div>
 
