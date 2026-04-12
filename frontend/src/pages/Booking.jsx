@@ -21,8 +21,8 @@ const Booking = () => {
 
   const valueStack = [
     {
-      title: 'تقييم شامل + خطة طبية مخصصة لك',
-      desc: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم + خطة متكاملة (تغذية، تمارين، نوم، مكملات)',
+      title: 'تقييم شامل وخطة طبية مخصصة لك',
+      desc: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم، خطة متكاملة (تغذية، تمارين، نوم، مكملات)',
       oldPrice: '$500',
     },
     {
@@ -32,7 +32,7 @@ const Booking = () => {
     },
     {
       title: 'متابعة تقدمك لمدة 3 أشهر كاملة',
-      desc: 'هذا الفرق الحقيقي — نراقب نتائجك ونتأكد إنك ماشي على الطريق الصح',
+      desc: 'هذا الفرق الحقيقي، نراقب نتائجك ونتأكد إنك ماشي على الطريق الصح',
       oldPrice: '$1,200',
     },
     {
@@ -42,26 +42,26 @@ const Booking = () => {
     },
     {
       title: 'دعم مستمر عبر واتساب لمدة 3 أشهر',
-      desc: 'تواصل مباشر مع دكتور معاوية — أي سؤال نجاوبك',
+      desc: 'تواصل مباشر مع دكتور معاوية، أي سؤال نجاوبك',
       oldPrice: '$600',
     },
   ];
 
   const steps = [
-    { num: '1', title: 'سجّل الآن', desc: 'اضغط الزر وأكمل الدفع — يأخذ دقيقة واحدة' },
+    { num: '1', title: 'سجّل الآن', desc: 'اضغط الزر وأكمل الدفع، يأخذ دقيقة واحدة' },
     { num: '2', title: 'استلم رابط التطبيق', desc: 'فوراً على إيميلك، رابط لتنزيل التطبيق الخاص بالمتابعة وسيتواصل معك الدكتور مباشرة' },
     { num: '3', title: 'املأ الاستمارة واحجز', desc: 'اختر الوقت المناسب لك واملأ استمارة شاملة عن حالتك' },
-    { num: '4', title: 'ابدأ البرنامج', desc: 'تبدأ أول جلسة عبر Google Meet — ثم متابعة مستمرة لمدة 3 أشهر' },
+    { num: '4', title: 'ابدأ البرنامج', desc: 'تبدأ أول جلسة عبر Google Meet ثم متابعة مستمرة لمدة 3 أشهر' },
   ];
 
   const faqs = [
     {
       q: 'أنا عندي دكتور، ليش أحتاج هالبرنامج؟',
-      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق ويعطونك خطة بدون متابعة. هنا تحصل على خطة شاملة + متابعة شخصية لمدة 3 أشهر كاملة.',
+      a: 'دكتور معاوية ما يستبدل دكتورك، هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق ويعطونك خطة بدون متابعة. هنا تحصل على خطة شاملة، متابعة شخصية لمدة 3 أشهر كاملة.',
     },
     {
       q: '$680 غالي...',
-      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ هنا دكتور معاوية يشتغل معك بشكل مباشر 3 أشهر كاملة — يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ هنا دكتور معاوية يشتغل معك بشكل مباشر 3 أشهر كاملة، يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
     },
     {
       q: 'هل الجلسات أونلاين فقط؟',
@@ -69,7 +69,7 @@ const Booking = () => {
     },
     {
       q: 'ما هو ضمان استرداد الأموال؟',
-      a: 'إذا لم تستفد من البرنامج — نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
+      a: 'إذا لم تستفد من البرنامج، نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
     },
   ];
 
@@ -131,7 +131,7 @@ const Booking = () => {
           </p>
 
           <Button data-testid="hero-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '280px', padding: '1rem 2rem', fontSize: '1rem' }}>
-            سجّل الآن — $680
+            سجّل الآن · $680
           </Button>
 
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginTop: '1rem' }}>
@@ -228,7 +228,7 @@ const Booking = () => {
               متابعة شخصية مع طبيب خاص في الإمارات: $2,000–$4,000 لثلاث أشهر
             </p>
             <p className="body-medium" style={{ color: 'var(--blue-elegant)', fontWeight: 700 }}>
-              هنا بـ $680 فقط: خطة مخصصة + متابعة تقدمك لمدة 3 أشهر كاملة ✓
+              هنا بـ $680 فقط: خطة مخصصة، متابعة تقدمك لمدة 3 أشهر كاملة ✓
             </p>
           </div>
 
@@ -243,7 +243,7 @@ const Booking = () => {
           }}>
             <Shield size={32} color="#166534" style={{ marginBottom: '0.75rem' }} />
             <h3 className="heading-3" style={{ color: '#166534', marginBottom: '0.75rem' }}>
-              ضمان 100% — بدون مخاطرة
+              ضمان 100%، بدون مخاطرة
             </h3>
             <p className="body-medium" style={{ color: '#334155', lineHeight: 1.8, maxWidth: '520px', margin: '0 auto' }}>
               إذا ما حسّيت إن البرنامج أعطاك قيمة حقيقية وخطة واضحة لصحتك، 
@@ -275,7 +275,7 @@ const Booking = () => {
             }}>
               <Clock size={14} color="var(--blue-elegant)" />
               <span className="body-small" style={{ color: 'var(--blue-elegant)', fontWeight: 600 }}>
-                الأماكن محدودة — الدكتور يشتغل معك بشكل مباشر
+                الأماكن محدودة، الدكتور يشتغل معك بشكل مباشر
               </span>
             </div>
 
@@ -295,7 +295,7 @@ const Booking = () => {
                 boxShadow: '0 6px 20px rgba(30, 64, 175, 0.35)'
               }}
             >
-              سجّل الآن — $680
+              سجّل الآن · $680
             </Button>
 
             <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem' }}>
@@ -401,7 +401,7 @@ const Booking = () => {
 
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Button data-testid="final-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '240px', padding: '1rem 2rem' }}>
-                  سجّل الآن — $680
+                  سجّل الآن · $680
                 </Button>
                 <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                   <MessageCircle size={18} />
@@ -412,7 +412,7 @@ const Booking = () => {
               <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                 <Shield size={16} color="rgba(255,255,255,0.8)" />
                 <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem' }}>
-                  ضمان استرداد كامل — إذا لم تستفد من البرنامج، نرد لك كامل المبلغ بلا أسئلة
+                  ضمان استرداد كامل، إذا لم تستفد من البرنامج نرد لك كامل المبلغ بلا أسئلة
                 </span>
               </div>
             </div>
