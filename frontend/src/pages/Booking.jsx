@@ -21,50 +21,55 @@ const Booking = () => {
 
   const valueStack = [
     {
-      title: 'جلسة تقييم شاملة — 45 دقيقة',
-      desc: 'مع طبيب باطنية مقيم وجهاً لوجه عبر Google Meet',
-      oldPrice: '$200',
+      title: '4 جلسات أسبوعية — 45 دقيقة لكل جلسة',
+      desc: 'مع طبيب باطنية مقيم وجهاً لوجه عبر Google Meet لمدة 30 يوم',
+      oldPrice: '3,000 د.إ',
     },
     {
-      title: 'مراجعة كاملة لتحاليلك وملفك الطبي',
-      desc: 'نحلل كل شي قبل الجلسة عشان ما نضيع دقيقة',
-      oldPrice: '$150',
+      title: 'تحليل شامل للتحاليل المخبرية والملف الطبي',
+      desc: 'نحلل كل شي قبل أول جلسة ونتابع التغيرات طوال البرنامج',
+      oldPrice: '1,500 د.إ',
     },
     {
-      title: 'خطة طبية مخصصة — ملف PDF كامل',
-      desc: 'تستلمه خلال 24 ساعة بعد الجلسة',
-      oldPrice: '$100',
+      title: 'خطة طبية مخصصة تُحدَّث أسبوعياً',
+      desc: 'ملفات PDF شاملة بعد كل جلسة — تتطور مع تقدمك',
+      oldPrice: '2,000 د.إ',
     },
     {
-      title: '7 أيام دعم مستمر عبر واتساب',
-      desc: 'نافذتين للرد يومياً — أي سؤال نجاوبك',
-      oldPrice: '$75',
+      title: 'متابعة يومية عبر واتساب لمدة 30 يوم',
+      desc: 'دعم مستمر طوال البرنامج — أي سؤال نجاوبك',
+      oldPrice: '2,000 د.إ',
+    },
+    {
+      title: 'تعديل وتحديث الخطة بناءً على تقدمك',
+      desc: 'نعدّل التغذية والتمارين والمكملات حسب استجابة جسمك',
+      oldPrice: '1,500 د.إ',
     },
   ];
 
   const steps = [
-    { num: '1', title: 'ادفع الآن', desc: 'اضغط الزر وأكمل الدفع — يأخذ دقيقة واحدة' },
-    { num: '2', title: 'استلم رابط الحجز', desc: 'فوراً على إيميلك — رابط لاختيار الموعد + استمارة التقييم' },
-    { num: '3', title: 'املأ الاستمارة واحجز', desc: 'اختر الوقت المناسب لك واملأ استمارة بسيطة عن حالتك' },
-    { num: '4', title: 'ابدأ الجلسة', desc: 'تستلم رابط Google Meet قبل 24 ساعة — وندخل في الموضوع مباشرة' },
+    { num: '1', title: 'سجّل الآن', desc: 'اضغط الزر وأكمل الدفع — يأخذ دقيقة واحدة' },
+    { num: '2', title: 'استلم رابط الحجز', desc: 'فوراً على إيميلك — رابط لاختيار موعد أول جلسة + استمارة التقييم' },
+    { num: '3', title: 'املأ الاستمارة واحجز', desc: 'اختر الوقت المناسب لك واملأ استمارة شاملة عن حالتك' },
+    { num: '4', title: 'ابدأ البرنامج', desc: 'تستلم رابط Google Meet وتبدأ أول جلسة — ثم متابعة أسبوعية لمدة 30 يوم' },
   ];
 
   const faqs = [
     {
-      q: 'أنا عندي دكتور، ليش أحتاج جلسة ثانية؟',
-      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق. هنا تحصل على 45 دقيقة تحليل شامل + خطة مكتوبة تقدر تاخذها لأي دكتور.',
+      q: 'أنا عندي دكتور، ليش أحتاج هالبرنامج؟',
+      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق. هنا تحصل على 4 جلسات شاملة + خطة مكتوبة تتطور معك + متابعة يومية لمدة 30 يوم.',
     },
     {
-      q: '$119 غالي...',
-      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ جلسة واحدة شاملة بخطة واضحة توفر عليك آلاف الدراهم ومئات الساعات. وإذا ما عجبتك، فلوسك ترجع.',
+      q: '2,500 درهم غالي...',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 30 يوم مع متابعة شخصية 1-on-1 يوفر عليك آلاف الدراهم ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
     },
     {
-      q: 'هل الجلسة أونلاين فقط؟',
+      q: 'هل الجلسات أونلاين فقط؟',
       a: 'نعم، عبر Google Meet. هذا يسمح لنا نخدم عملاء من أي مكان في العالم بنفس الجودة.',
     },
     {
       q: 'ما هو ضمان استرداد الأموال؟',
-      a: 'إذا لم تستفد من الجلسة — نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
+      a: 'إذا لم تستفد من البرنامج — نرد لك كامل المبلغ بلا أسئلة. نحن واثقون من النتائج.',
     },
   ];
 
@@ -90,7 +95,7 @@ const Booking = () => {
               color: '#fbbf24'
             }}>
               <Clock size={12} />
-              <span style={{ fontWeight: 600 }}>6 مقاعد أسبوعياً فقط</span>
+              <span style={{ fontWeight: 600 }}>الأماكن محدودة</span>
             </div>
             <Button data-testid="booking-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', padding: '0.5rem 1rem' }}>
               <MessageCircle size={16} />
@@ -105,7 +110,7 @@ const Booking = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Clock size={14} />
-            <span>محدودة ل 6 مقاعد أسبوعياً · تحت اشراف طبيب باطنية مقيم</span>
+            <span>برنامج 1-on-1 شخصي · تحت اشراف طبيب باطنية مقيم</span>
           </div>
 
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', color: 'white', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -122,11 +127,11 @@ const Booking = () => {
           </p>
 
           <p className="body-large" style={{ color: 'white', fontWeight: 600, marginBottom: '2rem' }}>
-            جلسة واحدة مع دكتور معاوية = خطة واضحة تنقلك من الضياع إلى السيطرة على صحتك.
+            30 يوم مع دكتور معاوية 1-on-1 = تحوّل حقيقي ينقلك من الضياع إلى السيطرة الكاملة على صحتك.
           </p>
 
           <Button data-testid="hero-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '280px', padding: '1rem 2rem', fontSize: '1rem' }}>
-            ادفع الآن — $119 فقط
+            سجّل الآن — 2,500 درهم
           </Button>
 
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginTop: '1rem' }}>
@@ -195,17 +200,17 @@ const Booking = () => {
               marginTop: '1.5rem'
             }}>
               <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                القيمة الإجمالية: <span style={{ textDecoration: 'line-through' }}>$525</span>
+                القيمة الإجمالية: <span style={{ textDecoration: 'line-through' }}>10,000 د.إ</span>
               </p>
               <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
                 أنت تدفع اليوم فقط:
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', justifyContent: 'center' }}>
-                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--blue-elegant)' }}>$119</span>
-                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
+                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--blue-elegant)' }}>2,500</span>
+                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>درهم</span>
               </div>
               <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-                توفير 77% من القيمة الحقيقية
+                توفير 75% من القيمة الحقيقية
               </p>
             </div>
           </div>
@@ -220,10 +225,10 @@ const Booking = () => {
             textAlign: 'center'
           }}>
             <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', textDecoration: 'line-through' }}>
-              زيارة طبيب خاص في الإمارات: 500–800 درهم — بدون خطة، بدون متابعة
+              متابعة شخصية مع طبيب خاص في الإمارات: 5,000–10,000 درهم شهرياً
             </p>
             <p className="body-medium" style={{ color: 'var(--blue-elegant)', fontWeight: 700 }}>
-              هنا بـ 119$ فقط: جلسة 45 دقيقة + خطة طبية كاملة + 7 أيام دعم ✓
+              هنا بـ 2,500 درهم فقط: برنامج 1-on-1 لمدة 30 يوم + 4 جلسات + متابعة يومية ✓
             </p>
           </div>
 
@@ -241,7 +246,7 @@ const Booking = () => {
               ضمان 100% — بدون مخاطرة
             </h3>
             <p className="body-medium" style={{ color: '#334155', lineHeight: 1.8, maxWidth: '520px', margin: '0 auto' }}>
-              إذا ما حسّيت إن الجلسة أعطتك قيمة حقيقية وخطة واضحة لصحتك، 
+              إذا ما حسّيت إن البرنامج أعطاك قيمة حقيقية وخطة واضحة لصحتك، 
               <strong style={{ color: '#166534' }}> نرجع لك فلوسك كاملة. بدون أسئلة.</strong>
               <br />
               المخاطرة كلها علينا. أنت ما تخسر شي.
@@ -270,12 +275,12 @@ const Booking = () => {
             }}>
               <Clock size={14} color="var(--blue-elegant)" />
               <span className="body-small" style={{ color: 'var(--blue-elegant)', fontWeight: 600 }}>
-                محدودة ل 6 مقاعد أسبوعياً فقط
+                الأماكن محدودة — برنامج 1-on-1 شخصي
               </span>
             </div>
 
             <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '460px', marginLeft: 'auto', marginRight: 'auto' }}>
-              بسبب جدول العمل في المستشفى، دكتور معاوية يقدر يستقبل 6 عملاء فقط كل أسبوع. احجز مكانك قبل ما تمتلئ المواعيد.
+              بسبب طبيعة المتابعة الشخصية 1-on-1، دكتور معاوية يقدر يستقبل عدد محدود من العملاء. سجّل مكانك قبل ما تمتلئ الأماكن.
             </p>
 
             <Button 
@@ -290,12 +295,12 @@ const Booking = () => {
                 boxShadow: '0 6px 20px rgba(30, 64, 175, 0.35)'
               }}
             >
-              ادفع الآن — $119 فقط
+              سجّل الآن — 2,500 درهم
             </Button>
 
             <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem' }}>
               <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-              دفع آمن عبر PayPal · تستلم رابط الحجز فوراً
+              دفع آمن عبر PayPal · تستلم رابط حجز أول جلسة فوراً
             </p>
           </div>
 
@@ -396,7 +401,7 @@ const Booking = () => {
 
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Button data-testid="final-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '240px', padding: '1rem 2rem' }}>
-                  ابدأ الآن — $119
+                  سجّل الآن — 2,500 درهم
                 </Button>
                 <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                   <MessageCircle size={18} />
@@ -407,7 +412,7 @@ const Booking = () => {
               <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                 <Shield size={16} color="rgba(255,255,255,0.8)" />
                 <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem' }}>
-                  ضمان استرداد كامل — إذا لم تستفد من الجلسة، نرد لك كامل المبلغ بلا أسئلة
+                  ضمان استرداد كامل — إذا لم تستفد من البرنامج، نرد لك كامل المبلغ بلا أسئلة
                 </span>
               </div>
             </div>
