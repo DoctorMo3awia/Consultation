@@ -76,7 +76,7 @@ const Landing = () => {
     },
     {
       question: 'كيف يتم الدفع؟',
-      answer: 'ادفع مباشرة ($680). بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز أول موعد واستمارة التقييم.',
+      answer: 'ادفع مباشرة ($680). بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لتنزيل التطبيق الخاص بالمتابعة وسيتواصل معك الدكتور مباشرة.',
     },
     {
       question: 'متى أستلم الخطة؟',
@@ -113,7 +113,7 @@ const Landing = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Shield size={14} />
-            <span>تحت اشراف طبيب باطنية مقيم · محدودة ل 6 مقاعد أسبوعياً</span>
+            <span>تحت اشراف طبيب باطنية مقيم · الأماكن محدودة</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', color: 'white' }}>
