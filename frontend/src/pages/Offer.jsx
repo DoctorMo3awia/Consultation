@@ -99,11 +99,11 @@ const Offer = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Calendar size={14} />
-            <span>الأماكن محدودة — برنامج 1-on-1 شخصي</span>
+            <span>الأماكن محدودة — الدكتور يشتغل معك بشكل مباشر</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1rem', color: 'white' }}>
-            برنامج المتابعة الشخصية 1-on-1
+            دكتورك يشتغل معك بشكل مباشر لمدة 3 أشهر
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -197,7 +197,7 @@ const Offer = () => {
               ماذا تحصل بالضبط؟
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-              خطة مخصصة + متابعة شخصية 1-on-1 لمدة 3 أشهر
+              خطة مخصصة + دكتور معاوية يتابع تقدمك بنفسه لمدة 3 أشهر
             </p>
           </div>
 
