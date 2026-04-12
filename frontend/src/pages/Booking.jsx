@@ -61,7 +61,7 @@ const Booking = () => {
     },
     {
       q: '$680 غالي...',
-      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 3 أشهر مع متابعة شخصية 1-on-1 يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 3 أشهر مع متابعة خاصة يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
     },
     {
       q: 'هل الجلسات أونلاين فقط؟',
@@ -110,7 +110,7 @@ const Booking = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Clock size={14} />
-            <span>برنامج 1-on-1 شخصي · تحت اشراف طبيب باطنية مقيم</span>
+            <span>برنامج متابعة خاصة · تحت اشراف طبيب باطنية مقيم</span>
           </div>
 
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', color: 'white', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -127,7 +127,7 @@ const Booking = () => {
           </p>
 
           <p className="body-large" style={{ color: 'white', fontWeight: 600, marginBottom: '2rem' }}>
-            3 أشهر مع دكتور معاوية 1-on-1 = تحوّل حقيقي ينقلك من الضياع إلى السيطرة الكاملة على صحتك.
+            3 أشهر دكتور معاوية يشتغل معك شخصياً = تحوّل حقيقي ينقلك من الضياع إلى السيطرة الكاملة على صحتك.
           </p>
 
           <Button data-testid="hero-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '280px', padding: '1rem 2rem', fontSize: '1rem' }}>
@@ -275,12 +275,12 @@ const Booking = () => {
             }}>
               <Clock size={14} color="var(--blue-elegant)" />
               <span className="body-small" style={{ color: 'var(--blue-elegant)', fontWeight: 600 }}>
-                الأماكن محدودة — برنامج 1-on-1 شخصي
+                الأماكن محدودة — برنامج متابعة خاصة
               </span>
             </div>
 
             <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '460px', marginLeft: 'auto', marginRight: 'auto' }}>
-              بسبب طبيعة المتابعة الشخصية 1-on-1، دكتور معاوية يقدر يستقبل عدد محدود من العملاء. سجّل مكانك قبل ما تمتلئ الأماكن.
+              بسبب طبيعة المتابعة الخاصة، دكتور معاوية يقدر يستقبل عدد محدود من العملاء. سجّل مكانك قبل ما تمتلئ الأماكن.
             </p>
 
             <Button 
