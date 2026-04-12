@@ -63,8 +63,8 @@ const Landing = () => {
 
   const faqs = [
     {
-      question: 'ماذا أتوقع من الجلسة؟',
-      answer: 'جلسة 45 دقيقة عبر Google Meet مع طبيب باطنية مقيم. نناقش أعراضك، نمط حياتك، نتائج التحاليل، ونضع خطة مخصصة تشمل النوم، التغذية، المكملات والتمارين. تستلم ملف PDF كامل خلال 24 ساعة.',
+      question: 'ماذا أتوقع من البرنامج؟',
+      answer: 'برنامج متابعة شخصية 1-on-1 مع طبيب باطنية مقيم لمدة 30 يوم. يتضمن 4 جلسات أسبوعية عبر Google Meet، تحليل شامل لتحاليلك، خطة مخصصة (نوم، تغذية، مكملات، تمارين)، ومتابعة يومية عبر واتساب مع تعديل الخطة حسب تقدمك.',
     },
     {
       question: 'هل أحتاج تحاليل مخبرية؟',
@@ -76,11 +76,11 @@ const Landing = () => {
     },
     {
       question: 'كيف يتم الدفع؟',
-      answer: 'ادفع مباشرة ($119). بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز الموعد واستمارة التقييم.',
+      answer: 'ادفع مباشرة (2,500 درهم). بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز أول موعد واستمارة التقييم.',
     },
     {
       question: 'متى أستلم الخطة؟',
-      answer: 'خلال 24 ساعة من انتهاء الجلسة، تستلم ملف PDF كامل يحتوي على خطتك المخصصة. ثم لديك 7 أيام دعم عبر واتساب (نافذتين للرد يومياً).',
+      answer: 'خلال 24 ساعة من أول جلسة، تستلم ملف PDF كامل يحتوي على خطتك المخصصة. يتم تحديث الخطة أسبوعياً بناءً على تقدمك طوال فترة البرنامج (30 يوم).',
     },
     {
       question: 'ما هو ضمان استرداد الأموال؟',
@@ -113,11 +113,11 @@ const Landing = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Shield size={14} />
-            <span>تحت اشراف طبيب باطنية مقيم · محدودة ل 6 مقاعد أسبوعياً</span>
+            <span>تحت اشراف طبيب باطنية مقيم · متابعة شخصية 1-on-1 · الأماكن محدودة</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', color: 'white' }}>
-            اكتشف العوامل الخفية التي تستنزف طاقتك وتركيزك وشكل جسمك وإنتاجيتك — واصلحها بخطة مخصصة لك
+            اشتغل مع دكتور معاوية 1-on-1 واحصل على خطة شخصية تعيد لك طاقتك وتركيزك وشكل جسمك
           </h1>
 
           {/* Doctor Image */}
@@ -146,7 +146,7 @@ const Landing = () => {
           </div>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-            جلسة تقييم صحة وأداء تحت اشراف طبيب للرجال المشغولين في الإمارات والخليج
+            برنامج متابعة شخصية 1-on-1 تحت اشراف طبيب للرجال المشغولين في الإمارات والخليج
           </p>
 
           <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
@@ -160,7 +160,7 @@ const Landing = () => {
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button data-testid="hero-book-btn" onClick={scrollToBooking} className="btn-light" style={{ minWidth: '200px' }}>
-              احجز جلسة التقييم
+              سجّل في البرنامج
             </Button>
             <Button data-testid="hero-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
               <MessageCircle size={18} />
@@ -191,7 +191,7 @@ const Landing = () => {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div className="section-divider" />
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>
-              هذا التقييم مصمم خصيصاً لك إذا كنت:
+              هذا البرنامج مصمم خصيصاً لك إذا كنت:
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
               من رجال الأعمال والموظفين أصحاب المسؤوليات العالية الذين يعانون من تحديات صحية تؤثر على أدائهم
@@ -323,15 +323,15 @@ const Landing = () => {
             marginRight: 'auto' 
           }}>
             <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '0.5rem', textDecoration: 'line-through' }}>
-              زيارة طبيب خاص في الإمارات: 500–800 درهم — بدون خطة، بدون متابعة
+              متابعة مع طبيب خاص في الإمارات: 5,000–10,000 درهم شهرياً
             </p>
             <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem' }}>
-              هنا بـ 119$ فقط: جلسة 45 دقيقة + خطة طبية كاملة + 7 أيام دعم ✓
+              هنا بـ 2,500 درهم فقط: برنامج 1-on-1 لمدة 30 يوم + 4 جلسات + متابعة يومية ✓
             </p>
           </div>
 
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)' }}>
-            فقط 6 مقاعد متاحة أسبوعياً · $119 USD
+            الأماكن محدودة · 2,500 درهم
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button data-testid="cta-book-btn" onClick={scrollToBooking} className="btn-light" style={{ minWidth: '200px' }}>
@@ -347,7 +347,7 @@ const Landing = () => {
           <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
             <Shield size={16} color="rgba(255,255,255,0.8)" />
             <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem' }}>
-              ضمان استرداد كامل — إذا لم تستفد من الجلسة، نرد لك كامل المبلغ بلا أسئلة
+              ضمان استرداد كامل — إذا لم تستفد من البرنامج، نرد لك كامل المبلغ بلا أسئلة
             </span>
           </div>
         </div>

@@ -22,46 +22,46 @@ const Offer = () => {
   const deliverables = [
     {
       icon: Video,
-      title: 'جلسة 45 دقيقة عبر Google Meet',
-      description: 'استشارة شاملة مع طبيب باطنية مقيم، نناقش أعراضك، نمط حياتك، وأهدافك الصحية',
+      title: '4 جلسات أسبوعية عبر Google Meet',
+      description: 'جلسة 45 دقيقة كل أسبوع لمدة 30 يوم مع طبيب باطنية مقيم — نراجع تقدمك ونعدّل الخطة حسب احتياجك',
     },
     {
       icon: FileText,
-      title: 'مراجعة التحاليل المخبرية',
-      description: 'بناءً على التقييم، سيتم تحديد التحاليل اللازمة لحالتك. إذا كان لديك تحاليل حديثة، سنقوم بمراجعتها وتفسيرها بوضوح.',
+      title: 'تحليل شامل للتحاليل المخبرية',
+      description: 'بناءً على التقييم، سيتم تحديد التحاليل اللازمة لحالتك. إذا كان لديك تحاليل حديثة، سنقوم بمراجعتها وتفسيرها بوضوح مع متابعة التغيرات.',
     },
     {
       icon: TrendingUp,
       title: 'خطة طبية مخصصة لك متكاملة',
-      description: 'استراتيجية الاستشفاء + دليل للتغذية العلاجية + قواعد للتغذية في المطاعم + خطة تمارين مخصصة لك بأقل جرعة فعالة + بروتوكول تحسين المزاج والتركيز',
+      description: 'استراتيجية الاستشفاء + دليل للتغذية العلاجية + قواعد للتغذية في المطاعم + خطة تمارين مخصصة لك بأقل جرعة فعالة + بروتوكول تحسين المزاج والتركيز — يتم تحديثها أسبوعياً',
     },
     {
       icon: FileText,
-      title: 'ملف PDF خلال 24 ساعة',
-      description: 'ملخص شامل لكل ما تم مناقشته مع خطتك المخصصة، جاهز للتطبيق فوراً',
+      title: 'ملفات PDF شاملة مع تحديثات أسبوعية',
+      description: 'ملخص شامل لكل جلسة مع خطتك المخصصة المحدّثة، جاهز للتطبيق فوراً — يتم تعديل الخطة بناءً على تقدمك',
     },
     {
       icon: MessageSquare,
-      title: '7 أيام دعم عبر واتساب',
-      description: 'نافذتين للرد يومياً للإجابة على أسئلتك ومتابعة تقدمك',
+      title: 'متابعة يومية عبر واتساب لمدة 30 يوم',
+      description: 'دعم مستمر طوال فترة البرنامج — نجاوب أسئلتك ونتابع تقدمك يومياً',
     },
   ];
 
   const howItWorks = [
     {
       step: '1',
-      title: 'ادفع الآن',
-      description: 'اضغط "احجز الآن" وأكمل الدفع ($119)',
+      title: 'سجّل الآن',
+      description: 'اضغط "سجّل الآن" وأكمل الدفع (2,500 درهم)',
     },
     {
       step: '2',
       title: 'اختر موعدك واملأ الاستمارة',
-      description: 'ستستلم رابطاً عبر الإيميل لحجز الموعد واستمارة التقييم',
+      description: 'ستستلم رابطاً عبر الإيميل لحجز أول جلسة واستمارة التقييم الشاملة',
     },
     {
       step: '3',
-      title: 'الجلسة والخطة',
-      description: '45 دقيقة عبر Google Meet + تستلم خطتك الكاملة خلال 24 ساعة + 7 أيام دعم',
+      title: 'ابدأ البرنامج',
+      description: '4 جلسات أسبوعية عبر Google Meet + خطة مخصصة تُحدَّث أسبوعياً + متابعة يومية عبر واتساب لمدة 30 يوم',
     },
   ];
 
@@ -71,7 +71,7 @@ const Offer = () => {
     'بروتوكول الحد الأدنى الفعال - لا وقت مهدر، فقط ما يعمل',
     'بناءً على التقييم، يتم تحديد الفحوصات اللازمة لحالتك',
     'خطة تعمل مع جدولك الحقيقي، لا ضده',
-    'دعم مباشر عبر واتساب لمدة 7 أيام',
+    'متابعة يومية عبر واتساب لمدة 30 يوم كامل',
   ];
 
   return (
@@ -99,15 +99,15 @@ const Offer = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Calendar size={14} />
-            <span>متبقي 4 مقاعد هذا الأسبوع</span>
+            <span>الأماكن محدودة — برنامج 1-on-1 شخصي</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1rem', color: 'white' }}>
-            تقييم الصحة والأداء التنفيذي
+            برنامج المتابعة الشخصية 1-on-1
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            جلسة 45 دقيقة تحت اشراف طبيب + خطة طبية مخصصة + 7 أيام دعم واتساب
+            30 يوم متابعة شخصية تحت اشراف طبيب + 4 جلسات + خطة طبية مخصصة + دعم يومي عبر واتساب
           </p>
 
           <div style={{ 
@@ -121,16 +121,16 @@ const Offer = () => {
             border: '1px solid rgba(255,255,255,0.15)'
           }}>
             <span style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: 700, color: 'white' }}>
-              $119
+              2,500
             </span>
             <span style={{ color: 'rgba(255,255,255,0.7)' }}>
-              USD
+              درهم
             </span>
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}>
             <Button data-testid="offer-hero-book-btn" onClick={goToBooking} className="btn-light" style={{ minWidth: '220px' }}>
-              احجز جلستك الآن
+              سجّل في البرنامج الآن
             </Button>
             <Button onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '220px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
               <MessageCircle size={18} />
@@ -140,7 +140,7 @@ const Offer = () => {
 
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem' }}>
             <Clock size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-            محدودة ل 6 مقاعد أسبوعياً فقط
+            الأماكن محدودة — سجّل الآن
           </p>
         </div>
       </section>
@@ -197,7 +197,7 @@ const Offer = () => {
               ماذا تحصل بالضبط؟
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-              حزمة تقييم طبية شاملة مصممة للرجال المشغولين
+              برنامج متابعة شخصية 1-on-1 مصمم للرجال المشغولين
             </p>
           </div>
 
@@ -299,7 +299,7 @@ const Offer = () => {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div className="section-divider" />
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>
-              لماذا هذا التقييم مختلف؟
+              لماذا هذا البرنامج مختلف؟
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
               مصمم خصيصاً للمدراء التنفيذيين ورواد الأعمال في الخليج
@@ -344,11 +344,11 @@ const Offer = () => {
                 gap: '0.5rem',
                 marginBottom: '1rem'
               }}>
-                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>$119</span>
-                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
+                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>2,500</span>
+                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>درهم</span>
               </div>
               <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-                استثمار لمرة واحدة في صحتك وأدائك
+                استثمار في صحتك وأدائك — برنامج 30 يوم كامل
               </p>
             </div>
 
@@ -360,13 +360,13 @@ const Offer = () => {
               border: '1px solid rgba(30, 64, 175, 0.1)'
             }}>
               <p className="body-medium" style={{ lineHeight: 1.8, color: 'var(--text-secondary)' }}>
-                <strong style={{ color: 'var(--blue-elegant)' }}>ملاحظة مهمة:</strong> بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز الموعد واستمارة التقييم.
+                <strong style={{ color: 'var(--blue-elegant)' }}>ملاحظة مهمة:</strong> بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لحجز أول جلسة واستمارة التقييم الشاملة.
               </p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <Button data-testid="offer-cta-book-btn" onClick={goToBooking} className="btn-primary" style={{ width: '100%', padding: '1rem' }}>
-                احجز جلستك - $119
+                سجّل في البرنامج - 2,500 درهم
               </Button>
               <Button onClick={openWhatsApp} className="btn-secondary" style={{ width: '100%', padding: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                 <MessageCircle size={18} />
@@ -376,7 +376,7 @@ const Offer = () => {
 
             <p className="body-small" style={{ textAlign: 'center', color: 'var(--text-muted)', marginTop: '1.5rem' }}>
               <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-              محدودة ل 6 مقاعد أسبوعياً · احجز الآن قبل نفاد الأماكن
+              الأماكن محدودة · سجّل الآن قبل نفاد الأماكن
             </p>
           </div>
         </div>
