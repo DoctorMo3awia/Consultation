@@ -113,11 +113,11 @@ const Landing = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Shield size={14} />
-            <span>تحت اشراف طبيب باطنية مقيم · متابعة خاصة لمدة 3 أشهر · الأماكن محدودة</span>
+            <span>تحت اشراف طبيب باطنية مقيم · دكتورك يشتغل معك بشكل مباشر · الأماكن محدودة</span>
           </div>
           
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', color: 'white' }}>
-            دكتور معاوية يشتغل معك شخصياً — خطة مخصصة لك تعيد لك طاقتك وتركيزك وشكل جسمك
+            دكتور معاوية يشتغل معك بشكل مباشر — خطة مخصصة + متابعة 3 أشهر تعيد لك طاقتك وتركيزك وشكل جسمك
           </h1>
 
           {/* Doctor Image */}
@@ -146,7 +146,7 @@ const Landing = () => {
           </div>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-            برنامج متابعة خاصة لمدة 3 أشهر تحت اشراف طبيب باطنية — للرجال المشغولين في الإمارات والخليج
+            دكتور معاوية يبني لك خطتك ويتابع تقدمك بنفسه لمدة 3 أشهر — للرجال المشغولين في الإمارات والخليج
           </p>
 
           <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>

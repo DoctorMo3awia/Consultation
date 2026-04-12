@@ -61,7 +61,7 @@ const Booking = () => {
     },
     {
       q: '$680 غالي...',
-      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 3 أشهر مع متابعة خاصة يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ هنا دكتور معاوية يشتغل معك بشكل مباشر 3 أشهر كاملة — يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
     },
     {
       q: 'هل الجلسات أونلاين فقط؟',
@@ -110,7 +110,7 @@ const Booking = () => {
         <div className="hero-content">
           <div className="hero-announcement">
             <Clock size={14} />
-            <span>برنامج متابعة خاصة · تحت اشراف طبيب باطنية مقيم</span>
+            <span>الدكتور يشتغل معك بشكل مباشر · تحت اشراف طبيب باطنية مقيم</span>
           </div>
 
           <h1 className="heading-hero" style={{ marginBottom: '1.5rem', color: 'white', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -275,12 +275,12 @@ const Booking = () => {
             }}>
               <Clock size={14} color="var(--blue-elegant)" />
               <span className="body-small" style={{ color: 'var(--blue-elegant)', fontWeight: 600 }}>
-                الأماكن محدودة — برنامج متابعة خاصة
+                الأماكن محدودة — الدكتور يشتغل معك بشكل مباشر
               </span>
             </div>
 
             <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '460px', marginLeft: 'auto', marginRight: 'auto' }}>
-              بسبب طبيعة المتابعة الخاصة، دكتور معاوية يقدر يستقبل عدد محدود من العملاء. سجّل مكانك قبل ما تمتلئ الأماكن.
+              لأن دكتور معاوية يشتغل مع كل عميل بشكل مباشر، يقدر يستقبل عدد محدود من العملاء. سجّل مكانك قبل ما تمتلئ الأماكن.
             </p>
 
             <Button 
