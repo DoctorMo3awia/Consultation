@@ -21,29 +21,29 @@ const Booking = () => {
 
   const valueStack = [
     {
-      title: '4 جلسات أسبوعية — 45 دقيقة لكل جلسة',
-      desc: 'مع طبيب باطنية مقيم وجهاً لوجه عبر Google Meet لمدة 30 يوم',
-      oldPrice: '3,000 د.إ',
+      title: 'تقييم شامل + خطة طبية مخصصة لك',
+      desc: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم + خطة متكاملة (تغذية، تمارين، نوم، مكملات)',
+      oldPrice: '$500',
     },
     {
-      title: 'تحليل شامل للتحاليل المخبرية والملف الطبي',
-      desc: 'نحلل كل شي قبل أول جلسة ونتابع التغيرات طوال البرنامج',
-      oldPrice: '1,500 د.إ',
+      title: 'تحليل شامل للتحاليل المخبرية',
+      desc: 'نحلل تحاليلك ونتابع التغيرات طوال فترة البرنامج',
+      oldPrice: '$300',
     },
     {
-      title: 'خطة طبية مخصصة تُحدَّث أسبوعياً',
-      desc: 'ملفات PDF شاملة بعد كل جلسة — تتطور مع تقدمك',
-      oldPrice: '2,000 د.إ',
+      title: 'متابعة تقدمك لمدة 3 أشهر كاملة',
+      desc: 'هذا الفرق الحقيقي — نراقب نتائجك ونتأكد إنك ماشي على الطريق الصح',
+      oldPrice: '$1,200',
     },
     {
-      title: 'متابعة يومية عبر واتساب لمدة 30 يوم',
-      desc: 'دعم مستمر طوال البرنامج — أي سؤال نجاوبك',
-      oldPrice: '2,000 د.إ',
+      title: 'تعديل الخطة حسب استجابة جسمك',
+      desc: 'نعدّل التغذية والتمارين والمكملات بناءً على تقدمك ونتائجك الفعلية',
+      oldPrice: '$400',
     },
     {
-      title: 'تعديل وتحديث الخطة بناءً على تقدمك',
-      desc: 'نعدّل التغذية والتمارين والمكملات حسب استجابة جسمك',
-      oldPrice: '1,500 د.إ',
+      title: 'دعم مستمر عبر واتساب لمدة 3 أشهر',
+      desc: 'تواصل مباشر مع دكتور معاوية — أي سؤال نجاوبك',
+      oldPrice: '$600',
     },
   ];
 
@@ -51,17 +51,17 @@ const Booking = () => {
     { num: '1', title: 'سجّل الآن', desc: 'اضغط الزر وأكمل الدفع — يأخذ دقيقة واحدة' },
     { num: '2', title: 'استلم رابط الحجز', desc: 'فوراً على إيميلك — رابط لاختيار موعد أول جلسة + استمارة التقييم' },
     { num: '3', title: 'املأ الاستمارة واحجز', desc: 'اختر الوقت المناسب لك واملأ استمارة شاملة عن حالتك' },
-    { num: '4', title: 'ابدأ البرنامج', desc: 'تستلم رابط Google Meet وتبدأ أول جلسة — ثم متابعة أسبوعية لمدة 30 يوم' },
+    { num: '4', title: 'ابدأ البرنامج', desc: 'تبدأ أول جلسة عبر Google Meet — ثم متابعة مستمرة لمدة 3 أشهر' },
   ];
 
   const faqs = [
     {
       q: 'أنا عندي دكتور، ليش أحتاج هالبرنامج؟',
-      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق. هنا تحصل على 4 جلسات شاملة + خطة مكتوبة تتطور معك + متابعة يومية لمدة 30 يوم.',
+      a: 'دكتور معاوية ما يستبدل دكتورك — هو يعطيك الصورة الكاملة. أغلب الأطباء يعطونك 5 دقائق ويعطونك خطة بدون متابعة. هنا تحصل على خطة شاملة + متابعة شخصية لمدة 3 أشهر كاملة.',
     },
     {
-      q: '2,500 درهم غالي...',
-      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 30 يوم مع متابعة شخصية 1-on-1 يوفر عليك آلاف الدراهم ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
+      q: '$680 غالي...',
+      a: 'كم صرفت على تحاليل وزيارات ما أعطتك نتيجة؟ برنامج كامل 3 أشهر مع متابعة شخصية 1-on-1 يوفر عليك آلاف الدولارات ومئات الساعات. وإذا ما عجبك، فلوسك ترجع.',
     },
     {
       q: 'هل الجلسات أونلاين فقط؟',
@@ -127,11 +127,11 @@ const Booking = () => {
           </p>
 
           <p className="body-large" style={{ color: 'white', fontWeight: 600, marginBottom: '2rem' }}>
-            30 يوم مع دكتور معاوية 1-on-1 = تحوّل حقيقي ينقلك من الضياع إلى السيطرة الكاملة على صحتك.
+            3 أشهر مع دكتور معاوية 1-on-1 = تحوّل حقيقي ينقلك من الضياع إلى السيطرة الكاملة على صحتك.
           </p>
 
           <Button data-testid="hero-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '280px', padding: '1rem 2rem', fontSize: '1rem' }}>
-            سجّل الآن — 2,500 درهم
+            سجّل الآن — $680
           </Button>
 
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginTop: '1rem' }}>
@@ -200,17 +200,17 @@ const Booking = () => {
               marginTop: '1.5rem'
             }}>
               <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                القيمة الإجمالية: <span style={{ textDecoration: 'line-through' }}>10,000 د.إ</span>
+                القيمة الإجمالية: <span style={{ textDecoration: 'line-through' }}>$3,000</span>
               </p>
               <p className="body-medium" style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
                 أنت تدفع اليوم فقط:
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', justifyContent: 'center' }}>
-                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--blue-elegant)' }}>2,500</span>
-                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>درهم</span>
+                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--blue-elegant)' }}>$680</span>
+                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
               </div>
               <p className="body-small" style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-                توفير 75% من القيمة الحقيقية
+                توفير 77% من القيمة الحقيقية
               </p>
             </div>
           </div>
@@ -225,10 +225,10 @@ const Booking = () => {
             textAlign: 'center'
           }}>
             <p className="body-medium" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', textDecoration: 'line-through' }}>
-              متابعة شخصية مع طبيب خاص في الإمارات: 5,000–10,000 درهم شهرياً
+              متابعة شخصية مع طبيب خاص في الإمارات: $2,000–$4,000 لثلاث أشهر
             </p>
             <p className="body-medium" style={{ color: 'var(--blue-elegant)', fontWeight: 700 }}>
-              هنا بـ 2,500 درهم فقط: برنامج 1-on-1 لمدة 30 يوم + 4 جلسات + متابعة يومية ✓
+              هنا بـ $680 فقط: خطة مخصصة + متابعة تقدمك لمدة 3 أشهر كاملة ✓
             </p>
           </div>
 
@@ -295,7 +295,7 @@ const Booking = () => {
                 boxShadow: '0 6px 20px rgba(30, 64, 175, 0.35)'
               }}
             >
-              سجّل الآن — 2,500 درهم
+              سجّل الآن — $680
             </Button>
 
             <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem' }}>
@@ -401,7 +401,7 @@ const Booking = () => {
 
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Button data-testid="final-pay-btn" onClick={openPayPal} className="btn-light" style={{ minWidth: '240px', padding: '1rem 2rem' }}>
-                  سجّل الآن — 2,500 درهم
+                  سجّل الآن — $680
                 </Button>
                 <Button data-testid="booking-contact-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                   <MessageCircle size={18} />

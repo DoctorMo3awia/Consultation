@@ -22,28 +22,28 @@ const Offer = () => {
   const deliverables = [
     {
       icon: Video,
-      title: '4 جلسات أسبوعية عبر Google Meet',
-      description: 'جلسة 45 دقيقة كل أسبوع لمدة 30 يوم مع طبيب باطنية مقيم — نراجع تقدمك ونعدّل الخطة حسب احتياجك',
+      title: 'تقييم شامل وبناء خطة مخصصة لك',
+      description: 'جلسة تقييم أولية شاملة عبر Google Meet مع طبيب باطنية مقيم — نفهم حالتك ونبني خطة طبية متكاملة مصممة خصيصاً لك',
     },
     {
       icon: FileText,
       title: 'تحليل شامل للتحاليل المخبرية',
-      description: 'بناءً على التقييم، سيتم تحديد التحاليل اللازمة لحالتك. إذا كان لديك تحاليل حديثة، سنقوم بمراجعتها وتفسيرها بوضوح مع متابعة التغيرات.',
+      description: 'بناءً على التقييم، سيتم تحديد التحاليل اللازمة لحالتك. إذا كان لديك تحاليل حديثة، سنقوم بمراجعتها وتفسيرها بوضوح مع متابعة التغيرات طوال الـ 3 أشهر.',
     },
     {
       icon: TrendingUp,
       title: 'خطة طبية مخصصة لك متكاملة',
-      description: 'استراتيجية الاستشفاء + دليل للتغذية العلاجية + قواعد للتغذية في المطاعم + خطة تمارين مخصصة لك بأقل جرعة فعالة + بروتوكول تحسين المزاج والتركيز — يتم تحديثها أسبوعياً',
+      description: 'استراتيجية الاستشفاء + دليل للتغذية العلاجية + قواعد للتغذية في المطاعم + خطة تمارين مخصصة لك بأقل جرعة فعالة + بروتوكول تحسين المزاج والتركيز',
     },
     {
-      icon: FileText,
-      title: 'ملفات PDF شاملة مع تحديثات أسبوعية',
-      description: 'ملخص شامل لكل جلسة مع خطتك المخصصة المحدّثة، جاهز للتطبيق فوراً — يتم تعديل الخطة بناءً على تقدمك',
+      icon: Clock,
+      title: 'متابعة تقدمك لمدة 3 أشهر كاملة',
+      description: 'هذا الفرق الحقيقي — مو بس خطة وخلاص. نتابع تقدمك، نراقب النتائج، ونعدّل الخطة حسب استجابة جسمك طوال 3 أشهر',
     },
     {
       icon: MessageSquare,
-      title: 'متابعة يومية عبر واتساب لمدة 30 يوم',
-      description: 'دعم مستمر طوال فترة البرنامج — نجاوب أسئلتك ونتابع تقدمك يومياً',
+      title: 'دعم مستمر عبر واتساب طوال البرنامج',
+      description: 'تواصل مباشر مع دكتور معاوية لمدة 3 أشهر — أي سؤال أو استفسار، نجاوبك ونوجهك',
     },
   ];
 
@@ -51,7 +51,7 @@ const Offer = () => {
     {
       step: '1',
       title: 'سجّل الآن',
-      description: 'اضغط "سجّل الآن" وأكمل الدفع (2,500 درهم)',
+      description: 'اضغط "سجّل الآن" وأكمل الدفع ($680)',
     },
     {
       step: '2',
@@ -61,7 +61,7 @@ const Offer = () => {
     {
       step: '3',
       title: 'ابدأ البرنامج',
-      description: '4 جلسات أسبوعية عبر Google Meet + خطة مخصصة تُحدَّث أسبوعياً + متابعة يومية عبر واتساب لمدة 30 يوم',
+      description: 'تقييم شامل + خطة مخصصة + متابعة تقدمك وتعديل الخطة لمدة 3 أشهر كاملة',
     },
   ];
 
@@ -71,7 +71,7 @@ const Offer = () => {
     'بروتوكول الحد الأدنى الفعال - لا وقت مهدر، فقط ما يعمل',
     'بناءً على التقييم، يتم تحديد الفحوصات اللازمة لحالتك',
     'خطة تعمل مع جدولك الحقيقي، لا ضده',
-    'متابعة يومية عبر واتساب لمدة 30 يوم كامل',
+    'متابعة مستمرة لمدة 3 أشهر كاملة — مو بس خطة وخلاص',
   ];
 
   return (
@@ -107,7 +107,7 @@ const Offer = () => {
           </h1>
           
           <p className="body-large" style={{ marginBottom: '2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            30 يوم متابعة شخصية تحت اشراف طبيب + 4 جلسات + خطة طبية مخصصة + دعم يومي عبر واتساب
+            3 أشهر متابعة شخصية تحت اشراف طبيب — خطة مخصصة + مراقبة تقدمك + تعديل مستمر
           </p>
 
           <div style={{ 
@@ -121,10 +121,10 @@ const Offer = () => {
             border: '1px solid rgba(255,255,255,0.15)'
           }}>
             <span style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: 700, color: 'white' }}>
-              2,500
+              $680
             </span>
             <span style={{ color: 'rgba(255,255,255,0.7)' }}>
-              درهم
+              USD
             </span>
           </div>
 
@@ -197,7 +197,7 @@ const Offer = () => {
               ماذا تحصل بالضبط؟
             </h2>
             <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-              برنامج متابعة شخصية 1-on-1 مصمم للرجال المشغولين
+              خطة مخصصة + متابعة شخصية 1-on-1 لمدة 3 أشهر
             </p>
           </div>
 
@@ -344,11 +344,11 @@ const Offer = () => {
                 gap: '0.5rem',
                 marginBottom: '1rem'
               }}>
-                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>2,500</span>
-                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>درهم</span>
+                <span style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)' }}>$680</span>
+                <span className="body-medium" style={{ color: 'var(--text-muted)' }}>USD</span>
               </div>
               <p className="body-large" style={{ color: 'var(--text-secondary)' }}>
-                استثمار في صحتك وأدائك — برنامج 30 يوم كامل
+                استثمار في صحتك وأدائك — 3 أشهر متابعة شخصية
               </p>
             </div>
 
@@ -366,7 +366,7 @@ const Offer = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <Button data-testid="offer-cta-book-btn" onClick={goToBooking} className="btn-primary" style={{ width: '100%', padding: '1rem' }}>
-                سجّل في البرنامج - 2,500 درهم
+                سجّل في البرنامج - $680
               </Button>
               <Button onClick={openWhatsApp} className="btn-secondary" style={{ width: '100%', padding: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
                 <MessageCircle size={18} />
