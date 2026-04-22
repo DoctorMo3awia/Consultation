@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { CheckCircle2, MessageCircle, Star, Clock, Shield, Video, FileText, TrendingUp, MessageSquare } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '../components/ui/accordion';
+import { CheckCircle2, Star, Clock, Shield, Video, FileText, TrendingUp, MessageSquare } from 'lucide-react';
 
 const Landing = () => {
-  const navigate = useNavigate();
   const sectionsRef = useRef([]);
 
   useEffect(() => {
@@ -38,12 +42,8 @@ const Landing = () => {
     }
   };
 
-  const scrollToBooking = () => {
-    navigate('/booking');
-  };
-
-  const openWhatsApp = () => {
-    window.open('https://wa.me/971555519451?text=تقييم', '_blank');
+  const openPayment = () => {
+    window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
   };
 
   const features = [
@@ -59,6 +59,42 @@ const Landing = () => {
     'نوم متقطع أو غير مريح يؤثر على أدائك اليومي',
     'قلق حول صحتك ولا تعرف أي فحوصات مهمة أو كيف تحسنها',
     'تريد خطة صحية بسيطة تعمل رغم ضغوط طبيعة عملك',
+  ];
+
+  const dreamOutcomes = [
+    'طاقة عالية وتركيز حاد طوال اليوم',
+    'هدوء نفسي وثبات في المزاج والقرارات',
+    'جسم أخف وشكل أفضل بدون حرمان',
+    'نوم عميق ومنتظم تصحى منه جاهز',
+    'راحة بال مع صورة واضحة عن صحتك وأرقامك',
+    'خطة صحية تعمل ضمن جدولك بدون تعقيد',
+  ];
+
+  const faqs = [
+    {
+      question: 'ماذا أتوقع من البرنامج؟',
+      answer: 'برنامج متابعة 1:1 مع طبيب باطنية مقيم لمدة 90 يوم. نبدأ بتقييم شامل لحالتك عبر Google Meet، نبني خطة مخصصة تشمل النوم، التغذية، المكملات والتمارين، ثم نتابع تقدمك ونعدّل الخطة حسب استجابة جسمك طوال فترة البرنامج.',
+    },
+    {
+      question: 'هل أحتاج تحاليل مخبرية؟',
+      answer: 'بناءً على التقييم الأولي لحالتك، نحدد التحاليل اللازمة المناسبة لك، مش تخمين.',
+    },
+    {
+      question: 'هل هذا تشخيص طبي؟',
+      answer: 'هذه خدمة تعليم صحي وتوجيه وتفسير للتحاليل، وليست بديلاً عن التشخيص أو العلاج الطبي المباشر. إذا كان لديك أعراض خطيرة (ألم صدر، ضيق تنفس شديد، إغماء)، يجب عليك مراجعة طبيب فوراً.',
+    },
+    {
+      question: 'كيف يتم الدفع؟',
+      answer: 'ادفع مباشرة ($680). بعد إتمام الدفع، ستستلم رابطاً عبر الإيميل لتنزيل التطبيق الخاص بالمتابعة وسيتواصل معك الدكتور مباشرة.',
+    },
+    {
+      question: 'متى أستلم الخطة؟',
+      answer: 'بعد أول جلسة تقييم، تستلم خطتك المخصصة. بعدها نتابع تقدمك لمدة 90 يوم ونعدّل الخطة حسب استجابة جسمك ونتائجك.',
+    },
+    {
+      question: 'ما هو ضمان استرداد الأموال؟',
+      answer: 'إذا لم تستفد من البرنامج، نرد لك المبلغ كاملاً بلا أسئلة. نحن واثقون من النتائج.',
+    },
   ];
 
   const deliverables = [
@@ -210,12 +246,8 @@ const Landing = () => {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button data-testid="hero-book-btn" onClick={scrollToBooking} className="btn-glow" style={{ minWidth: '200px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
+            <Button data-testid="hero-book-btn" onClick={openPayment} className="btn-glow" style={{ minWidth: '200px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
               سجّل في البرنامج
-            </Button>
-            <Button data-testid="hero-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
-              <MessageCircle size={18} />
-              تواصل واتساب
             </Button>
           </div>
 
@@ -290,7 +322,7 @@ const Landing = () => {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Button onClick={scrollToBooking} className="btn-glow" style={{ minWidth: '250px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
+            <Button onClick={openPayment} className="btn-glow" style={{ minWidth: '250px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
               سجّل في البرنامج
             </Button>
           </div>
@@ -346,18 +378,18 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Who is this for Section */}
+      {/* Dream Outcomes Section */}
       <section ref={addSectionRef} className="scroll-reveal" data-testid="target-audience-section" style={darkSection('lighter')}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div className="section-divider" />
             <h2 className="heading-1" style={{ marginBottom: '1rem', color: 'white' }}>
-              لمن مناسب هذا البرنامج
+              النتائج التي ستحققها
             </h2>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.2rem' }}>
-            {targetAudience.map((item, idx) => (
+            {dreamOutcomes.map((item, idx) => (
               <div key={idx} className="dark-card-hover" style={{ ...darkCard, display: 'flex', gap: '1rem', alignItems: 'flex-start', transitionDelay: `${idx * 0.1}s` }}>
                 <div style={{
                   minWidth: '40px',
@@ -380,6 +412,30 @@ const Landing = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section ref={addSectionRef} className="scroll-reveal" data-testid="faq-section" style={darkSection('deeper')}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div className="section-divider" />
+            <h2 className="heading-1" style={{ color: 'white' }}>
+              الأسئلة الشائعة
+            </h2>
+          </div>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`} style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+                <AccordionTrigger style={{ textAlign: 'right', color: 'white', fontSize: '1.05rem', fontWeight: 600 }}>
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.8 }}>
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
@@ -412,12 +468,8 @@ const Landing = () => {
             الأماكن محدودة · $680 USD
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button data-testid="cta-book-btn" onClick={scrollToBooking} className="btn-glow" style={{ minWidth: '200px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
+            <Button data-testid="cta-book-btn" onClick={openPayment} className="btn-glow" style={{ minWidth: '200px', background: 'white', color: '#1e40af', border: 'none', borderRadius: '0.5rem', padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: 600 }}>
               سجّل في البرنامج
-            </Button>
-            <Button data-testid="cta-whatsapp-btn" onClick={openWhatsApp} className="btn-outline-light" style={{ minWidth: '200px', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center' }}>
-              <MessageCircle size={18} />
-              واتساب
             </Button>
           </div>
 
