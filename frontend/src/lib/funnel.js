@@ -2,7 +2,9 @@
 // Everything a non-developer may want to tune lives in this file.
 
 export const LINKS = {
-  paypal: 'https://www.paypal.com/ncp/payment/2BKK55L2RNQHY',
+  // Ziina payment link ($680). Leave empty to hide the direct-pay button until the link is ready.
+  payment: '',
+  paymentProvider: 'Ziina',
   whatsappNumber: '971555519451',
   instagram: 'https://www.instagram.com/doctormoawia',
 };

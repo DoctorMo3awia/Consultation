@@ -105,9 +105,9 @@ const Quiz = () => {
     window.open(whatsappUrl(buildWhatsAppMessage(lead)), '_blank', 'noopener');
   };
 
-  const openPayPal = () => {
+  const openPayment = () => {
     track('InitiateCheckout', { value: PRICE_USD, currency: 'USD' });
-    window.open(LINKS.paypal, '_blank', 'noopener');
+    window.open(LINKS.payment, '_blank', 'noopener');
   };
 
   return (
@@ -130,7 +130,7 @@ const Quiz = () => {
 
       <div className="f-quiz-body">
         {lead ? (
-          <Result lead={lead} onWhatsApp={openWhatsApp} onPayPal={openPayPal} onHome={() => navigate('/')} />
+          <Result lead={lead} onWhatsApp={openWhatsApp} onPay={openPayment} onHome={() => navigate('/')} />
         ) : isContactStep ? (
           <form onSubmit={submitContact} noValidate>
             <h2 className="f-quiz-q">آخر خطوة: وين نرسل لك النتيجة؟</h2>
@@ -205,7 +205,7 @@ const Quiz = () => {
   );
 };
 
-const Result = ({ lead, onWhatsApp, onPayPal, onHome }) => {
+const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
   const firstName = lead.name.split(' ')[0];
 
   if (lead.qualified) {
@@ -224,11 +224,15 @@ const Result = ({ lead, onWhatsApp, onPayPal, onHome }) => {
           <MessageCircle size={22} aria-hidden="true" />
           أرسل إجاباتي للدكتور على واتساب
         </button>
-        <p className="f-or">أو إذا كنت جاهز الآن</p>
-        <button type="button" className="f-btn f-btn-secondary" onClick={onPayPal} data-testid="result-paypal">
-          <CreditCard size={20} aria-hidden="true" />
-          سجّل وادفع مباشرة (${PRICE_USD})
-        </button>
+        {LINKS.payment && (
+          <>
+            <p className="f-or">أو إذا كنت جاهز الآن</p>
+            <button type="button" className="f-btn f-btn-secondary" onClick={onPay} data-testid="result-pay">
+              <CreditCard size={20} aria-hidden="true" />
+              سجّل وادفع مباشرة عبر {LINKS.paymentProvider} (${PRICE_USD})
+            </button>
+          </>
+        )}
       </div>
     );
   }

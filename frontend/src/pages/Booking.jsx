@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { MessageCircle, CheckCircle2, Shield, Clock } from 'lucide-react';
+import { LINKS } from '../lib/funnel';
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Booking = () => {
   };
 
   const openPayPal = () => {
-    window.open('https://www.paypal.com/ncp/payment/2BKK55L2RNQHY', '_blank');
+    window.open(LINKS.payment, '_blank');
   };
 
   const valueStack = [
@@ -136,7 +137,7 @@ const Booking = () => {
 
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginTop: '1rem' }}>
             <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-            ضمان استرداد كامل · دفع آمن عبر PayPal
+            ضمان استرداد كامل · دفع آمن عبر Ziina
           </p>
         </div>
       </section>
@@ -300,7 +301,7 @@ const Booking = () => {
 
             <p className="body-small" style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem' }}>
               <Shield size={14} style={{ display: 'inline', marginLeft: '0.25rem' }} />
-              دفع آمن عبر PayPal · تستلم رابط تنزيل التطبيق فوراً
+              دفع آمن عبر Ziina · تستلم رابط تنزيل التطبيق فوراً
             </p>
           </div>
 
