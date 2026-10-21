@@ -5,7 +5,8 @@ import {
   QUESTIONS,
   TOTAL_STEPS,
   LINKS,
-  PRICE_USD,
+  PRICE_FROM_AED,
+  PRICE_LABEL,
   SHOW_PRICE_AFTER_QUALIFICATION,
   scoreAnswers,
   labelFor,
@@ -97,7 +98,7 @@ const Quiz = () => {
     };
     setLead(newLead);
     track('quiz_complete', { qualified: result.qualified, score: result.score });
-    track('Lead', { content_name: result.qualified ? 'qualified' : 'not_qualified', value: result.qualified ? PRICE_USD : 0, currency: 'USD' });
+    track('Lead', { content_name: result.qualified ? 'qualified' : 'not_qualified', value: result.qualified ? PRICE_FROM_AED : 0, currency: 'AED' });
     deliverLead(newLead);
   };
 
@@ -107,7 +108,7 @@ const Quiz = () => {
   };
 
   const openPayment = () => {
-    track('InitiateCheckout', { value: PRICE_USD, currency: 'USD' });
+    track('InitiateCheckout', { value: PRICE_FROM_AED, currency: 'AED' });
     window.open(LINKS.payment, '_blank', 'noopener');
   };
 
@@ -135,9 +136,9 @@ const Quiz = () => {
         ) : isContactStep ? (
           <form onSubmit={submitContact} noValidate>
             <h2 className="f-quiz-q">آخر خطوة: وين نرسل لك النتيجة؟</h2>
-            <p className="f-quiz-hint">نراجع إجاباتك شخصياً ونرد عليك على واتساب.</p>
+            <p className="f-quiz-hint">بنراجع إجاباتك شخصياً وبنرد عليك على واتساب.</p>
             <div className="f-field">
-              <label htmlFor="lead-name">الاسم</label>
+              <label htmlFor="lead-name">اسمك</label>
               <input
                 id="lead-name"
                 type="text"
@@ -168,7 +169,7 @@ const Quiz = () => {
               شوف نتيجتي
               <ArrowLeft size={20} aria-hidden="true" />
             </button>
-            <p className="f-consent">بإرسال بياناتك توافق على تواصلنا معك عبر واتساب بخصوص البرنامج. لا نشارك بياناتك مع أي طرف ثالث.</p>
+            <p className="f-consent">بإرسال بياناتك بتوافق إننا نتواصل معك على واتساب بخصوص البرنامج. ما بنشارك بياناتك مع أي طرف تالت.</p>
           </form>
         ) : (
           <div key={question.id}>
@@ -212,25 +213,34 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
   if (lead.qualified) {
     return (
       <div className="f-result" data-testid="result-qualified">
-        <h2 className="f-quiz-q">{firstName}، البرنامج مناسب لك</h2>
+        <h2 className="f-quiz-q">{firstName}، البرنامج مناسب ليك</h2>
         <p className="f-lead">
-          إجاباتك تطابق الحالات اللي نشتغل عليها ونحقق فيها أفضل النتائج. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، نقدر نحجز لك مكان في الدفعة القادمة.' : 'الخطوة التالية بسيطة.'}
+          إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة.'}
         </p>
         {SHOW_PRICE_AFTER_QUALIFICATION && (
           <div className="f-price-card" data-testid="result-price">
-            <p className="anchor">متابعة طبيب خاص في الإمارات: $2,000 إلى $4,000 لثلاثة أشهر</p>
-            <p className="amount">${PRICE_USD}<small>USD · دفعة واحدة · 90 يوم</small></p>
-            <ul>
-              {['جلسة تقييم شاملة مع الطبيب', 'تحديد وتفسير التحاليل', 'خطة طبية متكاملة مبنية عليك', 'متابعة وتعديل 90 يوم', 'دعم مباشر على واتساب', 'ضمان استرداد كامل إذا ما استفدت'].map((i) => (
-                <li key={i}><Check size={18} aria-hidden="true" /><span>{i}</span></li>
+            <p className="f-price-kicker">برنامج 90 يوم بإشراف طبي، كل خطوة فيه مبنية على الأدلة العلمية</p>
+            <ul className="f-stack">
+              {[
+                ['تحليل وظيفي لتحاليلك بالمدى الوظيفي', '1,500 درهم'],
+                ['خطة تغذية علاجية مخصصة', '1,200 درهم'],
+                ['بروتوكول نمط حياة ونوم', '800 درهم'],
+                ['بروتوكول مكملات', '600 درهم'],
+                ['متابعة طبية كل أسبوعين لمدة 90 يوم', '1,200 درهم'],
+                ['متابعة واتساب طول البرنامج', '700 درهم'],
+              ].map(([item, worth]) => (
+                <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span><s>{worth}</s></li>
               ))}
             </ul>
+            <p className="anchor">القيمة الكاملة أكتر من 5,000 درهم</p>
+            <p className="amount">{PRICE_LABEL}</p>
+            <p className="f-price-note">ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
           </div>
         )}
         <ul className="f-result-steps">
           <li><Check size={20} aria-hidden="true" /><span>أرسل إجاباتك للدكتور على واتساب بضغطة واحدة، الرسالة جاهزة.</span></li>
-          <li><Check size={20} aria-hidden="true" /><span>يرد عليك الدكتور شخصياً ويجاوب أسئلتك ويحدد لك موعد البداية.</span></li>
-          <li><Check size={20} aria-hidden="true" /><span>إذا قررت تبدأ، تدفع وتستلم رابط التطبيق وموعد جلسة التقييم.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>الدكتور بيرد عليك بنفسه، بيجاوب أسئلتك وبيحدد ليك البداية.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>لمن تقرر تبدأ، بتعمل تحاليلك في أقرب مختبر وبنبدأ التحليل والخطة.</span></li>
         </ul>
         <button type="button" className="f-btn f-btn-whatsapp f-btn-block" onClick={onWhatsApp} data-testid="result-whatsapp">
           <MessageCircle size={22} aria-hidden="true" />
@@ -245,21 +255,21 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
             </button>
           </>
         )}
-        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>ضمان استرداد كامل · الأماكن محدودة شهرياً</span></p>
+        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</span></p>
       </div>
     );
   }
 
   return (
     <div className="f-result" data-testid="result-not-qualified">
-      <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مش الأنسب لك</h2>
+      <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مش الأنسب ليك</h2>
       <p className="f-lead">
-        برنامج الـ 90 يوم مصمم لحالات محددة تحتاج متابعة طبية مكثفة، وبناءً على إجاباتك ما نبي ناخذ وقتك أو فلوسك على شي ما يناسبك.
+        برنامج الـ 90 يوم مصمم لحالات محددة محتاجة متابعة طبية مكثفة، وبناءً على إجاباتك ما داير آخد وقتك أو فلوسك على حاجة مش مناسبة ليك.
       </p>
       <ul className="f-result-steps">
-        <li><Check size={20} aria-hidden="true" /><span>تابع المحتوى الطبي المجاني على إنستغرام وطبّق منه.</span></li>
-        <li><Check size={20} aria-hidden="true" /><span>إذا تغيّر وضعك أو صار عندك استعداد، ارجع وأعد التقييم في أي وقت.</span></li>
-        <li><Check size={20} aria-hidden="true" /><span>إذا عندك سؤال محدد، تقدر تراسلنا على واتساب ونوجهك.</span></li>
+        <li><Check size={20} aria-hidden="true" /><span>تابع المحتوى الطبي المجاني على إنستغرام وطبّق منه، فيه كتير بيفيدك.</span></li>
+        <li><Check size={20} aria-hidden="true" /><span>لمن يتغير وضعك أو تبقى جاهز، ارجع واعمل التقييم تاني في أي وقت.</span></li>
+        <li><Check size={20} aria-hidden="true" /><span>لو عندك سؤال محدد، تقدر تراسلنا على واتساب وبنوجهك.</span></li>
       </ul>
       <a className="f-btn f-btn-secondary f-btn-block" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
         تابع المحتوى المجاني على إنستغرام

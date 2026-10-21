@@ -2,15 +2,17 @@
 // Everything a non-developer may want to tune lives in this file.
 
 export const LINKS = {
-  // Ziina payment link ($680). Leave empty to hide the direct-pay button until the link is ready.
+  // Ziina payment link. Leave empty to hide the direct-pay button until the link is ready.
   payment: '',
   paymentProvider: 'Ziina',
   whatsappNumber: '971555519451',
   instagram: 'https://www.instagram.com/doctormoawia',
 };
 
-export const PRICE_USD = 680;
-// The price is shown only on the qualified result screen. Set to false to keep it private entirely.
+// Program price: "starts from", never a range, and only on the qualified result screen.
+export const PRICE_FROM_AED = 2500;
+export const PRICE_LABEL = 'يبدأ من 2,500 درهم';
+// Set to false to keep the price private entirely (lead gets it from the doctor on WhatsApp).
 export const SHOW_PRICE_AFTER_QUALIFICATION = true;
 
 // Optional: a webhook (Google Apps Script, Make, Zapier, n8n ...) that receives every lead as JSON.
@@ -27,87 +29,88 @@ export const QUESTIONS = [
     options: [
       { value: 'under25', label: 'أقل من 25', score: 0 },
       { value: '25-34', label: '25 إلى 34', score: 2 },
-      { value: '35-45', label: '35 إلى 45', score: 3 },
-      { value: '46+', label: '46 أو أكثر', score: 2 },
+      { value: '35-48', label: '35 إلى 48', score: 3 },
+      { value: '49+', label: '49 أو أكثر', score: 2 },
     ],
   },
   {
     id: 'complaints',
-    title: 'أكثر شيء يزعجك حالياً؟',
-    hint: 'اختر كل ما ينطبق عليك',
+    title: 'شو أكتر حاجة مزعجاك هسي؟',
+    hint: 'اختار كل اللي ينطبق عليك',
     multiple: true,
     maxScore: 3,
     options: [
       { value: 'energy', label: 'طاقة منخفضة وتركيز ضعيف رغم النوم', score: 1 },
-      { value: 'weight', label: 'زيادة وزن ودهون في البطن رغم المحاولات', score: 1 },
-      { value: 'sleep', label: 'نوم متقطع أو ما أصحى مرتاح', score: 1 },
+      { value: 'belly', label: 'كرش ودهون بطن مش بتنزل رغم المحاولات', score: 1 },
+      { value: 'sleep', label: 'نوم متقطع وبصحى تعبان', score: 1 },
       { value: 'mood', label: 'توتر مستمر وتقلب في المزاج', score: 1 },
-      { value: 'labs', label: 'قلق على تحاليلي وصحتي بشكل عام', score: 1 },
+      { value: 'labs-abnormal', label: 'تحاليلي فيها كلسترول أو سكر أو كبد دهني', score: 1 },
+      { value: 'labs-normal', label: 'تحاليلي "طبيعية" بس حاسس إني مش طبيعي', score: 1 },
     ],
   },
   {
     id: 'duration',
-    title: 'من متى وأنت تحس بهذي الأعراض؟',
+    title: 'من متى وانت بتحس بالأعراض دي؟',
     options: [
-      { value: 'lt3m', label: 'أقل من 3 أشهر', score: 1 },
-      { value: '3-12m', label: 'من 3 أشهر إلى سنة', score: 2 },
-      { value: 'gt1y', label: 'أكثر من سنة', score: 2 },
+      { value: 'lt3m', label: 'أقل من 3 شهور', score: 1 },
+      { value: '3-12m', label: 'من 3 شهور لسنة', score: 2 },
+      { value: 'gt1y', label: 'أكتر من سنة', score: 2 },
     ],
   },
   {
     id: 'tried',
-    title: 'وش جربت قبل كذا؟',
+    title: 'شو جربت قبل كدا؟',
     options: [
-      { value: 'diet-gym', label: 'حمية أو نادي بدون نتيجة تدوم', score: 2 },
+      { value: 'diet-gym', label: 'دايت أو جيم بدون نتيجة بتدوم', score: 2 },
       { value: 'coach', label: 'مدرب أو أخصائي تغذية', score: 2 },
-      { value: 'many', label: 'برامج كثيرة وما استمريت', score: 2 },
-      { value: 'nothing', label: 'ولا شي، هذي أول خطوة جدية', score: 1 },
+      { value: 'many', label: 'برامج كتيرة وما استمريت', score: 2 },
+      { value: 'nothing', label: 'ولا حاجة، دي أول خطوة جدية', score: 1 },
     ],
   },
   {
     id: 'work',
-    title: 'طبيعة عملك؟',
+    title: 'طبيعة شغلك؟',
     options: [
       { value: 'owner', label: 'صاحب عمل أو رائد أعمال', score: 3 },
       { value: 'manager', label: 'مدير أو منصب قيادي', score: 3 },
       { value: 'employee', label: 'موظف بدوام كامل', score: 2 },
-      { value: 'student', label: 'طالب أو بدون عمل حالياً', score: 0, flag: 'student' },
+      { value: 'student', label: 'طالب أو بدون شغل هسي', score: 0, flag: 'student' },
     ],
   },
   {
     id: 'labs',
-    title: 'عندك تحاليل دم خلال آخر 6 أشهر؟',
+    title: 'عندك تحاليل دم من آخر 6 شهور؟',
     options: [
-      { value: 'yes', label: 'نعم، عندي تحاليل حديثة', score: 1 },
-      { value: 'no', label: 'لا، ما سويت تحاليل من فترة', score: 1 },
+      { value: 'yes', label: 'أيوة، عندي تحاليل حديثة', score: 1 },
+      { value: 'no', label: 'لا، ما عملت تحاليل من فترة', score: 1 },
       { value: 'unsure', label: 'مش متأكد', score: 1 },
     ],
   },
   {
     id: 'readiness',
-    title: 'البرنامج متابعة طبية مدفوعة لمدة 90 يوم بإشراف طبيب. هل أنت جاهز تستثمر وقت ومال في صحتك؟',
+    title: 'البرنامج متابعة طبية مدفوعة لمدة 90 يوم بإشراف طبيب. جاهز تستثمر وقت وفلوس في صحتك؟',
     options: [
-      { value: 'ready', label: 'نعم، جاهز أبدأ', score: 4 },
-      { value: 'learn', label: 'أحتاج أفهم التفاصيل أكثر', score: 2 },
+      { value: 'ready', label: 'أيوة، جاهز أبدأ', score: 4 },
+      { value: 'learn', label: 'محتاج أفهم التفاصيل أكتر', score: 2 },
       { value: 'no', label: 'لا، مش الوقت المناسب', score: 0, flag: 'not-ready' },
     ],
   },
   {
     id: 'timing',
-    title: 'متى تبي تبدأ؟',
+    title: 'لمن داير تبدأ؟',
     options: [
       { value: 'week', label: 'خلال أسبوع', score: 3 },
       { value: 'month', label: 'خلال شهر', score: 2 },
-      { value: 'browsing', label: 'بس أستكشف حالياً', score: 0 },
+      { value: 'browsing', label: 'لسه بستكشف', score: 0 },
     ],
   },
   {
     id: 'location',
-    title: 'وين تسكن؟',
+    title: 'وين ساكن؟',
     options: [
       { value: 'uae', label: 'الإمارات', score: 1 },
       { value: 'ksa', label: 'السعودية', score: 1 },
-      { value: 'gcc', label: 'دولة خليجية أخرى', score: 1 },
+      { value: 'gcc', label: 'دولة خليجية تانية', score: 1 },
       { value: 'other', label: 'خارج الخليج', score: 0 },
     ],
   },
@@ -204,14 +207,14 @@ export function track(event, data = {}) {
 
 export function buildWhatsAppMessage(lead) {
   const lines = [
-    `مرحباً دكتور معاوية، أنا ${lead.name}.`,
-    'أكملت التقييم على الموقع وهذي إجاباتي:',
+    `السلام عليكم دكتور معاوية، أنا ${lead.name}.`,
+    'كملت التقييم على الموقع ودي إجاباتي:',
   ];
   QUESTIONS.forEach((q) => {
     const label = labelFor(q.id, lead.answers[q.id]);
-    if (label) lines.push(`• ${q.title.replace(/\$\d+/, '').trim()} ${label}`);
+    if (label) lines.push(`• ${q.title} ${label}`);
   });
-  lines.push('', 'أبي أعرف الخطوة التالية للانضمام للبرنامج.');
+  lines.push('', 'داير أعرف الخطوة الجاية عشان أنضم للبرنامج.');
   return lines.join('\n');
 }
 
