@@ -252,7 +252,7 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
 
   return (
     <div className="f-result" data-testid="result-not-qualified">
-      <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مو الأنسب لك</h2>
+      <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مش الأنسب لك</h2>
       <p className="f-lead">
         برنامج الـ 90 يوم مصمم لحالات محددة تحتاج متابعة طبية مكثفة، وبناءً على إجاباتك ما نبي ناخذ وقتك أو فلوسك على شي ما يناسبك.
       </p>

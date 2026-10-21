@@ -80,7 +80,7 @@ export const QUESTIONS = [
     options: [
       { value: 'yes', label: 'نعم، عندي تحاليل حديثة', score: 1 },
       { value: 'no', label: 'لا، ما سويت تحاليل من فترة', score: 1 },
-      { value: 'unsure', label: 'مو متأكد', score: 1 },
+      { value: 'unsure', label: 'مش متأكد', score: 1 },
     ],
   },
   {
@@ -89,7 +89,7 @@ export const QUESTIONS = [
     options: [
       { value: 'ready', label: 'نعم، جاهز أبدأ', score: 4 },
       { value: 'learn', label: 'أحتاج أفهم التفاصيل أكثر', score: 2 },
-      { value: 'no', label: 'لا، مو الوقت المناسب', score: 0, flag: 'not-ready' },
+      { value: 'no', label: 'لا، مش الوقت المناسب', score: 0, flag: 'not-ready' },
     ],
   },
   {
