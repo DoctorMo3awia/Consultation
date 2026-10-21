@@ -6,6 +6,8 @@ export const LINKS = {
   payment: '',
   paymentProvider: 'Ziina',
   whatsappNumber: '971555519451',
+  // Qualified leads book here. A dedicated short qualifying-call event type is recommended.
+  calendly: 'https://calendly.com/drmoawia/consultation',
   instagram: 'https://www.instagram.com/doctormoawia',
 };
 
@@ -88,7 +90,7 @@ export const QUESTIONS = [
   },
   {
     id: 'readiness',
-    title: 'البرنامج متابعة طبية مدفوعة لمدة 90 يوم بإشراف طبيب. جاهز تستثمر وقت وفلوس في صحتك؟',
+    title: 'البرنامج متابعة طبية مدفوعة لمدة 90 يوم بإشراف دكتور معاوية. جاهز تستثمر وقت وفلوس في صحتك؟',
     options: [
       { value: 'ready', label: 'أيوة، جاهز أبدأ', score: 4 },
       { value: 'learn', label: 'محتاج أفهم التفاصيل أكتر', score: 2 },
@@ -259,4 +261,22 @@ export function takePrefill() {
   } catch (e) {
     return {};
   }
+}
+
+// Calendly scheduling URL with the lead's name, phone, answers and ad source prefilled.
+export function buildCalendlyUrl(lead) {
+  const url = new URL(LINKS.calendly);
+  url.searchParams.set('hide_gdpr_banner', '1');
+  url.searchParams.set('name', lead.name);
+  const summary = QUESTIONS.map((q) => {
+    const label = labelFor(q.id, lead.answers[q.id]);
+    return label ? `${q.title} ${label}` : '';
+  }).filter(Boolean).join(' | ');
+  url.searchParams.set('a1', `واتساب: ${lead.phone} | ${summary}`.slice(0, 900));
+  const attr = lead.attribution || {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach((k) => {
+    if (attr[k]) url.searchParams.set(k, attr[k]);
+  });
+  if (!attr.utm_source) url.searchParams.set('utm_source', 'site-quiz');
+  return url.toString();
 }

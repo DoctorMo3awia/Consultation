@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Check, MessageCircle, CreditCard, Shield } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, CalendarCheck, Shield, ExternalLink } from 'lucide-react';
 import {
   QUESTIONS,
   TOTAL_STEPS,
@@ -13,8 +13,7 @@ import {
   captureAttribution,
   getAttribution,
   track,
-  buildWhatsAppMessage,
-  whatsappUrl,
+  buildCalendlyUrl,
   deliverLead,
   takePrefill,
 } from '../lib/funnel';
@@ -102,14 +101,9 @@ const Quiz = () => {
     deliverLead(newLead);
   };
 
-  const openWhatsApp = () => {
-    track('cta_whatsapp', { qualified: lead.qualified });
-    window.open(whatsappUrl(buildWhatsAppMessage(lead)), '_blank', 'noopener');
-  };
-
-  const openPayment = () => {
-    track('InitiateCheckout', { value: PRICE_FROM_AED, currency: 'AED' });
-    window.open(LINKS.payment, '_blank', 'noopener');
+  const openCalendly = () => {
+    track('Schedule', { qualified: true });
+    window.open(buildCalendlyUrl(lead), '_blank', 'noopener');
   };
 
   return (
@@ -132,11 +126,11 @@ const Quiz = () => {
 
       <div className="f-quiz-body">
         {lead ? (
-          <Result lead={lead} onWhatsApp={openWhatsApp} onPay={openPayment} onHome={() => navigate('/')} />
+          <Result lead={lead} onCalendly={openCalendly} onHome={() => navigate('/')} />
         ) : isContactStep ? (
           <form onSubmit={submitContact} noValidate>
             <h2 className="f-quiz-q">آخر خطوة: وين نرسل لك النتيجة؟</h2>
-            <p className="f-quiz-hint">بنراجع إجاباتك شخصياً وبنرد عليك على واتساب.</p>
+            <p className="f-quiz-hint">بتشوف النتيجة فوراً، ولو البرنامج مناسب ليك بتحجز مكالمة مع الدكتور مباشرة.</p>
             <div className="f-field">
               <label htmlFor="lead-name">اسمك</label>
               <input
@@ -169,7 +163,7 @@ const Quiz = () => {
               شوف نتيجتي
               <ArrowLeft size={20} aria-hidden="true" />
             </button>
-            <p className="f-consent">بإرسال بياناتك بتوافق إننا نتواصل معك على واتساب بخصوص البرنامج. ما بنشارك بياناتك مع أي طرف تالت.</p>
+            <p className="f-consent">بإرسال بياناتك بتوافق إننا نتواصل معك بخصوص البرنامج. ما بنشارك بياناتك مع أي طرف تالت.</p>
           </form>
         ) : (
           <div key={question.id}>
@@ -207,7 +201,7 @@ const Quiz = () => {
   );
 };
 
-const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
+const Result = ({ lead, onCalendly, onHome }) => {
   const firstName = lead.name.split(' ')[0];
 
   if (lead.qualified) {
@@ -215,49 +209,37 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
       <div className="f-result" data-testid="result-qualified">
         <h2 className="f-quiz-q">{firstName}، البرنامج مناسب ليك</h2>
         <p className="f-lead">
-          إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة.'}
+          إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة: احجز مكالمة قصيرة مع الدكتور.'}
         </p>
         <div className="f-price-card" data-testid="result-stack">
-            <p className="f-price-kicker">برنامج 90 يوم بإشراف طبي، كل خطوة فيه مبنية على الأدلة العلمية</p>
-            <ul className="f-stack">
-              {[
-                ['تحليل وظيفي لتحاليلك بالمدى الوظيفي', '1,500 درهم'],
-                ['خطة تغذية علاجية مخصصة', '1,200 درهم'],
-                ['بروتوكول نمط حياة ونوم', '800 درهم'],
-                ['بروتوكول مكملات', '600 درهم'],
-                ['متابعة طبية كل أسبوعين لمدة 90 يوم', '1,200 درهم'],
-                ['متابعة واتساب طول البرنامج', '700 درهم'],
-              ].map(([item, worth]) => (
-                <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span>{SHOW_PRICE_AFTER_QUALIFICATION && <s>{worth}</s>}</li>
-              ))}
-            </ul>
-            {SHOW_PRICE_AFTER_QUALIFICATION && (
-              <>
-                <p className="anchor">القيمة الكاملة أكتر من 5,000 درهم</p>
-                <p className="amount">{PRICE_LABEL}</p>
-              </>
-            )}
-            <p className="f-price-note">التفاصيل والتكلفة بيشرحها ليك الدكتور على واتساب · ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
-          </div>
+          <p className="f-price-kicker">برنامج لمدة 90 يوم بإشراف دكتور معاوية، كل خطوة فيه مبنية على الأدلة العلمية</p>
+          <ul className="f-stack">
+            {['تحليل وظيفي لتحاليلك بالمدى الوظيفي', 'خطة تغذية علاجية مخصصة', 'بروتوكول نمط حياة ونوم', 'بروتوكول مكملات', 'متابعة طبية كل أسبوعين لمدة 90 يوم', 'متابعة واتساب طول البرنامج'].map((item) => (
+              <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span>{SHOW_PRICE_AFTER_QUALIFICATION && <s />}</li>
+            ))}
+          </ul>
+          {SHOW_PRICE_AFTER_QUALIFICATION && <p className="amount">{PRICE_LABEL}</p>}
+          <p className="f-price-note">التفاصيل والتكلفة بيشرحها ليك الدكتور في المكالمة · ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
+        </div>
         <ul className="f-result-steps">
-          <li><Check size={20} aria-hidden="true" /><span>أرسل إجاباتك للدكتور على واتساب بضغطة واحدة، الرسالة جاهزة.</span></li>
-          <li><Check size={20} aria-hidden="true" /><span>الدكتور بيرد عليك بنفسه، بيجاوب أسئلتك وبيحدد ليك البداية.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>اختار وقت يناسبك من التقويم تحت واحجز مكالمتك مع الدكتور.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>في المكالمة بيراجع معك إجاباتك، بيجاوب أسئلتك، وبيحدد ليك البداية.</span></li>
           <li><Check size={20} aria-hidden="true" /><span>لمن تقرر تبدأ، بتعمل تحاليلك في أقرب مختبر وبنبدأ التحليل والخطة.</span></li>
         </ul>
-        <button type="button" className="f-btn f-btn-whatsapp f-btn-block" onClick={onWhatsApp} data-testid="result-whatsapp">
-          <MessageCircle size={22} aria-hidden="true" />
-          أرسل إجاباتي للدكتور على واتساب
+        <div className="f-calendly" data-testid="result-calendly">
+          <iframe
+            title="حجز مكالمة مع دكتور معاوية"
+            src={buildCalendlyUrl(lead)}
+            loading="lazy"
+            onLoad={() => track('calendly_view')}
+          />
+        </div>
+        <button type="button" className="f-btn f-btn-primary f-btn-block" onClick={onCalendly} data-testid="result-calendly-btn">
+          <CalendarCheck size={20} aria-hidden="true" />
+          احجز مكالمتك مع الدكتور
+          <ExternalLink size={16} aria-hidden="true" />
         </button>
-        {LINKS.payment && (
-          <>
-            <p className="f-or">أو إذا كنت جاهز الآن</p>
-            <button type="button" className="f-btn f-btn-secondary f-btn-block" onClick={onPay} data-testid="result-pay">
-              <CreditCard size={20} aria-hidden="true" />
-              سجّل وادفع مباشرة عبر {LINKS.paymentProvider}
-            </button>
-          </>
-        )}
-        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</span></p>
+        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>مكالمة قصيرة · بدون بيع مباشر · لو البرنامج مش مناسب ليك بقولها بوضوح</span></p>
       </div>
     );
   }
@@ -266,12 +248,11 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
     <div className="f-result" data-testid="result-not-qualified">
       <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مش الأنسب ليك</h2>
       <p className="f-lead">
-        برنامج الـ 90 يوم مصمم لحالات محددة محتاجة متابعة طبية مكثفة، وبناءً على إجاباتك ما أريد آخد وقتك أو فلوسك على حاجة مش مناسبة ليك.
+        برنامج الـ 90 يوم مش لكل حد. هو مصمم لحالات محددة محتاجة متابعة طبية مكثفة، وبناءً على إجاباتك ما أريد آخد وقتك أو فلوسك على حاجة مش مناسبة ليك.
       </p>
       <ul className="f-result-steps">
         <li><Check size={20} aria-hidden="true" /><span>تابع المحتوى الطبي المجاني على إنستغرام وطبّق منه، فيه كتير بيفيدك.</span></li>
         <li><Check size={20} aria-hidden="true" /><span>لمن يتغير وضعك أو تبقى جاهز، ارجع واعمل التقييم تاني في أي وقت.</span></li>
-        <li><Check size={20} aria-hidden="true" /><span>لو عندك سؤال محدد، تقدر تراسلنا على واتساب وبنوجهك.</span></li>
       </ul>
       <a className="f-btn f-btn-secondary f-btn-block" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
         تابع المحتوى المجاني على إنستغرام
