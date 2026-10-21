@@ -10,6 +10,8 @@ export const LINKS = {
 };
 
 export const PRICE_USD = 680;
+// The price is shown only on the qualified result screen. Set to false to keep it private entirely.
+export const SHOW_PRICE_AFTER_QUALIFICATION = true;
 
 // Optional: a webhook (Google Apps Script, Make, Zapier, n8n ...) that receives every lead as JSON.
 // Set REACT_APP_LEAD_WEBHOOK_URL at build time. When empty, leads are only delivered through WhatsApp.
@@ -83,7 +85,7 @@ export const QUESTIONS = [
   },
   {
     id: 'readiness',
-    title: `البرنامج 90 يوم بإشراف طبيب، وقيمته $${PRICE_USD}. هل أنت جاهز تستثمر في صحتك؟`,
+    title: 'البرنامج متابعة طبية مدفوعة لمدة 90 يوم بإشراف طبيب. هل أنت جاهز تستثمر وقت ومال في صحتك؟',
     options: [
       { value: 'ready', label: 'نعم، جاهز أبدأ', score: 4 },
       { value: 'learn', label: 'أحتاج أفهم التفاصيل أكثر', score: 2 },

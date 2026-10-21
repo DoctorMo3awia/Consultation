@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Check, MessageCircle, CreditCard } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, MessageCircle, CreditCard, Shield } from 'lucide-react';
 import {
   QUESTIONS,
   TOTAL_STEPS,
   LINKS,
   PRICE_USD,
+  SHOW_PRICE_AFTER_QUALIFICATION,
   scoreAnswers,
   labelFor,
   captureAttribution,
@@ -163,7 +164,7 @@ const Quiz = () => {
               <small>مع رمز الدولة</small>
               {errors.phone && <span className="err" role="alert">{errors.phone}</span>}
             </div>
-            <button type="submit" className="f-btn f-btn-primary f-quiz-next" data-testid="lead-submit">
+            <button type="submit" className="f-btn f-btn-primary f-btn-block f-quiz-next" data-testid="lead-submit">
               شوف نتيجتي
               <ArrowLeft size={20} aria-hidden="true" />
             </button>
@@ -215,24 +216,36 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
         <p className="f-lead">
           إجاباتك تطابق الحالات اللي نشتغل عليها ونحقق فيها أفضل النتائج. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، نقدر نحجز لك مكان في الدفعة القادمة.' : 'الخطوة التالية بسيطة.'}
         </p>
+        {SHOW_PRICE_AFTER_QUALIFICATION && (
+          <div className="f-price-card" data-testid="result-price">
+            <p className="anchor">متابعة طبيب خاص في الإمارات: $2,000 إلى $4,000 لثلاثة أشهر</p>
+            <p className="amount">${PRICE_USD}<small>USD · دفعة واحدة · 90 يوم</small></p>
+            <ul>
+              {['جلسة تقييم شاملة مع الطبيب', 'تحديد وتفسير التحاليل', 'خطة طبية متكاملة مبنية عليك', 'متابعة وتعديل 90 يوم', 'دعم مباشر على واتساب', 'ضمان استرداد كامل إذا ما استفدت'].map((i) => (
+                <li key={i}><Check size={18} aria-hidden="true" /><span>{i}</span></li>
+              ))}
+            </ul>
+          </div>
+        )}
         <ul className="f-result-steps">
           <li><Check size={20} aria-hidden="true" /><span>أرسل إجاباتك للدكتور على واتساب بضغطة واحدة، الرسالة جاهزة.</span></li>
-          <li><Check size={20} aria-hidden="true" /><span>يرد عليك الدكتور شخصياً ويشرح لك البرنامج ويجاوب أسئلتك.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>يرد عليك الدكتور شخصياً ويجاوب أسئلتك ويحدد لك موعد البداية.</span></li>
           <li><Check size={20} aria-hidden="true" /><span>إذا قررت تبدأ، تدفع وتستلم رابط التطبيق وموعد جلسة التقييم.</span></li>
         </ul>
-        <button type="button" className="f-btn f-btn-whatsapp" onClick={onWhatsApp} data-testid="result-whatsapp">
+        <button type="button" className="f-btn f-btn-whatsapp f-btn-block" onClick={onWhatsApp} data-testid="result-whatsapp">
           <MessageCircle size={22} aria-hidden="true" />
           أرسل إجاباتي للدكتور على واتساب
         </button>
         {LINKS.payment && (
           <>
             <p className="f-or">أو إذا كنت جاهز الآن</p>
-            <button type="button" className="f-btn f-btn-secondary" onClick={onPay} data-testid="result-pay">
+            <button type="button" className="f-btn f-btn-secondary f-btn-block" onClick={onPay} data-testid="result-pay">
               <CreditCard size={20} aria-hidden="true" />
-              سجّل وادفع مباشرة عبر {LINKS.paymentProvider} (${PRICE_USD})
+              سجّل وادفع مباشرة عبر {LINKS.paymentProvider}
             </button>
           </>
         )}
+        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>ضمان استرداد كامل · الأماكن محدودة شهرياً</span></p>
       </div>
     );
   }
@@ -248,7 +261,7 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
         <li><Check size={20} aria-hidden="true" /><span>إذا تغيّر وضعك أو صار عندك استعداد، ارجع وأعد التقييم في أي وقت.</span></li>
         <li><Check size={20} aria-hidden="true" /><span>إذا عندك سؤال محدد، تقدر تراسلنا على واتساب ونوجهك.</span></li>
       </ul>
-      <a className="f-btn f-btn-secondary" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
+      <a className="f-btn f-btn-secondary f-btn-block" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
         تابع المحتوى المجاني على إنستغرام
       </a>
       <button type="button" className="f-btn f-btn-whatsapp" onClick={onWhatsApp} data-testid="result-whatsapp">
