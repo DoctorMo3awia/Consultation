@@ -234,3 +234,22 @@ export async function deliverLead(lead) {
     /* the WhatsApp hand-off still carries the lead */
   }
 }
+
+// The first question can be answered on the landing page; the quiz picks the answer up from here.
+export function setPrefill(answers) {
+  try {
+    sessionStorage.setItem('quiz_prefill', JSON.stringify(answers));
+  } catch (e) {
+    /* optional */
+  }
+}
+
+export function takePrefill() {
+  try {
+    const raw = sessionStorage.getItem('quiz_prefill');
+    sessionStorage.removeItem('quiz_prefill');
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}

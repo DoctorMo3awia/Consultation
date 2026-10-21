@@ -14,6 +14,7 @@ import {
   buildWhatsAppMessage,
   whatsappUrl,
   deliverLead,
+  takePrefill,
 } from '../lib/funnel';
 import '../styles/funnel.css';
 
@@ -21,8 +22,8 @@ const PHONE_RE = /^\+?[0-9\s-]{8,16}$/;
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState(() => takePrefill());
+  const [step, setStep] = useState(() => (Object.keys(answers).length > 0 ? 1 : 0));
   const [contact, setContact] = useState({ name: '', phone: '' });
   const [errors, setErrors] = useState({});
   const [lead, setLead] = useState(null);
