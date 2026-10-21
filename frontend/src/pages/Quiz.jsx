@@ -217,8 +217,7 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
         <p className="f-lead">
           إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة.'}
         </p>
-        {SHOW_PRICE_AFTER_QUALIFICATION && (
-          <div className="f-price-card" data-testid="result-price">
+        <div className="f-price-card" data-testid="result-stack">
             <p className="f-price-kicker">برنامج 90 يوم بإشراف طبي، كل خطوة فيه مبنية على الأدلة العلمية</p>
             <ul className="f-stack">
               {[
@@ -229,14 +228,17 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
                 ['متابعة طبية كل أسبوعين لمدة 90 يوم', '1,200 درهم'],
                 ['متابعة واتساب طول البرنامج', '700 درهم'],
               ].map(([item, worth]) => (
-                <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span><s>{worth}</s></li>
+                <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span>{SHOW_PRICE_AFTER_QUALIFICATION && <s>{worth}</s>}</li>
               ))}
             </ul>
-            <p className="anchor">القيمة الكاملة أكتر من 5,000 درهم</p>
-            <p className="amount">{PRICE_LABEL}</p>
-            <p className="f-price-note">ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
+            {SHOW_PRICE_AFTER_QUALIFICATION && (
+              <>
+                <p className="anchor">القيمة الكاملة أكتر من 5,000 درهم</p>
+                <p className="amount">{PRICE_LABEL}</p>
+              </>
+            )}
+            <p className="f-price-note">التفاصيل والتكلفة بيشرحها ليك الدكتور على واتساب · ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
           </div>
-        )}
         <ul className="f-result-steps">
           <li><Check size={20} aria-hidden="true" /><span>أرسل إجاباتك للدكتور على واتساب بضغطة واحدة، الرسالة جاهزة.</span></li>
           <li><Check size={20} aria-hidden="true" /><span>الدكتور بيرد عليك بنفسه، بيجاوب أسئلتك وبيحدد ليك البداية.</span></li>
@@ -264,7 +266,7 @@ const Result = ({ lead, onWhatsApp, onPay, onHome }) => {
     <div className="f-result" data-testid="result-not-qualified">
       <h2 className="f-quiz-q">شكراً {firstName}، البرنامج الحالي مش الأنسب ليك</h2>
       <p className="f-lead">
-        برنامج الـ 90 يوم مصمم لحالات محددة محتاجة متابعة طبية مكثفة، وبناءً على إجاباتك ما داير آخد وقتك أو فلوسك على حاجة مش مناسبة ليك.
+        برنامج الـ 90 يوم مصمم لحالات محددة محتاجة متابعة طبية مكثفة، وبناءً على إجاباتك ما أريد آخد وقتك أو فلوسك على حاجة مش مناسبة ليك.
       </p>
       <ul className="f-result-steps">
         <li><Check size={20} aria-hidden="true" /><span>تابع المحتوى الطبي المجاني على إنستغرام وطبّق منه، فيه كتير بيفيدك.</span></li>

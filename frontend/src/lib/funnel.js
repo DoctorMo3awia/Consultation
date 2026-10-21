@@ -13,7 +13,7 @@ export const LINKS = {
 export const PRICE_FROM_AED = 2500;
 export const PRICE_LABEL = 'يبدأ من 2,500 درهم';
 // Set to false to keep the price private entirely (lead gets it from the doctor on WhatsApp).
-export const SHOW_PRICE_AFTER_QUALIFICATION = true;
+export const SHOW_PRICE_AFTER_QUALIFICATION = false;
 
 // Optional: a webhook (Google Apps Script, Make, Zapier, n8n ...) that receives every lead as JSON.
 // Set REACT_APP_LEAD_WEBHOOK_URL at build time. When empty, leads are only delivered through WhatsApp.
@@ -97,7 +97,7 @@ export const QUESTIONS = [
   },
   {
     id: 'timing',
-    title: 'لمن داير تبدأ؟',
+    title: 'متى تريد تبدأ؟',
     options: [
       { value: 'week', label: 'خلال أسبوع', score: 3 },
       { value: 'month', label: 'خلال شهر', score: 2 },
@@ -214,7 +214,7 @@ export function buildWhatsAppMessage(lead) {
     const label = labelFor(q.id, lead.answers[q.id]);
     if (label) lines.push(`• ${q.title} ${label}`);
   });
-  lines.push('', 'داير أعرف الخطوة الجاية عشان أنضم للبرنامج.');
+  lines.push('', 'أريد أعرف الخطوة الجاية عشان أنضم للبرنامج.');
   return lines.join('\n');
 }
 
