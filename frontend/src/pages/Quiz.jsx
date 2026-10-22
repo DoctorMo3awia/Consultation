@@ -203,6 +203,7 @@ const Quiz = () => {
 
 const Result = ({ lead, onCalendly, onHome }) => {
   const firstName = lead.name.split(' ')[0];
+  const [calendlyLoaded, setCalendlyLoaded] = useState(false);
 
   if (lead.qualified) {
     return (
@@ -226,19 +227,19 @@ const Result = ({ lead, onCalendly, onHome }) => {
           <li><Check size={20} aria-hidden="true" /><span>في المكالمة بنراجع معك إجاباتك، بنجاوب أسئلتك، وبنحدد ليك البداية.</span></li>
           <li><Check size={20} aria-hidden="true" /><span>لمن تقرر تبدأ، بتعمل تحاليلك في أقرب مختبر وبنبدأ التحليل والخطة.</span></li>
         </ul>
-        <div className="f-calendly" data-testid="result-calendly">
-          <iframe
-            title="حجز مكالمة تعريفية مع فريق دكتور معاوية"
-            src={buildCalendlyUrl(lead)}
-            loading="lazy"
-            onLoad={() => track('calendly_view')}
-          />
-        </div>
         <button type="button" className="f-btn f-btn-primary f-btn-block" onClick={onCalendly} data-testid="result-calendly-btn">
           <CalendarCheck size={20} aria-hidden="true" />
           احجز مكالمتك التعريفية
           <ExternalLink size={16} aria-hidden="true" />
         </button>
+        <p className="f-or">أو اختار وقتك مباشرة من هنا</p>
+        <div className={`f-calendly ${calendlyLoaded ? 'loaded' : ''}`} data-testid="result-calendly">
+          <iframe
+            title="حجز مكالمة تعريفية مع فريق دكتور معاوية"
+            src={buildCalendlyUrl(lead, true)}
+            onLoad={() => { setCalendlyLoaded(true); track('calendly_view'); }}
+          />
+        </div>
         <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>مكالمة قصيرة مع الفريق · بدون بيع مباشر · لو البرنامج مش مناسب ليك بنقولها بوضوح</span></p>
       </div>
     );

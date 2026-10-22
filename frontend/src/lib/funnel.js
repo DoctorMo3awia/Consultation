@@ -264,9 +264,14 @@ export function takePrefill() {
 }
 
 // Calendly scheduling URL with the lead's name, phone, answers and ad source prefilled.
-export function buildCalendlyUrl(lead) {
+export function buildCalendlyUrl(lead, inline = false) {
   const url = new URL(LINKS.calendly);
   url.searchParams.set('hide_gdpr_banner', '1');
+  if (inline) {
+    // Calendly renders inside a frame only when told it is embedded.
+    url.searchParams.set('embed_domain', window.location.hostname || 'localhost');
+    url.searchParams.set('embed_type', 'Inline');
+  }
   url.searchParams.set('name', lead.name);
   const summary = QUESTIONS.map((q) => {
     const label = labelFor(q.id, lead.answers[q.id]);
