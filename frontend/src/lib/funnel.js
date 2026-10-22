@@ -285,3 +285,55 @@ export function buildCalendlyUrl(lead, inline = false) {
   if (!attr.utm_source) url.searchParams.set('utm_source', 'site-quiz');
   return url.toString();
 }
+
+// Phone numbers: country list, digit normalisation and per-country validation.
+export const COUNTRIES = [
+  { code: '971', name: 'الإمارات', rule: /^5\d{8}$/, hint: '9 أرقام تبدأ بـ 5، مثال: 50 123 4567' },
+  { code: '966', name: 'السعودية', rule: /^5\d{8}$/, hint: '9 أرقام تبدأ بـ 5، مثال: 50 123 4567' },
+  { code: '965', name: 'الكويت', rule: /^[569]\d{7}$/, hint: '8 أرقام، مثال: 5123 4567' },
+  { code: '974', name: 'قطر', rule: /^[3567]\d{7}$/, hint: '8 أرقام، مثال: 3312 3456' },
+  { code: '973', name: 'البحرين', rule: /^[36]\d{7}$/, hint: '8 أرقام، مثال: 3612 3456' },
+  { code: '968', name: 'عُمان', rule: /^[79]\d{7}$/, hint: '8 أرقام، مثال: 9212 3456' },
+  { code: '20', name: 'مصر', rule: /^1[0125]\d{8}$/, hint: '10 أرقام تبدأ بـ 1، مثال: 10 1234 5678' },
+  { code: '', name: 'دولة أخرى', rule: /^\d{6,12}$/, hint: 'اكتب الرقم كاملاً مع رمز الدولة، مثال: +44 7123 456789' },
+];
+
+const ARABIC_DIGITS = '٠١٢٣٤٥٦٧٨٩';
+const PERSIAN_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
+
+export function toLatinDigits(text) {
+  return String(text || '').replace(/[٠-٩۰-۹]/g, (d) => {
+    const i = ARABIC_DIGITS.indexOf(d);
+    return String(i >= 0 ? i : PERSIAN_DIGITS.indexOf(d));
+  });
+}
+
+// Returns { e164, display } or { error }.
+export function normalizePhone(raw, countryCode) {
+  let digits = toLatinDigits(raw).trim();
+  const international = /^\s*(\+|00)/.test(digits);
+  digits = digits.replace(/[^0-9]/g, '');
+  if (!digits) return { error: 'اكتب رقم الواتساب' };
+
+  let code = countryCode;
+  let local = digits;
+  if (international) {
+    digits = digits.replace(/^00/, '');
+    const known = COUNTRIES.filter((c) => c.code).find((c) => digits.indexOf(c.code) === 0);
+    if (known) {
+      code = known.code;
+      local = digits.slice(known.code.length);
+    } else {
+      if (digits.length < 8 || digits.length > 15) return { error: 'الرقم الدولي غير صحيح، تأكد من رمز الدولة وعدد الأرقام' };
+      return { e164: `+${digits}`, display: `+${digits}` };
+    }
+  } else if (!code) {
+    return { error: 'اكتب الرقم كاملاً مع رمز الدولة، مثال: +44 7123 456789' };
+  }
+
+  local = local.replace(/^0+/, '');
+  const country = COUNTRIES.find((c) => c.code === code);
+  if (!country) return { error: 'اختار الدولة' };
+  if (!country.rule.test(local)) return { error: `رقم ${country.name} غير صحيح: ${country.hint}` };
+  return { e164: `+${code}${local}`, display: `+${code} ${local}` };
+}

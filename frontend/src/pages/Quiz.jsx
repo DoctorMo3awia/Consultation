@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check, CalendarCheck, Shield, ExternalLink } from 'lucide-react';
 import {
@@ -15,17 +15,17 @@ import {
   track,
   buildCalendlyUrl,
   deliverLead,
+  COUNTRIES,
+  normalizePhone,
   takePrefill,
 } from '../lib/funnel';
 import '../styles/funnel.css';
-
-const PHONE_RE = /^\+?[0-9\s-]{8,16}$/;
 
 const Quiz = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState(() => takePrefill());
   const [step, setStep] = useState(() => (Object.keys(answers).length > 0 ? 1 : 0));
-  const [contact, setContact] = useState({ name: '', phone: '' });
+  const [contact, setContact] = useState({ name: '', phone: '', country: '971' });
   const [errors, setErrors] = useState({});
   const [lead, setLead] = useState(null);
 
@@ -68,6 +68,11 @@ const Quiz = () => {
     });
   };
 
+  const phonePreview = useMemo(
+    () => (contact.phone.trim() ? normalizePhone(contact.phone, contact.country) : {}),
+    [contact.phone, contact.country]
+  );
+
   const multiSelected = useMemo(() => {
     if (!question || !question.multiple) return [];
     return Array.isArray(answers[question.id]) ? answers[question.id] : [];
@@ -77,14 +82,15 @@ const Quiz = () => {
     e.preventDefault();
     const errs = {};
     if (contact.name.trim().length < 2) errs.name = 'اكتب اسمك';
-    if (!PHONE_RE.test(contact.phone.trim())) errs.phone = 'اكتب رقم واتساب صحيح مع رمز الدولة';
+    const phone = normalizePhone(contact.phone, contact.country);
+    if (phone.error) errs.phone = phone.error;
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
     const result = scoreAnswers(answers);
     const newLead = {
       name: contact.name.trim(),
-      phone: contact.phone.trim(),
+      phone: phone.e164,
       answers,
       summary: Object.fromEntries(QUESTIONS.map((q) => [q.id, labelFor(q.id, answers[q.id])])),
       score: result.score,
@@ -145,18 +151,32 @@ const Quiz = () => {
             </div>
             <div className="f-field">
               <label htmlFor="lead-phone">رقم الواتساب</label>
-              <input
-                id="lead-phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                dir="ltr"
-                placeholder="+971 5X XXX XXXX"
-                value={contact.phone}
-                onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
-                data-testid="lead-phone"
-              />
-              <small>مع رمز الدولة</small>
+              <div className="f-phone">
+                <select
+                  id="lead-country"
+                  aria-label="الدولة"
+                  value={contact.country}
+                  onChange={(e) => { const v = e.target.value; setContact((c) => ({ ...c, country: v })); setErrors((er) => ({ ...er, phone: undefined })); }}
+                  data-testid="lead-country"
+                >
+                  {COUNTRIES.map((c) => (
+                    <option key={c.code || 'other'} value={c.code}>{c.name}{c.code ? ` +${c.code}` : ''}</option>
+                  ))}
+                </select>
+                <input
+                  id="lead-phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel-national"
+                  dir="ltr"
+                  placeholder={contact.country === '971' || contact.country === '966' ? '5X XXX XXXX' : 'رقم الجوال'}
+                  value={contact.phone}
+                  onChange={(e) => { const v = e.target.value; setContact((c) => ({ ...c, phone: v })); setErrors((er) => ({ ...er, phone: undefined })); }}
+                  data-testid="lead-phone"
+                />
+              </div>
+              {phonePreview.e164 && !errors.phone && <small className="ok">بنتواصل معك على: <span dir="ltr">{phonePreview.display}</span></small>}
+              {!phonePreview.e164 && !errors.phone && <small>{(COUNTRIES.find((c) => c.code === contact.country) || {}).hint}</small>}
               {errors.phone && <span className="err" role="alert">{errors.phone}</span>}
             </div>
             <button type="submit" className="f-btn f-btn-primary f-btn-block f-quiz-next" data-testid="lead-submit">
@@ -203,7 +223,39 @@ const Quiz = () => {
 
 const Result = ({ lead, onCalendly, onHome }) => {
   const firstName = lead.name.split(' ')[0];
-  const [calendlyLoaded, setCalendlyLoaded] = useState(false);
+  // 'loading' until Calendly's frame posts a message saying it has drawn the calendar,
+  // 'failed' when nothing arrives in time (the frame is blocked): then only the button stays.
+  const [calendlyState, setCalendlyState] = useState('loading');
+  const calendlyRef = useRef(null);
+
+  useEffect(() => {
+    const onMessage = (e) => {
+      if (e.origin !== 'https://calendly.com' || !e.data || typeof e.data.event !== 'string') return;
+      if (e.data.event.indexOf('calendly.') !== 0) return;
+      if (e.data.event === 'calendly.page_height' && parseInt((e.data.payload || {}).height, 10) < 200) return;
+      setCalendlyState('ready');
+      if (e.data.event === 'calendly.event_scheduled') {
+        track('Schedule', { source: 'embed' });
+        track('calendly_booked');
+      }
+    };
+    window.addEventListener('message', onMessage);
+    // Calendly draws only once its frame is on screen, so the give-up timer starts when it becomes visible.
+    let giveUp = null;
+    const el = calendlyRef.current;
+    const seen = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && giveUp == null) {
+        giveUp = window.setTimeout(() => setCalendlyState((st) => (st === 'ready' ? st : 'failed')), 15000);
+        seen.disconnect();
+      }
+    }, { threshold: 0.2 });
+    if (el) seen.observe(el);
+    return () => {
+      window.removeEventListener('message', onMessage);
+      if (giveUp != null) window.clearTimeout(giveUp);
+      seen.disconnect();
+    };
+  }, []);
 
   if (lead.qualified) {
     return (
@@ -232,13 +284,14 @@ const Result = ({ lead, onCalendly, onHome }) => {
           احجز مكالمتك التعريفية
           <ExternalLink size={16} aria-hidden="true" />
         </button>
-        <p className="f-or">أو اختار وقتك مباشرة من هنا</p>
-        <div className={`f-calendly ${calendlyLoaded ? 'loaded' : ''}`} data-testid="result-calendly">
+        {calendlyState !== 'failed' && <p className="f-or">أو اختار وقتك مباشرة من هنا</p>}
+        <div className={`f-calendly ${calendlyState}`} data-testid="result-calendly" ref={calendlyRef}>
           <iframe
             title="حجز مكالمة تعريفية مع فريق دكتور معاوية"
             src={buildCalendlyUrl(lead, true)}
-            onLoad={() => { setCalendlyLoaded(true); track('calendly_view'); }}
+            onLoad={() => track('calendly_view')}
           />
+          {calendlyState === 'loading' && <p className="note">جاري تحميل التقويم...</p>}
         </div>
         <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>مكالمة قصيرة مع الفريق · بدون بيع مباشر · لو البرنامج مش مناسب ليك بنقولها بوضوح</span></p>
       </div>
