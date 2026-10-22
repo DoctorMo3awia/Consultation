@@ -130,7 +130,7 @@ const Quiz = () => {
         ) : isContactStep ? (
           <form onSubmit={submitContact} noValidate>
             <h2 className="f-quiz-q">آخر خطوة: وين نرسل لك النتيجة؟</h2>
-            <p className="f-quiz-hint">بتشوف النتيجة فوراً، ولو البرنامج مناسب ليك بتحجز مكالمة مع الدكتور مباشرة.</p>
+            <p className="f-quiz-hint">بتشوف النتيجة فوراً، ولو البرنامج مناسب ليك بتحجز مكالمة تعريفية مع الفريق مباشرة.</p>
             <div className="f-field">
               <label htmlFor="lead-name">اسمك</label>
               <input
@@ -209,7 +209,7 @@ const Result = ({ lead, onCalendly, onHome }) => {
       <div className="f-result" data-testid="result-qualified">
         <h2 className="f-quiz-q">{firstName}، البرنامج مناسب ليك</h2>
         <p className="f-lead">
-          إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة: احجز مكالمة قصيرة مع الدكتور.'}
+          إجاباتك بتطابق الحالات اللي بشتغل عليها وبنحقق فيها أفضل النتائج. أغلب اللي زيك بيكون السبب خلل هرموني أيضي بيبان في التحاليل لمن نقراها صح. {lead.hot ? 'وبما إنك جاهز تبدأ خلال أسبوع، بنقدر نحجز ليك مكان في الدفعة الجاية.' : 'الخطوة الجاية بسيطة: احجز مكالمة تعريفية قصيرة مع الفريق.'}
         </p>
         <div className="f-price-card" data-testid="result-stack">
           <p className="f-price-kicker">برنامج لمدة 90 يوم بإشراف دكتور معاوية، كل خطوة فيه مبنية على الأدلة العلمية</p>
@@ -219,16 +219,16 @@ const Result = ({ lead, onCalendly, onHome }) => {
             ))}
           </ul>
           {SHOW_PRICE_AFTER_QUALIFICATION && <p className="amount">{PRICE_LABEL}</p>}
-          <p className="f-price-note">التفاصيل والتكلفة بيشرحها ليك الدكتور في المكالمة · ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
+          <p className="f-price-note">التفاصيل والتكلفة بنشرحها ليك في المكالمة · ضمان استرجاع 30 يوم · عدد محدود من الأماكن الشهر دا</p>
         </div>
         <ul className="f-result-steps">
-          <li><Check size={20} aria-hidden="true" /><span>اختار وقت يناسبك من التقويم تحت واحجز مكالمتك مع الدكتور.</span></li>
-          <li><Check size={20} aria-hidden="true" /><span>في المكالمة بيراجع معك إجاباتك، بيجاوب أسئلتك، وبيحدد ليك البداية.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>اختار وقت يناسبك من التقويم تحت واحجز مكالمتك التعريفية مع فريق دكتور معاوية.</span></li>
+          <li><Check size={20} aria-hidden="true" /><span>في المكالمة بنراجع معك إجاباتك، بنجاوب أسئلتك، وبنحدد ليك البداية.</span></li>
           <li><Check size={20} aria-hidden="true" /><span>لمن تقرر تبدأ، بتعمل تحاليلك في أقرب مختبر وبنبدأ التحليل والخطة.</span></li>
         </ul>
         <div className="f-calendly" data-testid="result-calendly">
           <iframe
-            title="حجز مكالمة مع دكتور معاوية"
+            title="حجز مكالمة تعريفية مع فريق دكتور معاوية"
             src={buildCalendlyUrl(lead)}
             loading="lazy"
             onLoad={() => track('calendly_view')}
@@ -236,10 +236,10 @@ const Result = ({ lead, onCalendly, onHome }) => {
         </div>
         <button type="button" className="f-btn f-btn-primary f-btn-block" onClick={onCalendly} data-testid="result-calendly-btn">
           <CalendarCheck size={20} aria-hidden="true" />
-          احجز مكالمتك مع الدكتور
+          احجز مكالمتك التعريفية
           <ExternalLink size={16} aria-hidden="true" />
         </button>
-        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>مكالمة قصيرة · بدون بيع مباشر · لو البرنامج مش مناسب ليك بقولها بوضوح</span></p>
+        <p className="f-trust"><Shield size={13} aria-hidden="true" /><span>مكالمة قصيرة مع الفريق · بدون بيع مباشر · لو البرنامج مش مناسب ليك بنقولها بوضوح</span></p>
       </div>
     );
   }
