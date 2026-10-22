@@ -257,10 +257,6 @@ const Result = ({ lead, onCalendly, onHome }) => {
       <a className="f-btn f-btn-secondary f-btn-block" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
         تابع المحتوى المجاني على إنستغرام
       </a>
-      <button type="button" className="f-btn f-btn-whatsapp" onClick={onWhatsApp} data-testid="result-whatsapp">
-        <MessageCircle size={22} aria-hidden="true" />
-        عندي سؤال محدد
-      </button>
       <button type="button" className="f-quiz-back" onClick={onHome}>العودة للصفحة الرئيسية</button>
     </div>
   );
